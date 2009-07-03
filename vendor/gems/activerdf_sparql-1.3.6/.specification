@@ -1,0 +1,89 @@
+--- !ruby/object:Gem::Specification 
+name: activerdf_sparql
+version: !ruby/object:Gem::Version 
+  version: 1.3.6
+platform: ruby
+authors: 
+- Eyal Oren <eyal.oren@deri.org
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2009-07-03 00:00:00 -04:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: gem_plugin
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 0.2.1
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: activerdf
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.6.4
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: json
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.1.1
+    version: 
+description: ActiveRDF adapter to SPARQL endpoint
+email: 
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README
+files: 
+- LICENSE
+- README
+- CHANGELOG
+- test/test_sparql_adapter.rb
+- lib/activerdf_sparql
+- lib/activerdf_sparql/init.rb
+- lib/activerdf_sparql/sparql.rb
+- lib/activerdf_sparql/sparql_result_parser.rb
+has_rdoc: true
+homepage: 
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.1
+signing_key: 
+specification_version: 2
+summary: ActiveRDF adapter to SPARQL endpoint
+test_files: []
+
