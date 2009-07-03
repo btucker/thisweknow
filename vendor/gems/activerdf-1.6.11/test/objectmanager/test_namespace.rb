@@ -8,8 +8,6 @@ require 'objectmanager/namespace'
 require "#{File.dirname(__FILE__)}/../common"
 
 class TestNamespace < Test::Unit::TestCase
-  include ActiveRdf
-
   Rdf = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
   Rdfs = 'http://www.w3.org/2000/01/rdf-schema#'
   RdfType = RDFS::Resource.new('http://www.w3.org/1999/02/22-rdf-syntax-ns#type')
@@ -55,20 +53,20 @@ class TestNamespace < Test::Unit::TestCase
   end
 
   def test_class_localname
-    assert_equal 'type', Namespace.lookup(:rdf, :type).localname
-    assert_equal 'type', RDF::type.localname
+		assert_equal 'type', Namespace.lookup(:rdf, :type).localname
+		assert_equal 'type', RDF::type.localname
 
-    assert_equal 'Class', Namespace.lookup(:rdfs, :Class).localname
-    assert_equal 'Class', RDFS::Class.localname
+		assert_equal 'Class', Namespace.lookup(:rdfs, :Class).localname
+		assert_equal 'Class', RDFS::Class.localname
   end
 
   def test_class_register
-    test = 'http://activerdf.org/test/'
-    abc = RDFS::Resource.new("#{test}abc")
-    Namespace.register :test, test
+		test = 'http://test.org/'
+		abc = RDFS::Resource.new("#{test}abc")
+		Namespace.register :test, test
 
-    assert_equal abc, Namespace.lookup(:test, :abc)
-    assert_equal abc, TEST::abc
+		assert_equal abc, Namespace.lookup(:test, :abc)
+		assert_equal abc, TEST::abc
   end
 
   def test_attributes

@@ -8,8 +8,6 @@ require 'queryengine/ntriples_parser'
 require "#{File.dirname(__FILE__)}/../common"
 
 class TestNTriplesParser < Test::Unit::TestCase
-  include ActiveRdf
-
   def setup
   end
 
@@ -20,9 +18,9 @@ class TestNTriplesParser < Test::Unit::TestCase
     str = <<EOF
 <http://www.johnbreslin.com/blog/author/cloud/#foaf> <http://xmlns.com/foaf/0.1/surname> "Breslin" .
 <http://www.johnbreslin.com/blog/author/cloud/#foaf> <http://xmlns.com/foaf/0.1/firstName> "John" .
-<http://www.johnbreslin.com/blog/author/cloud/> <http://purl.org/dc/terms/created> "1999-11-30T00:00:00" .
+<http://www.johnbreslin.com/blog/author/cloud/> <http://purl.org/dc/terms/created> "1999-11-30T00:00:00" .  				
 EOF
-
+    
     triples = NTriplesParser.parse(str)
     assert_equal 9, triples.flatten.size
     assert_equal 3, triples[0].size
@@ -61,7 +59,7 @@ EOF
 <s> <p> "blue" .
 <s> <p> "29"^^<http://www.w3.org/2001/XMLSchema#integer> .
 <s> <p> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
-<s> <p> "2002-10-10T00:00:00+13"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<s> <p> "2002-10-10T00:00:00+13"^^<http://www.w3.org/2001/XMLSchema#date> .
 EOF
     triples = NTriplesParser.parse(string)
     assert_equal 4, triples.size

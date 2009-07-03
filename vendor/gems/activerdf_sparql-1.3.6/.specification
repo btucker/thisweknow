@@ -9,7 +9,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2009-07-03 00:00:00 -04:00
+date: 2008-04-22 00:00:00 -04:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -54,11 +54,41 @@ files:
 - LICENSE
 - README
 - CHANGELOG
+- doc/rdoc/fr_file_index.html
+- doc/rdoc/index.html
+- doc/rdoc/rdoc-style.css
+- doc/rdoc/fr_class_index.html
+- doc/rdoc/fr_method_index.html
+- doc/rdoc/classes
+- doc/rdoc/classes/SparqlAdapter.html
+- doc/rdoc/classes/SparqlAdapter.src
+- doc/rdoc/classes/SparqlAdapter.src/M000005.html
+- doc/rdoc/classes/SparqlAdapter.src/M000001.html
+- doc/rdoc/classes/SparqlAdapter.src/M000003.html
+- doc/rdoc/classes/SparqlAdapter.src/M000002.html
+- doc/rdoc/classes/SparqlAdapter.src/M000004.html
+- doc/rdoc/classes/SparqlResultParser.html
+- doc/rdoc/classes/SparqlResultParser.src
+- doc/rdoc/classes/SparqlResultParser.src/M000010.html
+- doc/rdoc/classes/SparqlResultParser.src/M000009.html
+- doc/rdoc/classes/SparqlResultParser.src/M000011.html
+- doc/rdoc/classes/SparqlResultParser.src/M000006.html
+- doc/rdoc/classes/SparqlResultParser.src/M000008.html
+- doc/rdoc/classes/SparqlResultParser.src/M000007.html
+- doc/rdoc/created.rid
+- doc/rdoc/files
+- doc/rdoc/files/lib
+- doc/rdoc/files/lib/activerdf_sparql
+- doc/rdoc/files/lib/activerdf_sparql/sparql_rb.html
+- doc/rdoc/files/lib/activerdf_sparql/init_rb.html
+- doc/rdoc/files/lib/activerdf_sparql/sparql_result_parser_rb.html
+- doc/rdoc/files/README.html
+- doc/rdoc/files/LICENSE.html
 - test/test_sparql_adapter.rb
 - lib/activerdf_sparql
+- lib/activerdf_sparql/sparql_result_parser.rb
 - lib/activerdf_sparql/init.rb
 - lib/activerdf_sparql/sparql.rb
-- lib/activerdf_sparql/sparql_result_parser.rb
 has_rdoc: true
 homepage: 
 post_install_message: 

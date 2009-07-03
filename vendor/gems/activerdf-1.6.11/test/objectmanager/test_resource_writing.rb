@@ -8,41 +8,27 @@ require 'federation/connection_pool'
 require "#{File.dirname(__FILE__)}/../common"
 
 class TestResourceWriting < Test::Unit::TestCase
-  include SetupAdapter
-
-  @@eyal = TEST::eyal
+  def setup
+		ConnectionPool.clear
+  end
 
   def test_update_value
-    assert_raises(ActiveRdfError) { @@eyal.age = 18 }
+    Namespace.register(:ar, 'http://activerdf.org/test/')
+    adapter = get_write_adapter
 
-    @@eyal.test::age = 100
-    assert_equal 100, @@eyal.test::age.to_a.first
+    eyal = RDFS::Resource.new 'http://activerdf.org/test/eyal'
+    assert_raises(ActiveRdfError) { eyal.age = 18 }
 
-    @@eyal.age += 18
-    assert_equal [100,18], @@eyal.age
+    eyal.ar::age = 100
+    assert_equal 100, eyal.ar::age
+    assert_equal [100], eyal.all_ar::age
+   
+    # << fails on Fixnums , because Ruby doesn't allow us to change behaviour of 
+    # << on Fixnums 
+    eyal.age << 18
+    assert_equal 100, eyal.age
 
-    @@eyal.test::age = [100, 80]
-    assert_equal [100, 80], @@eyal.test::age
-  end
-
-  def test_clear_property
-    TEST::eyal.test::email = ["eyal@cs.vu.nl","eyal.oren@deri.net"]
-    assert_equal 2, TEST::eyal.email.size
-    TEST::eyal.email.clear
-
-    # once direct predicates not defined in the schema are removed, they are no longer accessible without specifying a namespace
-    assert_nil TEST::eyal.email
-    assert_raise ActiveRdfError do
-      TEST::eyal.email = ""
-    end
-    assert_equal 0, TEST::eyal.test::email.size
-  end
-
-  def test_save
-    foo = RDFS::Resource.new(TEST::foo)
-    assert_equal 0, ConnectionPool.write_adapter.size
-    foo.save
-    assert_equal 1, ConnectionPool.write_adapter.size
-    assert_equal [foo], RDFS::Resource.find_all
+    eyal.ar::age = [100, 80]
+    assert_equal [100, 80], eyal.ar::age
   end
 end

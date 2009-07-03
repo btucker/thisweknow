@@ -10,8 +10,6 @@ require 'queryengine/query'
 
 
 class TestSparqlAdapter < Test::Unit::TestCase
-  include ActiveRdf
-
   def setup
     ConnectionPool.clear
     @adapter = ConnectionPool.add(:type => :sparql, :url => 'http://dbpedia.org/sparql', :engine => :virtuoso)
@@ -31,7 +29,7 @@ class TestSparqlAdapter < Test::Unit::TestCase
     german = Query.new.distinct(:o).where(sunset,abstract,:o).limit(1).lang(:o,'de').execute.first
     english = Query.new.distinct(:o).where(sunset,abstract,:o).limit(1).lang(:o,'en').execute.first
 
-    assert english =~ /^77 Sunset Strip is the first hour-length private detective series in American television history/
+    assert english =~ /^77 Sunset Strip was one of the most popular of the detective series in early television/
     assert german =~ /^77 Sunset Strip ist ein Serienklassiker aus den USA um das gleichnamige, in Los Angeles am Sunset Boulevard angesiedelte Detektivbüro/
   end
 
@@ -54,15 +52,19 @@ class TestSparqlAdapter < Test::Unit::TestCase
   def test_regex_filter
     Namespace.register :yago, 'http://dbpedia.org/class/yago/'
     Namespace.register :dbpedia, 'http://dbpedia.org/property/'
-    Namespace.register :dbresource, 'http://dbpedia.org/resource/'
 
-    movies = Query.new.
-      distinct(:title).
-      where(DBRESOURCE::Kill_Bill, RDFS.label, :title).
-      filter_regex(:title, /^Kill/).limit(10).execute
+    begin
+      movies = Query.new.
+        select(:title).
+        where(:film, RDFS.label, :title).
+        where(:title, RDFS::Resource.new('bif:contains'), 'kill').
+        filter_regex(:title, /Kill$/).execute
+    rescue TimeOut::Error => e
+      puts "WARNING: SPARQL endpoint timed out"
+    end
 
     assert !movies.empty?, "regex query returns empty results"
-    assert movies.all? {|m| m =~ /^Kill/ }, "regex query returns wrong results"
+    assert movies.all? {|m| m =~ /Kill$/ }, "regex query returns wrong results"
   end
 
   def test_query_with_block
