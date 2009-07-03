@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>create_node (SparqlResultParser)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/activerdf_sparql/sparql_result_parser.rb, line 40</span>
+40:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_node</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">value</span>)
+41:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">type</span>
+42:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'uri'</span>
+43:       <span class="ruby-constant">RDFS</span><span class="ruby-operator">::</span><span class="ruby-constant">Resource</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">value</span>)
+44:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'bnode'</span>
+45:       <span class="ruby-constant">BNode</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">value</span>)
+46:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'literal'</span>,<span class="ruby-value str">'typed-literal'</span>
+47:       <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>
+48:     <span class="ruby-keyword kw">end</span>
+49:   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>execute_sparql_query (SparqlAdapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/activerdf_sparql/sparql.rb, line 49</span>
+49:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute_sparql_query</span>(<span class="ruby-identifier">qs</span>, <span class="ruby-identifier">header</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+50:     <span class="ruby-identifier">header</span> = <span class="ruby-identifier">header</span>(<span class="ruby-keyword kw">nil</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">header</span>.<span class="ruby-identifier">nil?</span>
+51: 
+52:                 <span class="ruby-comment cmt"># encoding query string in URL</span>
+53:                 <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;#@url?query=#{CGI.escape(qs)}&quot;</span>
+54:     <span class="ruby-comment cmt">#url += &quot;&amp;content-type=#{CGI.escape('application/sparql-results+xml')}&quot; if @yars2</span>
+55:     <span class="ruby-identifier">url</span> = <span class="ruby-identifier">url</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">&quot;DISTINCT&quot;</span>, <span class="ruby-value str">&quot;&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@yars2</span>
+56:                 <span class="ruby-identifier">$activerdflog</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;querying #{url}&quot;</span>
+57: 
+58:     <span class="ruby-comment cmt"># querying sparql endpoint</span>
+59:                 <span class="ruby-identifier">response</span> = <span class="ruby-value str">''</span>
+60:                 <span class="ruby-keyword kw">begin</span> 
+61:                   <span class="ruby-identifier">open</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">header</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+62:                                 <span class="ruby-identifier">response</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>
+63:                         <span class="ruby-keyword kw">end</span>
+64:                 <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">OpenURI</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+65:                         <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActiveRdfError</span>, <span class="ruby-node">&quot;could not query SPARQL endpoint, server said: #{e}&quot;</span>
+66:                         <span class="ruby-keyword kw">return</span> []
+67:                 <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ECONNREFUSED</span>
+68:                         <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActiveRdfError</span>, <span class="ruby-value str">&quot;connection refused on SPARQL endpoint #@url&quot;</span>
+69:                         <span class="ruby-keyword kw">return</span> []
+70:                <span class="ruby-keyword kw">end</span>
+71:     <span class="ruby-identifier">$activerdflog</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;response:\n#{response}&quot;</span>
+72: 
+73:     <span class="ruby-comment cmt"># we parse content depending on the result format</span>
+74:     <span class="ruby-identifier">results</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@result_format</span>
+75:                                                   <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:json</span> 
+76:                                                                 <span class="ruby-identifier">parse_json</span>(<span class="ruby-identifier">response</span>)
+77:                                                   <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:xml</span>, <span class="ruby-identifier">:sparql_xml</span>
+78:                                                                  <span class="ruby-identifier">parse_xml</span>(<span class="ruby-identifier">response</span>)
+79:                                                   <span class="ruby-keyword kw">end</span>
+80: 
+81:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+82:       <span class="ruby-identifier">results</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">clauses</span><span class="ruby-operator">|</span>
+83:         <span class="ruby-keyword kw">yield</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">clauses</span>)
+84:       <span class="ruby-keyword kw">end</span>
+85:     <span class="ruby-keyword kw">else</span>
+86:       <span class="ruby-identifier">results</span>
+87:     <span class="ruby-keyword kw">end</span>
+88:         <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
