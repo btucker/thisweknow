@@ -1,0 +1,234 @@
+
+
+Processing EntitiesController#Chemical_N150 (for 127.0.0.1 at 2009-07-03 15:09:15) [GET]
+
+ActionController::UnknownAction (No action responded to Chemical_N150. Actions: show):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:09:50) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.property_accessors) on line #2 of app/views/entities/show.html.erb:
+1: <dl>
+2:   <% @resource.property_accessors.each do |prop| %>
+3:     <dt><%= prop %></td>
+4:     <dd><%= @resource.send(prop.to_sym) %></dd>
+5:   <% end %>
+
+    app/views/entities/show.html.erb:2
+
+Rendered rescues/_trace (41.3ms)
+Rendered rescues/_request_and_response (1.6ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:10:13) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+Completed in 575ms (View: 573, DB: 0) | 200 OK [http://localhost/entities/Chemical_N150]
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:19:15) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+Completed in 843ms (View: 841, DB: 0) | 200 OK [http://localhost/entities/Chemical_N150]
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:19:17) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+Completed in 1206ms (View: 1205, DB: 0) | 200 OK [http://localhost/entities/Chemical_N150]
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:21:04) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+
+ActionView::TemplateError (undefined local variable or method `propery_value' for #<ActionView::Base:0x37e0c90>) on line #1 of app/views/entities/_property.html.erb:
+1: <% if propery_value.property_accessors.any? %>
+2:   <dl>
+3:     <% property_value.property_accessors.each do |prop| %>
+4:       <%= render :partial => 'property', :locals => {:propvalue => property_value.send(prop.to_sym)}, :object => prop %>
+
+    app/views/entities/_property.html.erb:1
+    app/views/entities/show.html.erb:3
+    app/views/entities/show.html.erb:2:in `each'
+    app/views/entities/show.html.erb:2
+
+Rendered rescues/_trace (139.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:21:30) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+
+ActionView::TemplateError (undefined local variable or method `property_value' for #<ActionView::Base:0x384003c>) on line #1 of app/views/entities/_property.html.erb:
+1: <% if property_value.property_accessors.any? %>
+2:   <dl>
+3:     <% property_value.property_accessors.each do |prop| %>
+4:       <%= render :partial => 'property', :locals => {:propvalue => property_value.send(prop.to_sym)}, :object => prop %>
+
+    app/views/entities/_property.html.erb:1
+    app/views/entities/show.html.erb:3
+    app/views/entities/show.html.erb:2:in `each'
+    app/views/entities/show.html.erb:2
+
+Rendered rescues/_trace (131.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:22:01) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+
+ActionView::TemplateError (undefined local variable or method `property_value' for #<ActionView::Base:0x38bf260>) on line #1 of app/views/entities/_property.html.erb:
+1: <% if property_value.property_accessors.any? %>
+2:   <dl>
+3:     <% property_value.property_accessors.each do |prop| %>
+4:       <%= render :partial => 'property', :locals => {:propvalue => property_value.send(prop.to_sym)}, :object => prop %>
+
+    app/views/entities/_property.html.erb:1
+    app/views/entities/_property.html.erb:4
+    app/views/entities/_property.html.erb:3:in `each'
+    app/views/entities/_property.html.erb:3
+    app/views/entities/show.html.erb:3
+    app/views/entities/show.html.erb:2:in `each'
+    app/views/entities/show.html.erb:2
+
+Rendered rescues/_trace (136.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:22:45) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+
+ActionView::TemplateError (undefined method `property_accessors' for #<Array:0x3781ccc>) on line #1 of app/views/entities/_property.html.erb:
+1: <% if property_value.property_accessors.any? %>
+2:   <dl>
+3:     <% property_value.property_accessors.each do |prop| %>
+4:       <%= render :partial => 'property', :locals => {:property_value => property_value.send(prop.to_sym)}, :object => prop %>
+
+    app/views/entities/_property.html.erb:1
+    app/views/entities/_property.html.erb:4
+    app/views/entities/_property.html.erb:3:in `each'
+    app/views/entities/_property.html.erb:3
+    app/views/entities/show.html.erb:3
+    app/views/entities/show.html.erb:2:in `each'
+    app/views/entities/show.html.erb:2
+
+Rendered rescues/_trace (53.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:23:27) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.>) on line #1 of app/views/entities/_property.html.erb:
+1: <% if property_value.size > 1 %>
+2:   <dl>
+3:     <% property_value.each do |prop| %>
+4:       <%= render :partial => 'property', :locals => {:property_value => property_value.send(prop.to_sym)}, :object => prop %>
+
+    app/views/entities/_property.html.erb:1
+    app/views/entities/show.html.erb:3
+    app/views/entities/show.html.erb:2:in `each'
+    app/views/entities/show.html.erb:2
+
+Rendered rescues/_trace (44.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:23:50) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.>) on line #1 of app/views/entities/_property.html.erb:
+1: <% if property_value and property_value.size > 1 %>
+2:   <dl>
+3:     <% property_value.each do |prop| %>
+4:       <%= render :partial => 'property', :locals => {:property_value => property_value.send(prop.to_sym)}, :object => prop %>
+
+    app/views/entities/_property.html.erb:1
+    app/views/entities/show.html.erb:3
+    app/views/entities/show.html.erb:2:in `each'
+    app/views/entities/show.html.erb:2
+
+Rendered rescues/_trace (52.6ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:24:08) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+Rendered entities/_property (402.1ms)
+Rendered entities/_property (346.6ms)
+Completed in 853ms (View: 852, DB: 0) | 200 OK [http://localhost/entities/Chemical_N150]
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:27:58) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+Completed in 639ms (View: 637, DB: 0) | 200 OK [http://localhost/entities/Chemical_N150]
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:28:01) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+Completed in 342ms (View: 340, DB: 0) | 200 OK [http://localhost/entities/Chemical_N150]
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:28:20) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+Rendered entities/_property (113.6ms)
+Rendered entities/_property (209.9ms)
+Completed in 445ms (View: 444, DB: 0) | 200 OK [http://localhost/entities/Chemical_N150]
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:29:24) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+Rendered entities/_property (153.5ms)
+
+ActionView::TemplateError (undefined method `join' for "DIOXIN AND DIOXIN-LIKE COMPOUNDS":String) on line #2 of app/views/entities/_property.html.erb:
+1: <dt><%= property %></dt>
+2: <dd><%= @resource.send(property.to_sym).join(', ') %></dd>
+
+    app/views/entities/_property.html.erb:2
+    app/views/entities/show.html.erb:2
+
+Rendered rescues/_trace (44.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:29:40) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+Rendered entities/_property (628.5ms)
+Rendered entities/_property (632.2ms)
+Completed in 1847ms (View: 1845, DB: 0) | 200 OK [http://localhost/entities/Chemical_N150]
+
+
+Processing EntitiesController#show (for 127.0.0.1 at 2009-07-03 15:30:40) [GET]
+  Parameters: {"id"=>"Chemical_N150"}
+Rendering entities/show
+Rendered entities/_property (127.3ms)
+Rendered entities/_property (198.2ms)
+Completed in 770ms (View: 544, DB: 0) | 200 OK [http://localhost/entities/Chemical_N150]
