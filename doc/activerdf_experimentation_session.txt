@@ -1,0 +1,393 @@
+>> TRI::Chemical.find_all
+=> [#<RDFS::Resource:0x380633c @uri="http://www.data.gov/tri/Chemical_000050000", @predicates={}>, #<RDFS::Resource:0x3804f00 @uri="http://www.data.gov/tri/Chemical_000064186", @predicates={}>, #<RDFS::Resource:0x3803ab0 @uri="http://www.data.gov/tri/Chemical_000067561", @predicates={}>, #<RDFS::Resource:0x3802674 @uri="http://www.data.gov/tri/Chemical_000071363", @predicates={}>, #<RDFS::Resource:0x3801224 @uri="http://www.data.gov/tri/Chemical_000071432", @predicates={}>, #<RDFS::Resource:0x37ffde8 @uri="http://www.data.gov/tri/Chemical_000075070", @predicates={}>, #<RDFS::Resource:0x37faa3c @uri="http://www.data.gov/tri/Chemical_000075569", @predicates={}>, #<RDFS::Resource:0x37f99e8 @uri="http://www.data.gov/tri/Chemical_000079016", @predicates={}>, #<RDFS::Resource:0x37f8408 @uri="http://www.data.gov/tri/Chemical_000079210", @predicates={}>, #<RDFS::Resource:0x37f72b0 @uri="http://www.data.gov/tri/Chemical_000080057", @predicates={}>, #<RDFS::Resource:0x37f6130 @uri="http://www.data.gov/tri/Chemical_000080626", @predicates={}>, #<RDFS::Resource:0x37f490c @uri="http://www.data.gov/tri/Chemical_000085449", @predicates={}>, #<RDFS::Resource:0x37f3778 @uri="http://www.data.gov/tri/Chemical_000091087", @predicates={}>, #<RDFS::Resource:0x37f2274 @uri="http://www.data.gov/tri/Chemical_000091203", @predicates={}>, #<RDFS::Resource:0x37f0adc @uri="http://www.data.gov/tri/Chemical_000095636", @predicates={}>, #<RDFS::Resource:0x37efb8c @uri="http://www.data.gov/tri/Chemical_000096333", @predicates={}>, #<RDFS::Resource:0x37ee9d0 @uri="http://www.data.gov/tri/Chemical_000100414", @predicates={}>, #<RDFS::Resource:0x37ed580 @uri="http://www.data.gov/tri/Chemical_000100425", @predicates={}>, #<RDFS::Resource:0x37ec144 @uri="http://www.data.gov/tri/Chemical_000101144", @predicates={}>, #<RDFS::Resource:0x37e9c3c @uri="http://www.data.gov/tri/Chemical_000107211", @predicates={}>, #<RDFS::Resource:0x37e8cc4 @uri="http://www.data.gov/tri/Chemical_000108316", @predicates={}>, #<RDFS::Resource:0x37e7914 @uri="http://www.data.gov/tri/Chemical_000108883", @predicates={}>, #<RDFS::Resource:0x37e6974 @uri="http://www.data.gov/tri/Chemical_000108952", @predicates={}>, #<RDFS::Resource:0x37e57b8 @uri="http://www.data.gov/tri/Chemical_000110543", @predicates={}>, #<RDFS::Resource:0x37e4750 @uri="http://www.data.gov/tri/Chemical_000115071", @predicates={}>, #<RDFS::Resource:0x37e34b8 @uri="http://www.data.gov/tri/Chemical_000120809", @predicates={}>, #<RDFS::Resource:0x37e1b04 @uri="http://www.data.gov/tri/Chemical_000137268", @predicates={}>, #<RDFS::Resource:0x37e07f4 @uri="http://www.data.gov/tri/Chemical_000191242", @predicates={}>, #<RDFS::Resource:0x37deea4 @uri="http://www.data.gov/tri/Chemical_000533744", @predicates={}>, #<RDFS::Resource:0x37ddc20 @uri="http://www.data.gov/tri/Chemical_000584849", @predicates={}>, #<RDFS::Resource:0x37dc230 @uri="http://www.data.gov/tri/Chemical_001313275", @predicates={}>, #<RDFS::Resource:0x37db150 @uri="http://www.data.gov/tri/Chemical_001319773", @predicates={}>, #<RDFS::Resource:0x37d9f44 @uri="http://www.data.gov/tri/Chemical_001330207", @predicates={}>, #<RDFS::Resource:0x37d8720 @uri="http://www.data.gov/tri/Chemical_001336363", @predicates={}>, #<RDFS::Resource:0x37d73fc @uri="http://www.data.gov/tri/Chemical_001634044", @predicates={}>, #<RDFS::Resource:0x37d5ad4 @uri="http://www.data.gov/tri/Chemical_007439921", @predicates={}>, #<RDFS::Resource:0x37d4968 @uri="http://www.data.gov/tri/Chemical_007439965", @predicates={}>, #<RDFS::Resource:0x37d3770 @uri="http://www.data.gov/tri/Chemical_007439976", @predicates={}>, #<RDFS::Resource:0x37d1fec @uri="http://www.data.gov/tri/Chemical_007440020", @predicates={}>, #<RDFS::Resource:0x37d1268 @uri="http://www.data.gov/tri/Chemical_007440473", @predicates={}>, #<RDFS::Resource:0x37d04e4 @uri="http://www.data.gov/tri/Chemical_007440484", @predicates={}>, #<RDFS::Resource:0x37cf760 @uri="http://www.data.gov/tri/Chemical_007440508", @predicates={}>, #<RDFS::Resource:0x37ce9dc @uri="http://www.data.gov/tri/Chemical_007632000", @predicates={}>, #<RDFS::Resource:0x37cdc58 @uri="http://www.data.gov/tri/Chemical_007647010", @predicates={}>, #<RDFS::Resource:0x37cced4 @uri="http://www.data.gov/tri/Chemical_007664393", @predicates={}>, #<RDFS::Resource:0x37cc150 @uri="http://www.data.gov/tri/Chemical_007664417", @predicates={}>, #<RDFS::Resource:0x37cb3cc @uri="http://www.data.gov/tri/Chemical_007664939", @predicates={}>, #<RDFS::Resource:0x37ca620 @uri="http://www.data.gov/tri/Chemical_007697372", @predicates={}>, #<RDFS::Resource:0x37c9888 @uri="http://www.data.gov/tri/Chemical_007782505", @predicates={}>, #<RDFS::Resource:0x37c8b04 @uri="http://www.data.gov/tri/Chemical_010049044", @predicates={}>, #<RDFS::Resource:0x37c7d6c @uri="http://www.data.gov/tri/Chemical_MIXTURE", @predicates={}>, #<RDFS::Resource:0x37c579c @uri="http://www.data.gov/tri/Chemical_N040", @predicates={}>, #<RDFS::Resource:0x37c28d0 @uri="http://www.data.gov/tri/Chemical_N090", @predicates={}>, #<RDFS::Resource:0x37c1b4c @uri="http://www.data.gov/tri/Chemical_N096", @predicates={}>, #<RDFS::Resource:0x37c0dc8 @uri="http://www.data.gov/tri/Chemical_N100", @predicates={}>, #<RDFS::Resource:0x37c0044 @uri="http://www.data.gov/tri/Chemical_N106", @predicates={}>, #<RDFS::Resource:0x37bf2c0 @uri="http://www.data.gov/tri/Chemical_N120", @predicates={}>, #<RDFS::Resource:0x37be53c @uri="http://www.data.gov/tri/Chemical_N150", @predicates={}>, #<RDFS::Resource:0x37bd7b8 @uri="http://www.data.gov/tri/Chemical_N230", @predicates={}>, #<RDFS::Resource:0x37bca34 @uri="http://www.data.gov/tri/Chemical_N420", @predicates={}>, #<RDFS::Resource:0x37bbcb0 @uri="http://www.data.gov/tri/Chemical_N450", @predicates={}>, #<RDFS::Resource:0x37baf2c @uri="http://www.data.gov/tri/Chemical_N458", @predicates={}>, #<RDFS::Resource:0x37ba1a8 @uri="http://www.data.gov/tri/Chemical_N495", @predicates={}>, #<RDFS::Resource:0x37b9028 @uri="http://www.data.gov/tri/Chemical_N511", @predicates={}>, #<RDFS::Resource:0x37b6fe4 @uri="http://www.data.gov/tri/Chemical_N590", @predicates={}>, #<RDFS::Resource:0x37b3024 @uri="http://www.data.gov/tri/Chemical_N740", @predicates={}>, #<RDFS::Resource:0x37b1314 @uri="http://www.data.gov/tri/Chemical_N770", @predicates={}>, #<RDFS::Resource:0x37aee0c @uri="http://www.data.gov/tri/Chemical_N982", @predicates={}>]
+>> c = TRI::Chemical.first
+=> nil
+>> c = TRI::Chemical.find_all.first
+=> #<RDFS::Resource:0x37948b8 @uri="http://www.data.gov/tri/Chemical_000050000", @predicates={}>
+>> c.rdf::type
+=> [#<RDFS::Resource:0x37481d4 @uri="http://www.data.gov/tri/Chemical", @predicates={}>, #<RDFS::Resource:0x3747414 @uri="http://www.data.gov/tri/ChemicalClassification_TRI", @predicates={}>, #<RDFS::Resource:0x3746654 @uri="http://www.data.gov/tri/Entity", @predicates={}>, #<RDFS::Resource:0x3745894 @uri="http://www.w3.org/2000/01/rdf-schema#Resource", @predicates={}>]
+>> c.rdfs::label
+=> "FORMALDEHYDE"
+>> TRI::Chemical.find_all.map{|c| c.rdfs::label}
+=> ["FORMALDEHYDE", "FORMIC ACID", "METHANOL", "N-BUTYL ALCOHOL", "BENZENE", "ACETALDEHYDE", "PROPYLENE OXIDE", "TRICHLOROETHYLENE", "PERACETIC ACID", "4,4'-ISOPROPYLIDENEDIPHENOL", "METHYL METHACRYLATE", "PHTHALIC ANHYDRIDE", "TOLUENE-2,6-DIISOCYANATE", "NAPHTHALENE", "1,2,4-TRIMETHYLBENZENE", "METHYL ACRYLATE", "ETHYLBENZENE", "STYRENE", "4,4'-METHYLENEBIS(2-CHLOROANILINE)", "ETHYLENE GLYCOL", "MALEIC ANHYDRIDE", "TOLUENE", "PHENOL", "N-HEXANE", "PROPYLENE", "CATECHOL", "THIRAM", "BENZO(G,H,I)PERYLENE", "DAZOMET", "TOLUENE-2,4-DIISOCYANATE", "MOLYBDENUM TRIOXIDE", "CRESOL (MIXED ISOMERS)", "XYLENE (MIXED ISOMERS)", "POLYCHLORINATED BIPHENYLS", "METHYL TERT-BUTYL ETHER", "LEAD", "MANGANESE", "MERCURY", "NICKEL", "CHROMIUM", "COBALT", "COPPER", "SODIUM NITRITE", "HYDROCHLORIC ACID (1995 AND AFTER \"ACID AEROSOLS\" ONLY)", "HYDROGEN FLUORIDE", "AMMONIA", "SULFURIC ACID (1994 AND AFTER \"ACID AEROSOLS\" ONLY)", "NITRIC ACID", "CHLORINE", "CHLORINE DIOXIDE", "MIXTURE", "BARIUM COMPOUNDS", "CHROMIUM COMPOUNDS(EXCEPT CHROMITE ORE MINED IN THE TRANSVAAL REGION)", "COBALT COMPOUNDS", "COPPER COMPOUNDS", "CYANIDE COMPOUNDS", "DIISOCYANATES", "DIOXIN AND DIOXIN-LIKE COMPOUNDS", "CERTAIN GLYCOL ETHERS", "LEAD COMPOUNDS", "MANGANESE COMPOUNDS", "MERCURY COMPOUNDS", "NICKEL COMPOUNDS", "NITRATE COMPOUNDS", "POLYCYCLIC AROMATIC COMPOUNDS", "SILVER COMPOUNDS", "VANADIUM COMPOUNDS", "ZINC COMPOUNDS"]
+>> q = Query.new.distinct(:label).where('http://www.data.gov/tri/Chemical', 'rdfs:label', :label)(?> )
+SyntaxError: compile error
+(irb):7: syntax error, unexpected '(', expecting $end
+	from (irb):7
+>> q = Query.new.distinct(:label).where('http://www.data.gov/tri/Chemical', 'rdfs:label', :label)
+ActiveRdfError: cannot add a where clause with s http://www.data.gov/tri/Chemical: s must be a resource or a variable
+	from /opt/local/lib/ruby/gems/1.8/gems/activerdf-1.6.11/lib/active_rdf/queryengine/query.rb:151:in `where'
+	from (irb):9
+>> q = Query.new.distinct(:label).where(RDFS::Resource.new('http://www.data.gov/tri/Chemical'), 'rdfs:label', :label)
+ActiveRdfError: cannot add a where clause with p rdfs:label: p must be a resource or a variable
+	from /opt/local/lib/ruby/gems/1.8/gems/activerdf-1.6.11/lib/active_rdf/queryengine/query.rb:154:in `where'
+	from (irb):10
+>> q = Query.new.distinct(:label).where(RDFS::Resource.new('http://www.data.gov/tri/Chemical'), RDFS::Resource.new('rdfs:label'), :label)
+=> #<Query:0x3559e40 @filter_clauses=[], @reverse_sort_clauses=[], @sort_clauses=[], @reasoning=true, @where_clauses=[[#<RDFS::Resource:0x3559d8c @uri="http://www.data.gov/tri/Chemical", @predicates={}>, #<RDFS::Resource:0x3559d28 @uri="rdfs:label", @predicates={}>, :label, nil]], @select=true, @keywords={}, @distinct=true, @select_clauses=[:label]>
+>> q.instance_methods
+NoMethodError: undefined method `instance_methods' for #<Query:0x3559e40>
+	from (irb):12
+>> q.methods
+=> ["load_with_new_constant_marking", "keywords", "method_exists?", "to_yaml", "mocha_inspect", "count=", "require", "enum_for", "distinct?", "to_param", "enable_warnings", "sort", "methods", "method", "stubba_object", "with_options", "taint", "class_eval", "encode64", "instance_variable_defined?", "limits", "acts_like?", "expects", "instance_values", "select_distinct", "ask?", "silence_stderr", "__id__", "to_query", "try", "offset", "singleton_methods", "object_id", "unloadable", "respond_to?", "keyword_where", "decode64", "nil?", "offsets", "instance_variable_names", "count?", "silence_stream", "__send__", "__is_a__", "execute", "protected_methods", "tainted?", "untaint", "decode_b", "instance_of?", "reverse_sort_clauses", "equal?", "copy_instance_variables_from", "to_sp", "duplicable?", "filter_regexp", "display", "private_methods", "hash", "extended_by", "select?", "to_matcher", "`", "send", "mocha", "kind_of?", "freeze", "debugger", "filter_clauses", "eql?", "reverse_sort", "taguri", "id", "filter_regex", "require_or_load", "remove_subclasses_of", "extend_with_included_modules_from", "limit", "blank?", "keyword?", "public_methods", "instance_eval", "taguri=", "clear_select", "stubs", "is_a?", "silence_warnings", "breakpoint", "to_yaml_style", "type", "filter_operator", "reasoning=", "dclone", "where", "suppress", "select_clauses", "instance_exec", "reasoning?", "ask", "instance_variables", "frozen?", "present?", "__metaclass__", "daemonize", "to_a", "ask=", "reset_mocha", "b64encode", "class", "require_association", "where_clauses", "to_yaml_properties", "instance_variable_get", "subclasses_of", "select", "==", "keyword=", "===", "to_s", "extend", "stubba_method", "select=", "to_json", "distinct", "metaclass", "require_dependency", "clone", "require_library_or_gem", "sort_clauses", "filter", "distinct=", "=~", "instance_variable_set", "to_enum", "inspect", "lang", "tap", "returning", "count", "dup"]
+>> q.where
+ArgumentError: wrong number of arguments (0 for 3)
+	from (irb):14:in `where'
+	from (irb):14
+>> q.execute
+=> []
+>> Query2SPARQL.translate(q)
+=> "SELECT DISTINCT ?label FROM <tri> WHERE { <http://www.data.gov/tri/Chemical> <rdfs:label> ?label . } "
+>> q = Query.new.distinct(:label).where(RDFS::Resource.new('http://www.data.gov/tri/Chemical'), RDFS::Resource.new('http://www.w3.org/2000/01/rdf-schema#label'), :label)
+=> #<Query:0x3538394 @filter_clauses=[], @reverse_sort_clauses=[], @sort_clauses=[], @reasoning=true, @where_clauses=[[#<RDFS::Resource:0x35381dc @uri="http://www.data.gov/tri/Chemical", @predicates={}>, #<RDFS::Resource:0x3537f34 @uri="http://www.w3.org/2000/01/rdf-schema#label", @predicates={}>, :label, nil]], @select=true, @keywords={}, @distinct=true, @select_clauses=[:label]>
+>> Query2SPARQL.translate(q)=> "SELECT DISTINCT ?label FROM <tri> WHERE { <http://www.data.gov/tri/Chemical> <http://www.w3.org/2000/01/rdf-schema#label> ?label . } "
+>> q.execute=> []
+>> q = Query.new.distinct(:label).where(RDFS::Resource.new('http://www.data.gov/tri/Chemical_N150'), RDFS::Resource.new('http://www.w3.org/2000/01/rdf-schema#label'), :label)
+=> #<Query:0x351c8ec @filter_clauses=[], @reverse_sort_clauses=[], @sort_clauses=[], @reasoning=true, @where_clauses=[[#<RDFS::Resource:0x351c838 @uri="http://www.data.gov/tri/Chemical_N150", @predicates={}>, #<RDFS::Resource:0x351c7d4 @uri="http://www.w3.org/2000/01/rdf-schema#label", @predicates={}>, :label, nil]], @select=true, @keywords={}, @distinct=true, @select_clauses=[:label]>
+>> q.execute=> ["DIOXIN AND DIOXIN-LIKE COMPOUNDS"]
+>> q = Query.new.distinct(:label).where(:chemical, RDFS::Resource.new('http://www.w3.org/2000/01/rdf-schema#type'), RDFS::Resource.new('http://www.data.gov/tri/Chemical')).where(:chemical, RDFS::Resource.new('http://www.w3.org/2000/01/rdf-schema#label'), :label)=> #<Query:0x34fc27c @filter_clauses=[], @reverse_sort_clauses=[], @sort_clauses=[], @reasoning=true, @where_clauses=[[:chemical, #<RDFS::Resource:0x34fc1c8 @uri="http://www.w3.org/2000/01/rdf-schema#type", @predicates={}>, #<RDFS::Resource:0x34fc164 @uri="http://www.data.gov/tri/Chemical", @predicates={}>, nil], [:chemical, #<RDFS::Resource:0x34fc100 @uri="http://www.w3.org/2000/01/rdf-schema#label", @predicates={}>, :label, nil]], @select=true, @keywords={}, @distinct=true, @select_clauses=[:label]>
+>> q.execute
+=> []
+>> q = Query.new.distinct(:label).where(:chemical, RDFS::Resource.new('http://www.w3.org/2000/01/rdf-schema#type'), RDFS::Resource.new('http://www.data.gov/tri/Chemical')).where(:chemical, RDFS::Resource.new('http://www.w3.org/2000/01/rdf-schema#label'), :label)
+=> #<Query:0x34dac6c @filter_clauses=[], @reverse_sort_clauses=[], @sort_clauses=[], @reasoning=true, @where_clauses=[[:chemical, #<RDFS::Resource:0x34dabb8 @uri="http://www.w3.org/2000/01/rdf-schema#type", @predicates={}>, #<RDFS::Resource:0x34dab54 @uri="http://www.data.gov/tri/Chemical", @predicates={}>, nil], [:chemical, #<RDFS::Resource:0x34daaf0 @uri="http://www.w3.org/2000/01/rdf-schema#label", @predicates={}>, :label, nil]], @select=true, @keywords={}, @distinct=true, @select_clauses=[:label]>
+>> Query2SPARQL.translate(q)=> "SELECT DISTINCT ?label FROM <tri> WHERE { ?chemical <http://www.w3.org/2000/01/rdf-schema#type> <http://www.data.gov/tri/Chemical> . ?chemical <http://www.w3.org/2000/01/rdf-schema#label> ?label . } "
+>> q = Query.new.distinct(:label).where(:chemical, rdf::type, RDFS::Resource.new('http://www.data.gov/tri/Chemical')).where(:chemical, RDFS::Resource.new('http://www.w3.org/2000/01/rdf-schema#label'), :label)
+NameError: undefined local variable or method `rdf' for #<Object:0x389a0 @controller=#<ApplicationController:0x3831960>>
+	from (irb):26
+>> q = Query.new.distinct(:label).where(:chemical, RDF::type, RDFS::Resource.new('http://www.data.gov/tri/Chemical')).where(:chemical, RDFS::Resource.new('http://www.w3.org/2000/01/rdf-schema#label'), :label)
+=> #<Query:0x389f064 @filter_clauses=[], @reverse_sort_clauses=[], @sort_clauses=[], @reasoning=true, @where_clauses=[[:chemical, #<RDFS::Resource:0x389ee84 @uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type", @predicates={}>, #<RDFS::Resource:0x389ee98 @uri="http://www.data.gov/tri/Chemical", @predicates={}>, nil], [:chemical, #<RDFS::Resource:0x389ed58 @uri="http://www.w3.org/2000/01/rdf-schema#label", @predicates={}>, :label, nil]], @select=true, @keywords={}, @distinct=true, @select_clauses=[:label]>
+>> Query2SPARQL.translate(q)=> "SELECT DISTINCT ?label FROM <tri> WHERE { ?chemical <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.data.gov/tri/Chemical> . ?chemical <http://www.w3.org/2000/01/rdf-schema#label> ?label . } "
+>> q = Query.new.distinct(:label).where(:chemical, RDF::type, RDFS::Resource.new('http://www.data.gov/tri/Chemical')).where(:chemical, RDFS::label, :label)
+=> #<Query:0x388c7d4 @filter_clauses=[], @reverse_sort_clauses=[], @sort_clauses=[], @reasoning=true, @where_clauses=[[:chemical, #<RDFS::Resource:0x388c694 @uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type", @predicates={}>, #<RDFS::Resource:0x388c6a8 @uri="http://www.data.gov/tri/Chemical", @predicates={}>, nil], [:chemical, #<RDFS::Resource:0x388c57c @uri="http://www.w3.org/2000/01/rdf-schema#label", @predicates={}>, :label, nil]], @select=true, @keywords={}, @distinct=true, @select_clauses=[:label]>
+>> q.execute=> ["1,2,4-TRIMETHYLBENZENE", "4,4'-ISOPROPYLIDENEDIPHENOL", "4,4'-METHYLENEBIS(2-CHLOROANILINE)", "ACETALDEHYDE", "AMMONIA", "BARIUM COMPOUNDS", "BENZENE", "BENZO(G,H,I)PERYLENE", "CATECHOL", "CERTAIN GLYCOL ETHERS", "CHLORINE", "CHLORINE DIOXIDE", "CHROMIUM", "CHROMIUM COMPOUNDS(EXCEPT CHROMITE ORE MINED IN THE TRANSVAAL REGION)", "COBALT", "COBALT COMPOUNDS", "COPPER", "COPPER COMPOUNDS", "CRESOL (MIXED ISOMERS)", "CYANIDE COMPOUNDS", "DAZOMET", "DIISOCYANATES", "DIOXIN AND DIOXIN-LIKE COMPOUNDS", "ETHYLBENZENE", "ETHYLENE GLYCOL", "FORMALDEHYDE", "FORMIC ACID", "HYDROCHLORIC ACID (1995 AND AFTER \"ACID AEROSOLS\" ONLY)", "HYDROGEN FLUORIDE", "LEAD", "LEAD COMPOUNDS", "MALEIC ANHYDRIDE", "MANGANESE", "MANGANESE COMPOUNDS", "MERCURY", "MERCURY COMPOUNDS", "METHANOL", "METHYL ACRYLATE", "METHYL METHACRYLATE", "METHYL TERT-BUTYL ETHER", "MIXTURE", "MOLYBDENUM TRIOXIDE", "N-BUTYL ALCOHOL", "N-HEXANE", "NAPHTHALENE", "NICKEL", "NICKEL COMPOUNDS", "NITRATE COMPOUNDS", "NITRIC ACID", "PERACETIC ACID", "PHENOL", "PHTHALIC ANHYDRIDE", "POLYCHLORINATED BIPHENYLS", "POLYCYCLIC AROMATIC COMPOUNDS", "PROPYLENE", "PROPYLENE OXIDE", "SILVER COMPOUNDS", "SODIUM NITRITE", "STYRENE", "SULFURIC ACID (1994 AND AFTER \"ACID AEROSOLS\" ONLY)", "THIRAM", "TOLUENE", "TOLUENE-2,4-DIISOCYANATE", "TOLUENE-2,6-DIISOCYANATE", "TRICHLOROETHYLENE", "VANADIUM COMPOUNDS", "XYLENE (MIXED ISOMERS)", "ZINC COMPOUNDS"]
+>> TRI::Chemical.find_by_label('SODIUM NITRITE')=> []
+>> TRI::Chemical.methods
+=> ["load_with_new_constant_marking", "method_exists?", "to_yaml", "attr_internal_accessor", "enum_for", "mocha_inspect", "require", "class_inheritable_writer", "const_missing", "enable_warnings", "to_param", "new", "predicates", "method_missing", "methods", "method", "stubba_object", "allocate", "protected_instance_methods", "to_ntriple", "with_options", "include?", "parents", "taint", "class_eval", "encode64", "write_inheritable_attribute", "instance_variable_defined?", "acts_like?", "name", "expects", "any_instance", "superclass_delegating_reader", "instance_values", "attr_internal", "autoload", "class_inheritable_array_writer", "class_variables", "silence_stderr", "__id__", "to_query", "singleton_methods", "try", "object_id", "cattr_reader", "private_instance_methods", "unloadable", "respond_to?", "decode64", "write_inheritable_array", "nil?", "uri", "ancestors", "bool_accessor", "yaml_as", "attr_internal_naming_format", "instance_variable_names", "class_inheritable_hash_writer", "silence_stream", "__send__", "__is_a__", "protected_methods", "mattr_reader", "attr_internal_naming_format=", "tainted?", "local_constants", "untaint", "instance_of?", "decode_b", "autoload?", "equal?", "method_defined?", "superclass_delegating_writer", "copy_instance_variables_from", "class_inheritable_accessor", "duplicable?", "parent", "display", "class_variable_defined?", "private_methods", "hash", "instance_method", "remove_subclasses", "extended_by", "find", "mattr_writer", "send", "constants", "to_matcher", "`", "cattr_writer", "kind_of?", "find_hidden_method", "mocha", "read_inheritable_attribute", "freeze", "debugger", "eql?", "yaml_tag_class_name", "public_method_defined?", "superclass_delegating_accessor", "attr_accessor_with_default", "id", "taguri", "class_inheritable_array", "alias_attribute", "require_or_load", "remove_subclasses_of", "extend_with_included_modules_from", "blank?", "mattr_accessor", "public_methods", "instance_eval", "taguri=", "const_get", "local_constant_names", "stubs", "is_a?", "write_inheritable_hash", "silence_warnings", "private_method_defined?", "yaml_tag_read_class", "class_uri", "breakpoint", "const_missing_without_dependencies", "delegate", "type", "to_yaml_style", "class_inheritable_hash", "superclass", "suppress", "dclone", "class_uri=", "instance_variables", "instance_exec", "find_all", "attr_internal_reader", "subclasses", "frozen?", "cattr_accessor", "const_set", "daemonize", "present?", "__metaclass__", "as_load_path", "to_a", "reset_mocha", "b64encode", "reset_inheritable_attributes", "model_name", "protected_method_defined?", "class", "public_class_method", "inheritable_attributes", "synchronize", "require_association", "instance_variable_get", "<=>", "to_yaml_properties", "subclasses_of", "==", "method_added", "yaml_tag_subclasses?", "===", "alias_method_chain", "extend", "to_s", "stubba_method", "to_json", "instance_methods", "localname", ">=", "<=", "parent_name", "metaclass", "const_missing_with_dependencies", "require_dependency", "clone", "private_class_method", "require_library_or_gem", "const_defined?", "included_modules", "=~", "instance_variable_set", "attr_internal_writer", "<", "remove_class", "to_enum", "class_inheritable_reader", ">", "included_in_classes", "inspect", "public_instance_methods", "tap", "returning", "dup", "module_eval"]
+>> TRI::Chemical.predicates
+=> []
+>> TRI::Chemical.predicatess
+=> nil
+>> TRI::Chemical.predicates
+=> []
+>> TRI::Chemical.predicate
+=> nil
+>> TRI::Chemical.predicates
+=> []
+>> TRI::Chemical.find_all
+=> [#<RDFS::Resource:0x374be10 @uri="http://www.data.gov/tri/Chemical_000050000", @predicates={}>, #<RDFS::Resource:0x374b050 @uri="http://www.data.gov/tri/Chemical_000064186", @predicates={}>, #<RDFS::Resource:0x374a290 @uri="http://www.data.gov/tri/Chemical_000067561", @predicates={}>, #<RDFS::Resource:0x37494d0 @uri="http://www.data.gov/tri/Chemical_000071363", @predicates={}>, #<RDFS::Resource:0x3748710 @uri="http://www.data.gov/tri/Chemical_000071432", @predicates={}>, #<RDFS::Resource:0x3747950 @uri="http://www.data.gov/tri/Chemical_000075070", @predicates={}>, #<RDFS::Resource:0x3746b90 @uri="http://www.data.gov/tri/Chemical_000075569", @predicates={}>, #<RDFS::Resource:0x3745dd0 @uri="http://www.data.gov/tri/Chemical_000079016", @predicates={}>, #<RDFS::Resource:0x3745010 @uri="http://www.data.gov/tri/Chemical_000079210", @predicates={}>, #<RDFS::Resource:0x3744228 @uri="http://www.data.gov/tri/Chemical_000080057", @predicates={}>, #<RDFS::Resource:0x3743468 @uri="http://www.data.gov/tri/Chemical_000080626", @predicates={}>, #<RDFS::Resource:0x37426a8 @uri="http://www.data.gov/tri/Chemical_000085449", @predicates={}>, #<RDFS::Resource:0x37418e8 @uri="http://www.data.gov/tri/Chemical_000091087", @predicates={}>, #<RDFS::Resource:0x3740b28 @uri="http://www.data.gov/tri/Chemical_000091203", @predicates={}>, #<RDFS::Resource:0x373fd68 @uri="http://www.data.gov/tri/Chemical_000095636", @predicates={}>, #<RDFS::Resource:0x373efa8 @uri="http://www.data.gov/tri/Chemical_000096333", @predicates={}>, #<RDFS::Resource:0x373e1e8 @uri="http://www.data.gov/tri/Chemical_000100414", @predicates={}>, #<RDFS::Resource:0x373d428 @uri="http://www.data.gov/tri/Chemical_000100425", @predicates={}>, #<RDFS::Resource:0x373c668 @uri="http://www.data.gov/tri/Chemical_000101144", @predicates={}>, #<RDFS::Resource:0x373b8a8 @uri="http://www.data.gov/tri/Chemical_000107211", @predicates={}>, #<RDFS::Resource:0x373aae8 @uri="http://www.data.gov/tri/Chemical_000108316", @predicates={}>, #<RDFS::Resource:0x3739d28 @uri="http://www.data.gov/tri/Chemical_000108883", @predicates={}>, #<RDFS::Resource:0x3738f68 @uri="http://www.data.gov/tri/Chemical_000108952", @predicates={}>, #<RDFS::Resource:0x37381a8 @uri="http://www.data.gov/tri/Chemical_000110543", @predicates={}>, #<RDFS::Resource:0x37373e8 @uri="http://www.data.gov/tri/Chemical_000115071", @predicates={}>, #<RDFS::Resource:0x3736628 @uri="http://www.data.gov/tri/Chemical_000120809", @predicates={}>, #<RDFS::Resource:0x3735868 @uri="http://www.data.gov/tri/Chemical_000137268", @predicates={}>, #<RDFS::Resource:0x3734aa8 @uri="http://www.data.gov/tri/Chemical_000191242", @predicates={}>, #<RDFS::Resource:0x3733ce8 @uri="http://www.data.gov/tri/Chemical_000533744", @predicates={}>, #<RDFS::Resource:0x3732f28 @uri="http://www.data.gov/tri/Chemical_000584849", @predicates={}>, #<RDFS::Resource:0x3732168 @uri="http://www.data.gov/tri/Chemical_001313275", @predicates={}>, #<RDFS::Resource:0x3731380 @uri="http://www.data.gov/tri/Chemical_001319773", @predicates={}>, #<RDFS::Resource:0x37305c0 @uri="http://www.data.gov/tri/Chemical_001330207", @predicates={}>, #<RDFS::Resource:0x372f800 @uri="http://www.data.gov/tri/Chemical_001336363", @predicates={}>, #<RDFS::Resource:0x372ea7c @uri="http://www.data.gov/tri/Chemical_001634044", @predicates={}>, #<RDFS::Resource:0x372dcbc @uri="http://www.data.gov/tri/Chemical_007439921", @predicates={}>, #<RDFS::Resource:0x372cefc @uri="http://www.data.gov/tri/Chemical_007439965", @predicates={}>, #<RDFS::Resource:0x372c13c @uri="http://www.data.gov/tri/Chemical_007439976", @predicates={}>, #<RDFS::Resource:0x372b37c @uri="http://www.data.gov/tri/Chemical_007440020", @predicates={}>, #<RDFS::Resource:0x372a5bc @uri="http://www.data.gov/tri/Chemical_007440473", @predicates={}>, #<RDFS::Resource:0x37297fc @uri="http://www.data.gov/tri/Chemical_007440484", @predicates={}>, #<RDFS::Resource:0x3728a28 @uri="http://www.data.gov/tri/Chemical_007440508", @predicates={}>, #<RDFS::Resource:0x3727c40 @uri="http://www.data.gov/tri/Chemical_007632000", @predicates={}>, #<RDFS::Resource:0x3726e80 @uri="http://www.data.gov/tri/Chemical_007647010", @predicates={}>, #<RDFS::Resource:0x37260c0 @uri="http://www.data.gov/tri/Chemical_007664393", @predicates={}>, #<RDFS::Resource:0x3725300 @uri="http://www.data.gov/tri/Chemical_007664417", @predicates={}>, #<RDFS::Resource:0x3724540 @uri="http://www.data.gov/tri/Chemical_007664939", @predicates={}>, #<RDFS::Resource:0x3723780 @uri="http://www.data.gov/tri/Chemical_007697372", @predicates={}>, #<RDFS::Resource:0x37229c0 @uri="http://www.data.gov/tri/Chemical_007782505", @predicates={}>, #<RDFS::Resource:0x3721c00 @uri="http://www.data.gov/tri/Chemical_010049044", @predicates={}>, #<RDFS::Resource:0x3720e40 @uri="http://www.data.gov/tri/Chemical_MIXTURE", @predicates={}>, #<RDFS::Resource:0x3720080 @uri="http://www.data.gov/tri/Chemical_N040", @predicates={}>, #<RDFS::Resource:0x371f2fc @uri="http://www.data.gov/tri/Chemical_N090", @predicates={}>, #<RDFS::Resource:0x371e578 @uri="http://www.data.gov/tri/Chemical_N096", @predicates={}>, #<RDFS::Resource:0x371d7f4 @uri="http://www.data.gov/tri/Chemical_N100", @predicates={}>, #<RDFS::Resource:0x371ca70 @uri="http://www.data.gov/tri/Chemical_N106", @predicates={}>, #<RDFS::Resource:0x371bcec @uri="http://www.data.gov/tri/Chemical_N120", @predicates={}>, #<RDFS::Resource:0x371af68 @uri="http://www.data.gov/tri/Chemical_N150", @predicates={}>, #<RDFS::Resource:0x371a1e4 @uri="http://www.data.gov/tri/Chemical_N230", @predicates={}>, #<RDFS::Resource:0x3719460 @uri="http://www.data.gov/tri/Chemical_N420", @predicates={}>, #<RDFS::Resource:0x37186dc @uri="http://www.data.gov/tri/Chemical_N450", @predicates={}>, #<RDFS::Resource:0x3717958 @uri="http://www.data.gov/tri/Chemical_N458", @predicates={}>, #<RDFS::Resource:0x3716bd4 @uri="http://www.data.gov/tri/Chemical_N495", @predicates={}>, #<RDFS::Resource:0x3715e50 @uri="http://www.data.gov/tri/Chemical_N511", @predicates={}>, #<RDFS::Resource:0x37150cc @uri="http://www.data.gov/tri/Chemical_N590", @predicates={}>, #<RDFS::Resource:0x3714348 @uri="http://www.data.gov/tri/Chemical_N740", @predicates={}>, #<RDFS::Resource:0x37135c4 @uri="http://www.data.gov/tri/Chemical_N770", @predicates={}>, #<RDFS::Resource:0x3712840 @uri="http://www.data.gov/tri/Chemical_N982", @predicates={}>]
+>> TRI::Chemical.find_all(:where => 'df')
+ActiveRdfError: where clause should be hash of predicate => object
+	from /opt/local/lib/ruby/gems/1.8/gems/activerdf-1.6.11/lib/active_rdf/objectmanager/resource.rb:166:in `find'
+	from /opt/local/lib/ruby/gems/1.8/gems/activerdf-1.6.11/lib/active_rdf/objectmanager/resource.rb:140:in `find'
+	from /opt/local/lib/ruby/gems/1.8/gems/activerdf-1.6.11/lib/active_rdf/objectmanager/resource.rb:136:in `find_all'
+	from (irb):39
+	from :0
+>> TRI::Chemical.find_all(:where => {RDF::label => 'PHENOL'})
+=> []
+>> $activerdflogger
+=> nil
+>> $activerdflog
+=> #<Logger:0x225be88 @formatter=nil, @default_formatter=#<Logger::Formatter:0x225be9c @datetime_format=nil>, @level=2, @progname=nil, @logdev=#<Logger::LogDevice:0x225be4c @filename=nil, @mutex=#<Logger::LogDevice::LogDeviceMutex:0x225be24 @mon_entering_queue=[], @mon_count=0, @mon_owner=nil, @mon_waiting_queue=[]>, @dev=#<IO:0x2f7d8>, @shift_size=nil, @shift_age=nil>>
+>> $activerdflog.level = LOG::DEBUG
+NameError: uninitialized constant LOG
+	from /opt/local/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/dependencies.rb:443:in `load_missing_constant'
+	from /opt/local/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/dependencies.rb:80:in `const_missing'
+	from /opt/local/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/dependencies.rb:92:in `const_missing'
+	from (irb):43
+	from :0
+>> $activerdflog.level = LOGGER::DEBUG
+NameError: uninitialized constant LOGGER
+	from /opt/local/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/dependencies.rb:443:in `load_missing_constant'
+	from /opt/local/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/dependencies.rb:80:in `const_missing'
+	from /opt/local/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/dependencies.rb:92:in `const_missing'
+	from (irb):44
+	from :0
+>> $activerdflog.level = Logger::DEBUG
+=> 0
+>> TRI::Chemical.find_all(:where => {RDF::label => 'PHENOL'})
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical%3E+.+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23label%3E+%22PHENOL%22%5E%5E%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23string%3E+.+%7D+
+=> []
+>> URI.decode('SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical%3E+.+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23label%3E+%22PHENOL%22%5E%5E%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23string%3E+.+%7D+
+')
+=> "SELECT+DISTINCT+?s+FROM+<tri>+WHERE+{+?s+<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>+<http://www.data.gov/tri/Chemical>+.+?s+<http://www.w3.org/1999/02/22-rdf-syntax-ns#label>+\"PHENOL\"^^<http://www.w3.org/2001/XMLSchema#string>+.+}+\n"
+>> URI.decode('SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical%3E+.+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23label%3E+%22PHENOL%22%5E%5E%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23string%3E+.+%7D+).gsub('+',' ')
+
+)
+))
+;
+
+
+
+^C
+>> URI.decode('SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical%3E+.+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23label%3E+%22PHENOL%22%5E%5E%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23string%3E+.+%7D+).gsub('+',' ')
+^C
+>> ^C
+>> URI.decode('SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical%3E+.+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23label%3E+%22PHENOL%22%5E%5E%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23string%3E+.+%7D+').gsub('+',' ')
+=> "SELECT DISTINCT ?s FROM <tri> WHERE { ?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.data.gov/tri/Chemical> . ?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#label> \"PHENOL\"^^<http://www.w3.org/2001/XMLSchema#string> . } "
+>> RDFS::Resource.new("http://www.data.gov/tri/Company_cc259ae7cdbeffd7243e6bba04c08749")
+=> #<RDFS::Resource:0x367d6c8 @uri="http://www.data.gov/tri/Company_cc259ae7cdbeffd7243e6bba04c08749", @predicates={}>
+>> mad = RDFS::Resource.new("http://www.data.gov/tri/Company_cc259ae7cdbeffd7243e6bba04c08749")
+=> #<RDFS::Resource:0x36760f8 @uri="http://www.data.gov/tri/Company_cc259ae7cdbeffd7243e6bba04c08749", @predicates={}>
+>> mad.chemicals
+method_missing: chemicals
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Ft+.+%3Fp+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23domain%3E+%3Ft+.+%7D+
+RDFS::Resource: method_missing option 4: custom class method
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Ft+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Ft+.+%7D+
+ObjectManager: construct_class: constructing modulename TRI from registered prefix tri
+ObjectManager: construct_class: module name TRI previously defined
+ObjectManager: construct_class: given class Company defined in the module
+ObjectManager: construct_class: constructing modulename TRI from registered prefix tri
+ObjectManager: construct_class: module name TRI previously defined
+ObjectManager: construct_class: given class Entity defined in the module
+ObjectManager: construct_class: constructing modulename RDFS from registered prefix rdfs
+ObjectManager: construct_class: module name RDFS previously defined
+ObjectManager: construct_class: given class Resource defined in the module
+=> nil
+>> mad.chemical
+method_missing: chemical
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Ft+.+%3Fp+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23domain%3E+%3Ft+.+%7D+
+RDFS::Resource: method_missing option 4: custom class method
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Ft+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Ft+.+%7D+
+ObjectManager: construct_class: constructing modulename TRI from registered prefix tri
+ObjectManager: construct_class: module name TRI previously defined
+ObjectManager: construct_class: given class Company defined in the module
+ObjectManager: construct_class: constructing modulename TRI from registered prefix tri
+ObjectManager: construct_class: module name TRI previously defined
+ObjectManager: construct_class: given class Entity defined in the module
+ObjectManager: construct_class: constructing modulename RDFS from registered prefix rdfs
+ObjectManager: construct_class: module name RDFS previously defined
+ObjectManager: construct_class: given class Resource defined in the module
+=> nil
+>> TRI::Chemical.find_by_label('SODIUM NITRITE')constructing dynamic finder for find_by_label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Fp+%3Fo+.+%7D+
+executing dynamic finder: SELECT DISTINCT ?s FROM <tri> WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#label> "SODIUM NITRITE"^^<http://www.w3.org/2001/XMLSchema#string> . } 
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%22SODIUM+NITRITE%22%5E%5E%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23string%3E+.+%7D+
+=> []
+>> URI.decode('SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%22SODIUM+NITRITE%22%5E%5E%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23string%3E+.+%7D+')
+=> "SELECT+DISTINCT+?s+FROM+<tri>+WHERE+{+?s+<http://www.w3.org/2000/01/rdf-schema#label>+\"SODIUM+NITRITE\"^^<http://www.w3.org/2001/XMLSchema#string>+.+}+"
+>> URI.decode('SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%22SODIUM+NITRITE%22%5E%5E%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23string%3E+.+%7D+').gsub('+', ' ')
+=> "SELECT DISTINCT ?s FROM <tri> WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#label> \"SODIUM NITRITE\"^^<http://www.w3.org/2001/XMLSchema#string> . } "
+>> $activerdf_without_xsdtype = true
+=> true
+>> TRI::Chemical.find_by_label('SODIUM NITRITE')constructing dynamic finder for find_by_label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Fp+%3Fo+.+%7D+
+executing dynamic finder: SELECT DISTINCT ?s FROM <tri> WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#label> "SODIUM NITRITE" . } 
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%22SODIUM+NITRITE%22+.+%7D+
+=> [#<RDFS::Resource:0x3531300 @uri="http://www.data.gov/tri/Chemical_007632000", @predicates={}>]
+>> TRI::Chemical.find_by_label('SODIUM')
+constructing dynamic finder for find_by_label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Fp+%3Fo+.+%7D+
+executing dynamic finder: SELECT DISTINCT ?s FROM <tri> WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#label> "SODIUM" . } 
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%22SODIUM%22+.+%7D+
+=> []
+>> TRI::Chemical.find_by_label('SODIUM NITRITE')
+constructing dynamic finder for find_by_label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Fp+%3Fo+.+%7D+
+executing dynamic finder: SELECT DISTINCT ?s FROM <tri> WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#label> "SODIUM NITRITE" . } 
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%22SODIUM+NITRITE%22+.+%7D+
+=> [#<RDFS::Resource:0x3482d78 @uri="http://www.data.gov/tri/Chemical_007632000", @predicates={}>]
+>> nano2 = TRI::Chemical.find_by_label('SODIUM NITRITE')
+constructing dynamic finder for find_by_label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Fp+%3Fo+.+%7D+
+executing dynamic finder: SELECT DISTINCT ?s FROM <tri> WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#label> "SODIUM NITRITE" . } 
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%22SODIUM+NITRITE%22+.+%7D+
+=> [#<RDFS::Resource:0x38617f0 @uri="http://www.data.gov/tri/Chemical_007632000", @predicates={}>]
+>> nano2.direct_predicates
+NoMethodError: undefined method `direct_predicates' for #<Array:0x387f994>
+	from (irb):71
+	from :0
+>> nano2 = TRI::Chemical.find_by_label('SODIUM NITRITE').first
+constructing dynamic finder for find_by_label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Fp+%3Fo+.+%7D+
+executing dynamic finder: SELECT DISTINCT ?s FROM <tri> WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#label> "SODIUM NITRITE" . } 
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%22SODIUM+NITRITE%22+.+%7D+
+=> #<RDFS::Resource:0x37dbf24 @uri="http://www.data.gov/tri/Chemical_007632000", @predicates={}>
+>> nano2.direct_predicates
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical_007632000%3E+%3Fp+%3Fo+.+%7D+
+=> [#<RDFS::Resource:0x37c46a8 @uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type", @predicates={}>, #<RDFS::Resource:0x37c2434 @uri="http://www.w3.org/2000/01/rdf-schema#label", @predicates={}>]
+>> nan2.type
+NameError: undefined local variable or method `nan2' for #<Object:0x389a0 @controller=#<ApplicationController:0x3831960>>
+	from (irb):74
+	from :0
+>> nano2.type
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Ft+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical_007632000%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Ft+.+%7D+
+ObjectManager: construct_class: constructing modulename TRI from registered prefix tri
+ObjectManager: construct_class: module name TRI previously defined
+ObjectManager: construct_class: given class Chemical defined in the module
+ObjectManager: construct_class: constructing modulename TRI from registered prefix tri
+ObjectManager: construct_class: module name TRI previously defined
+ObjectManager: construct_class: given class Chemicalclassification_tri defined in the module
+ObjectManager: construct_class: constructing modulename TRI from registered prefix tri
+ObjectManager: construct_class: module name TRI previously defined
+ObjectManager: construct_class: given class Entity defined in the module
+ObjectManager: construct_class: constructing modulename RDFS from registered prefix rdfs
+ObjectManager: construct_class: module name RDFS previously defined
+ObjectManager: construct_class: given class Resource defined in the module
+=> [TRI::Chemical, TRI::Chemicalclassification_tri, TRI::Entity, RDFS::Resource]
+>> nano2.label
+method_missing: label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical_007632000%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical_007632000%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Fo+.+%7D+
+=> "SODIUM NITRITE"
+>> nano2.label
+method_missing: label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical_007632000%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical_007632000%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Fo+.+%7D+
+=> "SODIUM NITRITE"
+>> nano2.rdf::label
+method_missing: rdf
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical_007632000%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23label%3E+%3Fo+.+%7D+
+=> nil
+>> nano2.rdfs::label
+method_missing: rdfs
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical_007632000%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Fo+.+%7D+
+=> "SODIUM NITRITE"
+>> nano2.label
+method_missing: label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical_007632000%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical_007632000%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Fo+.+%7D+
+=> "SODIUM NITRITE"
+>> nano2.to_xml
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical_007632000%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical_007632000%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical_007632000%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Fo+.+%7D+
+=> "<?xml version=\"1.0\"?>\n<rdf:RDF xmlns=\"http://www.data.gov/tri#\"\n  xmlns:xsd=\"http://www.w3.org/2001/XMLSchema#\"\n  xmlns:owl=\"http://www.w3.org/2002/07/owl#\"\n  xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"\n  xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n  xmlns:tri=\"http://www.data.gov/tri/\"\n  xml:base=\"http://www.data.gov/tri\">\n<rdf:Description rdf:about=\"#Chemical_007632000\">\n  <rdf:type rdf:resource=\"http://www.data.gov/tri/Chemical\"/>\n  <rdf:type rdf:resource=\"http://www.data.gov/tri/ChemicalClassification_TRI\"/>\n  <rdf:type rdf:resource=\"http://www.data.gov/tri/Entity\"/>\n  <rdf:type rdf:resource=\"http://www.w3.org/2000/01/rdf-schema#Resource\"/>\n  <rdfs:label rdf:datatype=\"http://www.w3.org/2001/XMLSchema#string\">SODIUM NITRITE</rdfs:label>\n</rdf:Description>\n</rdf:RDF>"
+>> nano2.property_accessors
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical_007632000%3E+%3Fp+%3Fo+.+%7D+
+=> ["type", "label"]
+>> mad = RDF::Facility.find_by_label('MADISON PAPER INDUSTRIES')
+ObjectManager: construct_class: constructing modulename RDF from registered prefix rdf
+ObjectManager: construct_class: module name RDF previously defined
+ObjectManager: construct_class: creating given class Facility
+constructing dynamic finder for find_by_label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Fp+%3Fo+.+%7D+
+executing dynamic finder: SELECT DISTINCT ?s FROM <tri> WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#label> "MADISON PAPER INDUSTRIES" . } 
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%22MADISON+PAPER+INDUSTRIES%22+.+%7D+
+=> [#<RDFS::Resource:0x36421b8 @uri="http://www.data.gov/tri/Company_cc259ae7cdbeffd7243e6bba04c08749", @predicates={}>, #<RDFS::Resource:0x3641434 @uri="http://www.data.gov/tri/Facility_04950MDSNPMAINS", @predicates={}>]
+>> mad = mad.first
+=> #<RDFS::Resource:0x36421b8 @uri="http://www.data.gov/tri/Company_cc259ae7cdbeffd7243e6bba04c08749", @predicates={}>
+>> mad.property_accessors
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+=> ["dbCode", "mailingAddress", "naicsCode", "physicalAddress", "primaryNaicsCode", "rcraCode", "type", "label"]
+>> mad.mailingAddress
+method_missing: mailingAddress
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FmailingAddress%3E+%3Fo+.+%7D+
+=> #<BNode:0x35fcdc0 @uri="n0", @pred=#<RDFS::Resource:0x36139bc @uri="http://www.data.gov/tri/mailingAddress", @predicates={}>, @predicates={}, @subj=#<RDFS::Resource:0x36421b8 @uri="http://www.data.gov/tri/Company_cc259ae7cdbeffd7243e6bba04c08749", @predicates={}>>
+>> mad.mailingAddress.property_accessors
+method_missing: mailingAddress
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FmailingAddress%3E+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Cn0%3E+%3Fp+%3Fo+.+%7D+
+=> []
+>> mad.mailingAddress.direct_predicates
+method_missing: mailingAddress
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FmailingAddress%3E+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Cn0%3E+%3Fp+%3Fo+.+%7D+
+=> []
+>> mad.mailingAddress
+method_missing: mailingAddress
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FmailingAddress%3E+%3Fo+.+%7D+
+=> #<BNode:0x3553cc0 @uri="n0", @pred=#<RDFS::Resource:0x356a9e8 @uri="http://www.data.gov/tri/mailingAddress", @predicates={}>, @predicates={}, @subj=#<RDFS::Resource:0x36421b8 @uri="http://www.data.gov/tri/Company_cc259ae7cdbeffd7243e6bba04c08749", @predicates={}>>
+>> mad = RDF::Facility.find_by_label('MADISON PAPER INDUSTRIES').first
+constructing dynamic finder for find_by_label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Fp+%3Fo+.+%7D+
+executing dynamic finder: SELECT DISTINCT ?s FROM <tri> WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#label> "MADISON PAPER INDUSTRIES" . } 
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fs+FROM+%3Ctri%3E+WHERE+%7B+%3Fs+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%22MADISON+PAPER+INDUSTRIES%22+.+%7D+
+=> #<RDFS::Resource:0x35009e4 @uri="http://www.data.gov/tri/Company_cc259ae7cdbeffd7243e6bba04c08749", @predicates={}>
+>> mad.label
+method_missing: label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Fo+.+%7D+
+=> "MADISON PAPER INDUSTRIES"
+>> mad.direct_predicates
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+=> [#<RDFS::Resource:0x34bf4f8 @uri="http://www.data.gov/tri/dbCode", @predicates={}>, #<RDFS::Resource:0x34be774 @uri="http://www.data.gov/tri/mailingAddress", @predicates={}>, #<RDFS::Resource:0x34bd9f0 @uri="http://www.data.gov/tri/naicsCode", @predicates={}>, #<RDFS::Resource:0x34bcc6c @uri="http://www.data.gov/tri/physicalAddress", @predicates={}>, #<RDFS::Resource:0x34bbee8 @uri="http://www.data.gov/tri/primaryNaicsCode", @predicates={}>, #<RDFS::Resource:0x34bb164 @uri="http://www.data.gov/tri/rcraCode", @predicates={}>, #<RDFS::Resource:0x34ba3e0 @uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type", @predicates={}>, #<RDFS::Resource:0x34b965c @uri="http://www.w3.org/2000/01/rdf-schema#label", @predicates={}>]
+>> mad.physical_addressmethod_missing: physical_addressGET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Ft+.+%3Fp+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23domain%3E+%3Ft+.+%7D+
+RDFS::Resource: method_missing option 4: custom class method
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Ft+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Ft+.+%7D+
+ObjectManager: construct_class: constructing modulename TRI from registered prefix tri
+ObjectManager: construct_class: module name TRI previously defined
+ObjectManager: construct_class: given class Company defined in the module
+ObjectManager: construct_class: constructing modulename TRI from registered prefix tri
+ObjectManager: construct_class: module name TRI previously defined
+ObjectManager: construct_class: given class Entity defined in the module
+ObjectManager: construct_class: constructing modulename RDFS from registered prefix rdfs
+ObjectManager: construct_class: module name RDFS previously defined
+ObjectManager: construct_class: given class Resource defined in the module
+=> nil
+>> mad.label
+method_missing: label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Fo+.+%7D+
+=> "MADISON PAPER INDUSTRIES"
+>> mad.dbCode
+method_missing: dbCode
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FdbCode%3E+%3Fo+.+%7D+
+=> "099898066"
+>> mad.naicsCode
+method_missing: naicsCode
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FnaicsCode%3E+%3Fo+.+%7D+
+=> [#<RDFS::Resource:0x37a45b0 @uri="http://www.data.gov/tri/NAICS_113310", @predicates={}>, #<RDFS::Resource:0x37a382c @uri="http://www.data.gov/tri/NAICS_322110", @predicates={}>]
+>> mad.naicsCode.map(&:direct_predicates)
+method_missing: naicsCode
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FnaicsCode%3E+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FNAICS_113310%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FNAICS_322110%3E+%3Fp+%3Fo+.+%7D+
+=> [[#<RDFS::Resource:0x37663dc @uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type", @predicates={}>], [#<RDFS::Resource:0x3755708 @uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type", @predicates={}>]]
+>> mad.naicsCode.map(&:type)
+method_missing: naicsCode
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FnaicsCode%3E+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Ft+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FNAICS_113310%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Ft+.+%7D+
+ObjectManager: construct_class: constructing modulename RDFS from registered prefix rdfs
+ObjectManager: construct_class: module name RDFS previously defined
+ObjectManager: construct_class: given class Resource defined in the module
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Ft+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FNAICS_322110%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Ft+.+%7D+
+ObjectManager: construct_class: constructing modulename RDFS from registered prefix rdfs
+ObjectManager: construct_class: module name RDFS previously defined
+ObjectManager: construct_class: given class Resource defined in the module
+=> [[RDFS::Resource], [RDFS::Resource]]
+>> mad.naicsCode.map(&:label)
+method_missing: naicsCode
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fo+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FCompany_cc259ae7cdbeffd7243e6bba04c08749%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FnaicsCode%3E+%3Fo+.+%7D+
+method_missing: label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FNAICS_113310%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FNAICS_113310%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Ft+.+%3Fp+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23domain%3E+%3Ft+.+%7D+
+method_missing: label
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FNAICS_322110%3E+%3Fp+%3Fo+.+%7D+
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Fp+FROM+%3Ctri%3E+WHERE+%7B+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FNAICS_322110%3E+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Ft+.+%3Fp+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23domain%3E+%3Ft+.+%7D+
+=> [nil, nil]
+>> q = Query.new.distinct(:label).where(:chemical, RDF::type, TRI::Chemical).where(:chemical, RDFS::label, :label)=> #<Query:0x364f23c @filter_clauses=[], @reverse_sort_clauses=[], @sort_clauses=[], @reasoning=true, @where_clauses=[[:chemical, #<RDFS::Resource:0x364f110 @uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type", @predicates={}>, TRI::Chemical, nil], [:chemical, #<RDFS::Resource:0x364f034 @uri="http://www.w3.org/2000/01/rdf-schema#label", @predicates={}>, :label, nil]], @select=true, @keywords={}, @distinct=true, @select_clauses=[:label]>
+>> Query2Sparql.translate(q)
+NameError: uninitialized constant Query2Sparql
+	from /opt/local/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/dependencies.rb:443:in `load_missing_constant'
+	from /opt/local/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/dependencies.rb:80:in `const_missing'
+	from /opt/local/lib/ruby/gems/1.8/gems/activesupport-2.3.2/lib/active_support/dependencies.rb:92:in `const_missing'
+	from (irb):101
+	from :0
+>> Query2SPARQL.translate(q)
+=> "SELECT DISTINCT ?label FROM <tri> WHERE { ?chemical <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.data.gov/tri/Chemical> . ?chemical <http://www.w3.org/2000/01/rdf-schema#label> ?label . } "
+>> q.execute
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Flabel+FROM+%3Ctri%3E+WHERE+%7B+%3Fchemical+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical%3E+.+%3Fchemical+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Flabel+.+%7D+
+=> ["1,2,4-TRIMETHYLBENZENE", "4,4'-ISOPROPYLIDENEDIPHENOL", "4,4'-METHYLENEBIS(2-CHLOROANILINE)", "ACETALDEHYDE", "AMMONIA", "BARIUM COMPOUNDS", "BENZENE", "BENZO(G,H,I)PERYLENE", "CATECHOL", "CERTAIN GLYCOL ETHERS", "CHLORINE", "CHLORINE DIOXIDE", "CHROMIUM", "CHROMIUM COMPOUNDS(EXCEPT CHROMITE ORE MINED IN THE TRANSVAAL REGION)", "COBALT", "COBALT COMPOUNDS", "COPPER", "COPPER COMPOUNDS", "CRESOL (MIXED ISOMERS)", "CYANIDE COMPOUNDS", "DAZOMET", "DIISOCYANATES", "DIOXIN AND DIOXIN-LIKE COMPOUNDS", "ETHYLBENZENE", "ETHYLENE GLYCOL", "FORMALDEHYDE", "FORMIC ACID", "HYDROCHLORIC ACID (1995 AND AFTER \"ACID AEROSOLS\" ONLY)", "HYDROGEN FLUORIDE", "LEAD", "LEAD COMPOUNDS", "MALEIC ANHYDRIDE", "MANGANESE", "MANGANESE COMPOUNDS", "MERCURY", "MERCURY COMPOUNDS", "METHANOL", "METHYL ACRYLATE", "METHYL METHACRYLATE", "METHYL TERT-BUTYL ETHER", "MIXTURE", "MOLYBDENUM TRIOXIDE", "N-BUTYL ALCOHOL", "N-HEXANE", "NAPHTHALENE", "NICKEL", "NICKEL COMPOUNDS", "NITRATE COMPOUNDS", "NITRIC ACID", "PERACETIC ACID", "PHENOL", "PHTHALIC ANHYDRIDE", "POLYCHLORINATED BIPHENYLS", "POLYCYCLIC AROMATIC COMPOUNDS", "PROPYLENE", "PROPYLENE OXIDE", "SILVER COMPOUNDS", "SODIUM NITRITE", "STYRENE", "SULFURIC ACID (1994 AND AFTER \"ACID AEROSOLS\" ONLY)", "THIRAM", "TOLUENE", "TOLUENE-2,4-DIISOCYANATE", "TOLUENE-2,6-DIISOCYANATE", "TRICHLOROETHYLENE", "VANADIUM COMPOUNDS", "XYLENE (MIXED ISOMERS)", "ZINC COMPOUNDS"]
+>> q = Query.new.distinct(:label).where(:chemical, RDF::type, TRI::Chemical).where(:chemical, RDFS::label, :label)
+=> #<Query:0x35f68d0 @filter_clauses=[], @reverse_sort_clauses=[], @sort_clauses=[], @reasoning=true, @where_clauses=[[:chemical, #<RDFS::Resource:0x35f67a4 @uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type", @predicates={}>, TRI::Chemical, nil], [:chemical, #<RDFS::Resource:0x35f66c8 @uri="http://www.w3.org/2000/01/rdf-schema#label", @predicates={}>, :label, nil]], @select=true, @keywords={}, @distinct=true, @select_clauses=[:label]>
+>> Query2SPARQL.translate(q)
+=> "SELECT DISTINCT ?label FROM <tri> WHERE { ?chemical <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.data.gov/tri/Chemical> . ?chemical <http://www.w3.org/2000/01/rdf-schema#label> ?label . } "
+>> q.execute
+GET http://206.192.70.249/data.gov/sparql.aspx?query=SELECT+DISTINCT+%3Flabel+FROM+%3Ctri%3E+WHERE+%7B+%3Fchemical+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type%3E+%3Chttp%3A%2F%2Fwww.data.gov%2Ftri%2FChemical%3E+.+%3Fchemical+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E+%3Flabel+.+%7D+
+=> ["1,2,4-TRIMETHYLBENZENE", "4,4'-ISOPROPYLIDENEDIPHENOL", "4,4'-METHYLENEBIS(2-CHLOROANILINE)", "ACETALDEHYDE", "AMMONIA", "BARIUM COMPOUNDS", "BENZENE", "BENZO(G,H,I)PERYLENE", "CATECHOL", "CERTAIN GLYCOL ETHERS", "CHLORINE", "CHLORINE DIOXIDE", "CHROMIUM", "CHROMIUM COMPOUNDS(EXCEPT CHROMITE ORE MINED IN THE TRANSVAAL REGION)", "COBALT", "COBALT COMPOUNDS", "COPPER", "COPPER COMPOUNDS", "CRESOL (MIXED ISOMERS)", "CYANIDE COMPOUNDS", "DAZOMET", "DIISOCYANATES", "DIOXIN AND DIOXIN-LIKE COMPOUNDS", "ETHYLBENZENE", "ETHYLENE GLYCOL", "FORMALDEHYDE", "FORMIC ACID", "HYDROCHLORIC ACID (1995 AND AFTER \"ACID AEROSOLS\" ONLY)", "HYDROGEN FLUORIDE", "LEAD", "LEAD COMPOUNDS", "MALEIC ANHYDRIDE", "MANGANESE", "MANGANESE COMPOUNDS", "MERCURY", "MERCURY COMPOUNDS", "METHANOL", "METHYL ACRYLATE", "METHYL METHACRYLATE", "METHYL TERT-BUTYL ETHER", "MIXTURE", "MOLYBDENUM TRIOXIDE", "N-BUTYL ALCOHOL", "N-HEXANE", "NAPHTHALENE", "NICKEL", "NICKEL COMPOUNDS", "NITRATE COMPOUNDS", "NITRIC ACID", "PERACETIC ACID", "PHENOL", "PHTHALIC ANHYDRIDE", "POLYCHLORINATED BIPHENYLS", "POLYCYCLIC AROMATIC COMPOUNDS", "PROPYLENE", "PROPYLENE OXIDE", "SILVER COMPOUNDS", "SODIUM NITRITE", "STYRENE", "SULFURIC ACID (1994 AND AFTER \"ACID AEROSOLS\" ONLY)", "THIRAM", "TOLUENE", "TOLUENE-2,4-DIISOCYANATE", "TOLUENE-2,6-DIISOCYANATE", "TRICHLOROETHYLENE", "VANADIUM COMPOUNDS", "XYLENE (MIXED ISOMERS)", "ZINC COMPOUNDS"]
+>> 
+?> ;
+?> q
+=> #<Query:0x35f68d0 @filter_clauses=[], @reverse_sort_clauses=[], @sort_clauses=[], @reasoning=true, @where_clauses=[[:chemical, #<RDFS::Resource:0x35f67a4 @uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type", @predicates={}>, TRI::Chemical, nil], [:chemical, #<RDFS::Resource:0x35f66c8 @uri="http://www.w3.org/2000/01/rdf-schema#label", @predicates={}>, :label, nil]], @select=true, @keywords={}, @distinct=true, @select_clauses=[:label]>
+>> 
