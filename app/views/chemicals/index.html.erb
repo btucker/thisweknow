@@ -1,0 +1,14 @@
+<% form_tag '/chemicals', :method => :get do %>	
+	<h1>Enter Facility name here:</h1></br>
+	<%= text_field_tag("facility_name") %>
+	<%= submit_tag %>
+<% end %>
+
+<% if @facility_name %>
+	<%= @facility_name.titleize + " releases:" -%>
+	<ul> 
+		<% @chemical_list.each do |chemical| -%>
+			<li> <%= chemical.downcase.capitalize %> </li>
+		<% end %>
+	</ul>	
+<% end %>

@@ -1,0 +1,24 @@
+<h1>Listing factoids</h1>
+
+<table>
+  <tr>
+    <th>Sentence</th>
+    <th>Count query</th>
+    <th>Query</th>
+  </tr>
+
+<% @factoids.each do |factoid| %>
+  <tr>
+    <td><%=h factoid.sentence %></td>
+    <td><%=h factoid.count_query %></td>
+    <td><%=h factoid.query %></td>
+    <td><%= link_to 'Show', factoid %></td>
+    <td><%= link_to 'Edit', edit_factoid_path(factoid) %></td>
+    <td><%= link_to 'Destroy', factoid, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New factoid', new_factoid_path %>

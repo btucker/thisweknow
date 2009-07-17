@@ -17,6 +17,8 @@ Rails::Initializer.run do |config|
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem "activerdf", :lib => 'active_rdf'
   config.gem "activerdf_sparql", :lib => false
+  config.gem "nokogiri"
+  config.gem "graticule"
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"

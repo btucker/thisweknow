@@ -11,7 +11,7 @@ class Query2SPARQL
 			select_clauses = query.select_clauses.collect{|s| construct_clause(s)}
 
       str << "SELECT #{distinct}#{select_clauses.join(' ')} "
-      str << "FROM <tri> "
+      str << "FROM <data> "
       str << "WHERE { #{where_clauses(query)} #{filter_clauses(query)}} "
       str << "LIMIT #{query.limits} " if query.limits
       str << "OFFSET #{query.offsets} " if query.offsets
@@ -24,5 +24,5 @@ class Query2SPARQL
 end
 
 ConnectionPool.add_data_source(:type => :sparql, :results => :sparql_xml, :engine => :yars2, :url => 'http://206.192.70.249/data.gov/sparql.aspx')
-Namespace.register :tri, 'http://www.data.gov/tri/'
+Namespace.register :o, 'http://www.data.gov/ontology/'
 ObjectManager.construct_classes

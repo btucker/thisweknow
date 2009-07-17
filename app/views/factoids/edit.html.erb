@@ -1,0 +1,24 @@
+<h1>Editing factoid</h1>
+
+<% form_for(@factoid) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :sentence %><br />
+    <%= f.text_field :sentence %>
+  </p>
+  <p>
+    <%= f.label :count_query %><br />
+    <%= f.text_area :count_query %>
+  </p>
+  <p>
+    <%= f.label :query %><br />
+    <%= f.text_area :query %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @factoid %> |
+<%= link_to 'Back', factoids_path %>
