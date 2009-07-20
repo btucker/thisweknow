@@ -1,0 +1,15 @@
+<% form_tag nil, :method => :get, :id => 'zip_form' do %>
+  Enter Zip: <%= text_field_tag 'zip', params[:zip], :id => 'zip' %>
+  <%= submit_tag 'GO' %>
+<% end %>
+
+<% javascript_tag do %>
+  $('zip_form').observe('submit', function(ev) {
+  if ($F('zip').match(/^\d{5}$/)) {
+      window.location = '/zips/' + $F('zip');
+    } else {
+      alert('Please enter a valid zip code.');
+    }
+    ev.stop();
+  });
+<% end %>

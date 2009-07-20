@@ -45,3 +45,6 @@ Rails::Initializer.run do |config|
 
 end
 
+#require 'zipcode'
+
+SUNLIGHT_API_KEY = '4882ac4cb40d0ef34e4ee6576a63e5c7'
