@@ -5,16 +5,16 @@ class Zipcode
   attr_accessor :radius
 
   def initialize(zip)
-    if zip =~ /^\d{5}$/
+    #if zip =~ /^\d{5}$/
       @zip = zip
       @geocoder = Graticule.service(:google).new GOOGLE_MAPS_API_KEY
       @location = @geocoder.locate(@zip)
       @lat = @location.coordinates.first
       @lon = @location.coordinates.second
       @radius = 64
-    else
-      raise ActiveRecord::RecordNotFound
-    end
+    #else
+    #  raise ActiveRecord::RecordNotFound
+   # end
   end
 
   def senators
@@ -76,12 +76,19 @@ class Zipcode
     
     all_data = all_data.group_by {|r| r[:name]} #Organizes the data by company name
     useful_data = {}
-    
+
     all_data.each do |name, information| #Organizes the data better by company name: name -> list of chemicals, longitude, latitude, and distance from zip_mid
+      chemical_data = []
+      information.each do |info|
+      	 chemical_data << {
+      	 :name => info[:chemical].titleize,
+      	 :url => "http://www.wikipedia.org/wiki/" + info[:chemical].gsub(" ", "_").titleize
+  	 	 }
+  	  end
       useful_data[name] = {
          :latitude => information.first[:latitude],
          :longitude => information.first[:longitude],
-         :chemicals => information.map{|info| info[:chemical].titleize},
+         :chemicals => chemical_data,
          :distance => distance(lon, information.first[:longitude], lat, information.first[:latitude])
       }
       end
