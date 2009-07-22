@@ -6,9 +6,7 @@ class Sparql
     Nokogiri::XML(open(URI.encode("http://206.192.70.249/data.gov/sparql.aspx?query=#{prefixes + query}")))
   end
 
-  private
-
-  def prefixes
+  def self.prefixes
     %Q{
       PREFIX o: <http://www.data.gov/ontology#>
       PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
