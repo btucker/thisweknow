@@ -1,4 +1,5 @@
 class FactoidsController < ApplicationController
+  before_filter :find_zipcode
   # GET /factoids
   # GET /factoids.xml
   def index
@@ -14,7 +15,25 @@ class FactoidsController < ApplicationController
   # GET /factoids/1.xml
   def show
     @factoid = Factoid.find(params[:id])
-
+    
+	if @factoid.factoid_type == "Point"
+    	@result = @factoid.execute(@zip, 0)
+    else
+    	@result = @factoid.execute(@zip, 250)
+    end
+    
+    @headings = @result.search("head variable").map{|var| var["name"]}
+    
+    @data = [] #The list of data as received in the query, not organized by company name
+	    puts @result
+	@result.search("result").each do |r|
+      row = {}
+      	@headings.each do |h|
+	        row[h.to_sym] = r.search("binding[name=#{h}] literal").first.content
+	    end
+	    @data << row
+    end
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @factoid }
@@ -85,5 +104,11 @@ class FactoidsController < ApplicationController
       format.html { redirect_to(factoids_url) }
       format.xml  { head :ok }
     end
+  end
+  
+protected
+  
+  def find_zipcode
+  	@zip = Zipcode.new("05301")
   end
 end

@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Sentence</th>
+    <th>Factoid Type</th>
     <th>Count query</th>
     <th>Query</th>
   </tr>
@@ -10,6 +11,7 @@
 <% @factoids.each do |factoid| %>
   <tr>
     <td><%=h factoid.sentence %></td>
+    <td><%=h factoid.factoid_type %></td>
     <td><%=h factoid.count_query %></td>
     <td><%=h factoid.query %></td>
     <td><%= link_to 'Show', factoid %></td>

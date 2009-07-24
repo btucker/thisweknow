@@ -5,16 +5,16 @@ class Zipcode
   attr_accessor :radius
 
   def initialize(zip)
-    #if zip =~ /^\d{5}$/
+    if zip =~ /^\d{5}$/
       @zip = zip
       @geocoder = Graticule.service(:google).new GOOGLE_MAPS_API_KEY
       @location = @geocoder.locate(@zip)
       @lat = @location.coordinates.first
       @lon = @location.coordinates.second
-      @radius = 64
-    #else
-    #  raise ActiveRecord::RecordNotFound
-   # end
+      @radius = 24
+    else
+      raise ActiveRecord::RecordNotFound
+    end
   end
 
   def senators
@@ -44,28 +44,57 @@ class Zipcode
     @zip
   end
 
-  def lat_min
-    lat - miles_to_lat(radius) 
+  def lat_min(radius)
+  	unless radius == 0
+    	lat - miles_to_lat(radius) 
+    else
+    	lat - miles_to_lat(@radius)
+    end
   end
 
-  def lat_max
-    lat + miles_to_lat(radius)
+  def lat_max(radius)
+  	unless radius == 0
+    	lat + miles_to_lat(radius)
+    else
+    	lat + miles_to_lat(@radius)
+    end
   end
 
-  def lon_min
-    lon - miles_to_lon(radius, lat)
+  def lon_min(radius)
+  	unless radius == 0
+    	lon - miles_to_lon(radius, lat)
+    else
+    	lon - miles_to_lon(@radius, lat)
+    end
   end
 
-  def lon_max
-    lon + miles_to_lon(radius, lat)
+  def lon_max(radius)
+  	unless radius == 0
+    	lon + miles_to_lon(radius, lat)
+    else
+    	lon + miles_to_lon(@radius, lat)
+    end
   end
 
   def find_facilities
-    doc = Sparql.execute("SELECT ?fac ?loc ?lat ?lon ?name ?cu ?chem ?chemname FROM <data> WHERE { ?fac <http://www.data.gov/ontology#location>  ?loc . ?fac <http://www.w3.org/2000/01/rdf-schema#label> ?name . ?fac <http://www.data.gov/ontology#usesChemical> ?cu . ?cu <http://www.data.gov/ontology#chemical> ?chem . ?chem <http://www.w3.org/2000/01/rdf-schema#label> ?chemname . ?loc <http://www.data.gov/ontology#latitude> ?lat . ?loc <http://www.data.gov/ontology#longitude> ?lon . FILTER(?lat < #{lat_max}) . FILTER(?lat > #{lat_min}) . FILTER(?lon > #{lon_min}) . FILTER(?lon < #{lon_max})}")
-      
-    all_data = [] #The list of data as received in the query, not organized by company name
+	exp = 0 #allows the loop to go through the companies exponentially by distance, this is the exponent
+    fac_num = 0
     
-    doc.search("result").each do |r|
+    while fac_num < 12 && exp < 13 #Goes through the companies exponentially by distance to find the closest ones
+      
+		@radius = 1.4142**exp    
+  		doc = Sparql.execute("SELECT count(?fac) as ?count ?fac ?loc ?lat ?lon ?name ?cu ?chem ?chemname FROM <data> WHERE { ?fac <http://www.data.gov/ontology#location>  ?loc . ?fac <http://www.w3.org/2000/01/rdf-schema#label> ?name . ?fac <http://www.data.gov/ontology#usesChemical> ?cu . ?cu <http://www.data.gov/ontology#chemical> ?chem . ?chem <http://www.w3.org/2000/01/rdf-schema#label> ?chemname . ?loc <http://www.data.gov/ontology#latitude> ?lat . ?loc <http://www.data.gov/ontology#longitude> ?lon . FILTER(?lat < #{lat_max(self.radius)}) . FILTER(?lat > #{lat_min(self.radius)}) . FILTER(?lon > #{lon_min(self.radius)}) . FILTER(?lon < #{lon_max(self.radius)})}")
+  		
+	    exp += 1
+	    fac_num = 0
+	    pot_var = doc.search('binding[name="count"] literal').first
+	    if pot_var
+	   		fac_num = pot_var.content.to_f
+   		end
+	end
+	all_data = [] #The list of data as received in the query, not organized by company name
+	    
+	doc.search("result").each do |r|
       all_data << {
         :name => r.search('binding[name="name"] literal').first.content,
         :latitude => r.search('binding[name="lat"] literal').first.content.to_f,
@@ -73,10 +102,10 @@ class Zipcode
         :chemical => r.search('binding[name="chemname"] literal').first.content
       }
     end
-    
+	    
     all_data = all_data.group_by {|r| r[:name]} #Organizes the data by company name
-    useful_data = {}
 
+	useful_data = {}
     all_data.each do |name, information| #Organizes the data better by company name: name -> list of chemicals, longitude, latitude, and distance from zip_mid
       chemical_data = []
       information.each do |info|
@@ -93,21 +122,10 @@ class Zipcode
       }
       end
       
-      exp = 0 #allows the loop to go through the companies exponentially by distance, this is the exponent
-      return_data = {}
-    
-      while return_data.keys.size < 12 && exp < 13 #Goes through the companies exponentially by distance to find the closest ones
-      useful_data.each do |name, information|
-        if information[:distance] < 1.4142**exp
-          return_data[name] = useful_data[name]
-        end
-      end
-    exp += 1
-    end
-    unless return_data.keys.first.nil?
+    unless useful_data.keys.first.nil?
        self.radius = 1.4142**(exp-1)
     end   
-    return return_data
+    return useful_data
   end  
 
   def distance(lon1, lon2, lat1, lat2) #Finds the distance between two coordinates of lat/lon in miles
@@ -129,5 +147,5 @@ class Zipcode
   def miles_to_lon(miles, lat) #Converts miles to degrees of longitude
   	return miles/(69.17*Math.cos(0.01745*lat))
   end
- 
+
 end

@@ -10,7 +10,11 @@
 
 <ul>
   <% Factoid.all.each do |f| %>
-    <li><%= f.sentence % f.count(@zip) %> </li>
+    <% if f.factoid_type == "Point" %>
+    	<li> <%= link_to(f.sentence % f.count(@zip, 0), f) %> </li>
+    <% else %>
+    	<li> <%= f.sentence % f.count(@zip, 250) %> </li>
+    <% end %>
   <% end %>
 </ul>
 

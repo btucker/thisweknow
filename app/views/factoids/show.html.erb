@@ -1,18 +1,11 @@
-<p>
-  <b>Sentence:</b>
-  <%=h @factoid.sentence %>
-</p>
-
-<p>
-  <b>Count query:</b>
-  <%=h @factoid.count_query %>
-</p>
-
-<p>
-  <b>Query:</b>
-  <%=h @factoid.query %>
-</p>
-
-
-<%= link_to 'Edit', edit_factoid_path(@factoid) %> |
-<%= link_to 'Back', factoids_path %>
+<table border ="1">
+<tr>
+<% @headings.each do |h| %>
+	<th><%= h %></th>
+<% end %>
+<% @data.each do |hash| %>
+	<tr> 
+	<% @headings.each do |keyname| %>
+		<td> <%= hash[keyname.to_sym] %> </td>
+	<% end %>
+<% end %>
