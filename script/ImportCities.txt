@@ -1,0 +1,7 @@
+File.open('us.txt').each_line do |s|
+	city_row = []
+	s.split("\t").each do |piece|
+		city_row << piece
+	end
+	City.create :geonameid => city_row[0], :name => city_row[1], :asciiname => city_row[2], :alternatenames => city_row[3], :latitude => city_row[4], :longitude=> city_row[5], :feature_class => city_row[6], :feature_code => city_row[7], :country_code => city_row[8], :cc2 => city_row[9], :admin1_code => city_row[10], :admin2_code => city_row[11], :admin3_code => city_row[12], :admin4_code => city_row[13], :population => city_row[14], :elevation => city_row[15], :gtopo30 => city_row[16], :timezone => city_row[17], :modification_date => city_row[18]
+end

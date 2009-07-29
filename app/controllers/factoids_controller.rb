@@ -22,14 +22,23 @@ class FactoidsController < ApplicationController
     	@result = @factoid.execute(@zip, 250)
     end
     
-    @headings = @result.search("head variable").map{|var| var["name"]}
+    variables = []
+    @result.search("head variable").map{|var| var["name"]}.each_slice(2) do |slice|
+    	variables << slice
+	end
+    @headings = variables.map{|v|v[0]}
+    
     
     @data = [] #The list of data as received in the query, not organized by company name
-	    puts @result
+	#render :xml => @result
+	#return    
 	@result.search("result").each do |r|
       row = {}
-      	@headings.each do |h|
-	        row[h.to_sym] = r.search("binding[name=#{h}] literal").first.content
+      	variables.each do |lit_var, uri_var|
+	        row[lit_var.to_sym] = [
+	        						r.search("binding[name=#{lit_var}] literal").first.content, 
+	        						r.search("binding[name=#{uri_var}] uri").first.content
+        						]
 	    end
 	    @data << row
     end
