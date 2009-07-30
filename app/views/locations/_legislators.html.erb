@@ -1,7 +1,7 @@
 <h3>Senators</h3>
 
 <ul>
-  <% @zip.senators.each do |r| %>
+  <% @location.senators.each do |r| %>
     <li><%= link_to "#{r["firstname"]} #{r["lastname"]} (#{r["party"]})", r["website"] %></li>
   <% end %>
 </ul>
@@ -9,7 +9,7 @@
 <h3>Representatives</h3>
 
 <ul>
-  <% @zip.reps.each do |r| %>
+  <% @location.reps.each do |r| %>
     <li><%= link_to "#{r["firstname"]} #{r["lastname"]} (#{r["party"]})", r["website"] %></li>
   <% end %>
 </ul>

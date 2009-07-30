@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
+  def location_path(location)
+    url_for(:controller => 'locations', :action => 'show', :city => location.city, :state => location.state)
+  end
+  helper_method :location_path
+
 protected
  
 end

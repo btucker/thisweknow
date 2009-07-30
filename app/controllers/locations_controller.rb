@@ -4,8 +4,13 @@ class LocationsController < ApplicationController
   end
 
   def show
-    @zip = Zipcode.new(params[:id])
-    @facility_data = @zip.find_facilities
+    @location = Location.new("#{params[:city]}, #{params[:state]}")
+    @facility_data = @location.find_facilities
+  end
+
+  def zip
+    @location = Location.new(params[:zip])
+    redirect_to location_path(@location)
   end
 
   protected
