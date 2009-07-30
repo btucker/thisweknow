@@ -19,7 +19,6 @@ Rails::Initializer.run do |config|
   config.gem "activerdf_sparql", :lib => false
   config.gem "nokogiri"
   config.gem "graticule"
-  config.gem "reddy"
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
