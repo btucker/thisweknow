@@ -1,18 +1,27 @@
 class LocationsController < ApplicationController
-
+  before_filter :find_location
   def index
   end
 
   def show
-    @location = Location.new("#{params[:city]}, #{params[:state]}")
     @facility_data = @location.find_facilities
   end
 
-  def zip
-    @location = Location.new(params[:zip])
+  def factoid
+
+  end
+
+  def search
+    @location = Location.new(params[:q])
     redirect_to location_path(@location)
+    rescue Graticule::Error
+      raise ActiveRecord::RecordNotFound
   end
 
   protected
+
+  def find_location
+    @location = Location.new("#{params[:city]}, #{params[:state]}") if params[:city] and params[:state]
+  end
 
 end

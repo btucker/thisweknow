@@ -1,12 +1,11 @@
 require 'open-uri'
 
 class Location
-  attr_reader :geocoder, :location, :lat, :lon, :city, :state
+  attr_reader :location, :lat, :lon, :city, :state
   attr_accessor :radius
 
   def initialize(location)
-    @geocoder = Graticule.service(:yahoo).new YAHOO_API_KEY
-    @location = @geocoder.locate(location)
+    @location = Geocode.geocoder.locate(location)
     @zip = @location.postal_code
     @city = @location.locality
     @state = @location.region
