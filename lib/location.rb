@@ -1,20 +1,18 @@
 require 'open-uri'
 
-class Zipcode
-  attr_reader :geocoder, :location, :lat, :lon
+class Location
+  attr_reader :geocoder, :location, :lat, :lon, :city, :state
   attr_accessor :radius
 
-  def initialize(zip)
-    if zip =~ /^\d{5}$/
-      @zip = zip
-      @geocoder = Graticule.service(:google).new GOOGLE_MAPS_API_KEY
-      @location = @geocoder.locate(@zip)
-      @lat = @location.coordinates.first
-      @lon = @location.coordinates.second
-      @radius = 24
-    else
-      raise ActiveRecord::RecordNotFound
-    end
+  def initialize(location)
+    @geocoder = Graticule.service(:yahoo).new YAHOO_API_KEY
+    @location = @geocoder.locate(location)
+    @zip = @location.postal_code
+    @city = @location.locality
+    @state = @location.region
+    @lat = @location.coordinates.first
+    @lon = @location.coordinates.second
+    @radius = 24
   end
 
   def senators
@@ -33,7 +31,7 @@ class Zipcode
     unless @legislators
       @legislators = 
         ActiveSupport::JSON.decode(
-          open("http://services.sunlightlabs.com/api/legislators.allForZip?zip=#{@zip}&apikey=#{SUNLIGHT_API_KEY}").string
+          open("http://services.sunlightlabs.com/api/legislators.allForZip?zip=#{@location.locality},%20#{@location.region}&apikey=#{SUNLIGHT_API_KEY}").string
         )["response"]["legislators"]
       @legislators.map!{|l| l["legislator"]}
     end
@@ -41,7 +39,7 @@ class Zipcode
   end
 
   def to_s
-    @zip
+    "#{@location.locality}, #{@location.region}"
   end
 
   def lat_min(radius)

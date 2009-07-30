@@ -1,0 +1,19 @@
+<% unless facility_data.nil? %>	
+	<% unless facility_data.keys.first.nil? %>
+    <h2> The radius (in miles) of companies shown here is 
+      <%= @location.radius.round(1) %>.  
+      The number of companies in this radius is <%= facility_data.keys.size %>.
+    </h2>
+		<% facility_data.each do |name, information| -%>
+      <h3> <%= name.titleize %> </h3> 
+      <p> This facility is located at Latitude <%= information[:latitude].round(1) %> and Longitude <%= information[:longitude].round(1) %>, <%= information[:distance].round(1) %> miles from the center of this area code.  It releases: </p> 
+      <ul> 
+        <% information[:chemicals].each do |chemical_data| -%>
+          <li> <%= link_to(chemical_data[:name], chemical_data[:url]) %> </li>
+        <% end -%>
+      </ul>
+		<% end -%>
+	<% else %>
+		<p> There are no Facilities in your local area (within 64 miles). </p>
+	<% end %>
+<% end %>

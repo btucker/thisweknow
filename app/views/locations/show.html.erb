@@ -1,0 +1,13 @@
+<h2>about <%= @location %></h2>
+
+<p> The Latitude and Longitude of your zip code are <%= @location.lat.round(1) %> and <%= @location.lon.round(1) %>, respectively. </p>
+
+
+<h2>Factoids</h2>
+
+<ul>
+  <% Factoid.all.each do |f| %>
+    <li><%= link_to f.render_sentence(@location), f %></li>
+  <% end %>
+</ul>
+
