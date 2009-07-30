@@ -5,7 +5,8 @@ class EntitiesController < ApplicationController
   }
   def show
     @uri = params[:uri] #= "http://www.data.gov/data/Company_7332d5d28a6626f50242a12bf79de077"
-    @uri.sub!(/\.xml$/,'')
+    @uri.sub!(/\.rdf$/,'')
+
     xml = Sparql.describe(@uri)
 
     respond_to do |f|
@@ -24,8 +25,8 @@ class EntitiesController < ApplicationController
           ]
         end
       }
-      f.xml {
-        render :xml => xml
+      f.rdf {
+        render :rdf => xml
       }
     end
   end

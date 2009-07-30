@@ -1,4 +1,4 @@
-class ZipsController < ApplicationController
+class LocationsController < ApplicationController
 
   def index
   end
@@ -7,7 +7,6 @@ class ZipsController < ApplicationController
     @zip = Zipcode.new(params[:id])
     @facility_data = @zip.find_facilities
   end
-
 
   protected
 
