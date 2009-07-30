@@ -5,21 +5,28 @@ class EntitiesController < ApplicationController
   }
   def show
     @uri = params[:uri] #= "http://www.data.gov/data/Company_7332d5d28a6626f50242a12bf79de077"
+    @uri.sub!(/\.xml$/,'')
     xml = Sparql.describe(@uri)
-    @label = xml.search("//*[@rdf:about='#{@uri}']/rdfs:label", NAMESPACES).first.content
-    @belongs_to = xml.search('//*[@rdf:resource]', NAMESPACES).select do |e|
-      e.name != 'type'
-    end
-    @belongs_to.map! do |e|
-      [ 
-        uri = e.get_attribute("resource"),
-        e.name.underscore.humanize,
-        (xml.search("//*[@rdf:about='#{uri}']/rdfs:label", NAMESPACES).first and
-          xml.search("//*[@rdf:about='#{uri}']/rdfs:label", NAMESPACES).first.content
-        ) 
-      ]
-    end
 
-    #@has_many = S
+    respond_to do |f|
+      f.html {
+        @label = xml.search("//rdf:Description[@rdf:about='#{@uri}']/rdfs:label", NAMESPACES).first.content
+        @belongs_to = xml.search("//rdf:Description[@rdf:about='#{@uri}']/*[@rdf:resource]", NAMESPACES).select do |e|
+          e.name != 'type'
+        end
+        @belongs_to.map! do |e|
+          [ 
+            uri = e.get_attribute("resource"),
+            e.name.underscore.humanize,
+            (xml.search("//rdf:Description[@rdf:about='#{uri}']/rdfs:label", NAMESPACES).first and
+              xml.search("//rdf:Description[@rdf:about='#{uri}']/rdfs:label", NAMESPACES).first.content
+            ) 
+          ]
+        end
+      }
+      f.xml {
+        render :xml => xml
+      }
+    end
   end
 end
