@@ -1,0 +1,43 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  geonameid: 1
+  name: MyString
+  asciiname: MyString
+  alternatenames: MyString
+  latitude: 1.5
+  longitude: 1.5
+  feature_class: MyString
+  feature_code: MyString
+  country_code: MyString
+  cc2: MyString
+  admin1_code: MyString
+  admin2_code: MyString
+  admin3_code: MyString
+  admin4_code: MyString
+  population: 1
+  elevation: 1
+  gtopo30: 1
+  timezone: MyString
+  modification_date: MyString
+
+two:
+  geonameid: 1
+  name: MyString
+  asciiname: MyString
+  alternatenames: MyString
+  latitude: 1.5
+  longitude: 1.5
+  feature_class: MyString
+  feature_code: MyString
+  country_code: MyString
+  cc2: MyString
+  admin1_code: MyString
+  admin2_code: MyString
+  admin3_code: MyString
+  admin4_code: MyString
+  population: 1
+  elevation: 1
+  gtopo30: 1
+  timezone: MyString
+  modification_date: MyString

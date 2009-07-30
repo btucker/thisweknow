@@ -1,11 +1,15 @@
 <table border ="1">
 <tr>
 <% @headings.each do |h| %>
-	<th><%= h %></th>
+	<th><%= h.humanize %></th>
 <% end %>
 <% @data.each do |hash| %>
 	<tr> 
 	<% @headings.each do |keyname| %>
-		<td> <%= hash[keyname.to_sym] %> </td>
+		<% if hash[keyname.to_sym][0].to_d == 0 # is really a string? %>	
+			<td> <%= link_to hash[keyname.to_sym][0].titleize, :controller => :entities, :action => :show, :uri => hash[keyname.to_sym][1] %> </td>
+		<% else %>
+			<td> <%= hash[keyname.to_sym][0].to_d.round(1) %> </td>
+		<% end %>
 	<% end %>
 <% end %>
