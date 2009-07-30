@@ -1,0 +1,16 @@
+
+There are %d Factories 	
+
+Point 	
+
+SELECT count(?fac) AS ?count FROM <data> WHERE { ?fac o:location ?loc . ?loc o:latitude ?lat . ?loc o:longitude ?lon . FILTER(?lat > %f) . FILTER(?lat < %f) . FILTER(?lon > %f) . FILTER(?lon < %f)} 	
+
+SELECT ?latitude ?fac ?longitude ?fac ?facility_name ?fac ?chemical_name ?chem FROM <data> WHERE { ?fac o:location ?loc . ?fac rdfs:label ?facility_name . ?fac o:usesChemical ?cu . ?cu o:chemical ?chem . ?chem rdfs:label ?chemical_name . ?loc o:latitude ?latitude . ?loc o:longitude ?longitude . FILTER(?latitude > %f) . FILTER(?latitude < %f) . FILTER(?longitude > %f) . FILTER(?longitude < %f)}
+
+%d pounds of %d pollutants were released 	
+
+Point 	
+
+SELECT sum(?amount) count(?chem) from <data> WHERE{ ?cu o:release ?tr . ?tr o:totalQuantity ?amount . ?fac o:location ?loc . ?fac o:usesChemical ?cu . ?cu o:chemical ?chem . ?loc o:latitude ?lat . ?loc o:longitude ?lon . FILTER(?lat > %f) . FILTER(?lat < %f) . FILTER(?lon > %f) . FILTER(?lon < %f)} 	
+
+SELECT ?facility_name ?factory ?chemical_name ?chemical ?amount ?tr from <data> WHERE{ ?cu o:release ?tr . ?tr o:totalQuantity ?amount . ?factory o:location ?loc . ?factory rdfs:label ?facility_name . ?factory o:usesChemical ?cu . ?cu o:chemical ?chemical . ?chemical rdfs:label ?chemical_name . ?loc o:latitude ?lat . ?loc o:longitude ?lon . FILTER(?lat > %f) . FILTER(?lat < %f) . FILTER(?lon > %f) . FILTER(?lon < %f)} 
