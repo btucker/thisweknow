@@ -122,7 +122,7 @@ class Location
     unless useful_data.keys.first.nil?
        self.radius = 1.4142**(exp-1)
     end   
-    return useful_data
+    return self.radius
   end  
 
   def distance(lon1, lon2, lat1, lat2) #Finds the distance between two coordinates of lat/lon in miles

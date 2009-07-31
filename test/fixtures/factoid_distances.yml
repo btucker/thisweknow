@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  city_id: 1
+  factoid_id: 1
+  distance: 1.5
+
+two:
+  city_id: 1
+  factoid_id: 1
+  distance: 1.5
