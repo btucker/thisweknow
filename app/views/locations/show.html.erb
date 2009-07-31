@@ -7,7 +7,7 @@
 
 <ul>
   <% Factoid.all.each do |f| %>
-    <li><%= link_to f.render_sentence(@location), f %></li>
+    <li><%= link_to f.render_sentence(@location), factoid_path(f, @location) %></li>
   <% end %>
 </ul>
 
