@@ -4,15 +4,51 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <title>this we know<%= @zip and " about #{@zip}" %></title>
-    <%= stylesheet_link_tag 'scaffold' %>
-    <%= javascript_include_tag :defaults %>
+    <%= stylesheet_link_tag 'screen' %>
+    <%= javascript_include_tag 'prototype' %>
   </head>
-  <body>
 
-    <h1>this we know&hellip;</h1>
-    <p style="color: green"><%= flash[:notice] %></p>
+  <body class="<%= @body_classes ? @body_classes.join(" ") : 'generic' %>">
+    <div id="wrapper">
+      <div class="subwrap">
+        <div id="header">
+          <div class="subwrap">
+            <h1><a href="/">This We Know:</a></h1>
 
-    <%= yield %>
+            <% form_tag({:controller => 'locations', :action => :search}, :method => :get) do %>
+              <label for="primary_search" class="hide">Search:</label>
+              <span id="primary_search_wrap">
+                <%= text_field_tag 'q', (@location and "#{@location.city}, #{@location.state}"), :id => "primary_search", :size => 30 %> 
+              </span>
+              <%= image_submit_tag 'search_button.png', :alt => "Search", :class => "button" %>
+            <% end %>
+
+            <a id="whats_this" href="">What's This We Know?</a>
+          </div>
+        </div><!-- /header -->
+        <div id="content">
+          <div class="subwrap">
+            <%= yield %>
+          </div>
+        </div><!-- /content -->
+        <% if @body_classes and @body_classes.include? "two_column" %>
+          <%= render :partial => 'shared/sidebar' %>
+        <% end %>
+
+      </div>
+    </div><!-- /wrapper -->
+
+    <div id="footer">
+      <div class="subwrap">
+        <ul class="nav">
+          <li class="first"><a href="">About Us</a></li>
+          <li><a href="">Terms of Service</a></li>
+          <li><a href="">Contact Us</a></li>
+        </ul>
+        <p id="copyright">Copyright &copy; 2009 This We Know</p>
+        <div class="clearer"></div>
+      </div>
+    </div><!-- /footer -->
 
   </body>
 </html>

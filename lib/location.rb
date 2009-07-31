@@ -5,7 +5,7 @@ class Location
   attr_accessor :radius
 
   def initialize(location)
-    @location = Geocode.geocoder.locate(location)
+    @location = ::Geocode.geocoder.locate(location)
     @zip = @location.postal_code
     @city = @location.locality
     @state = @location.region

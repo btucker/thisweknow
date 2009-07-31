@@ -1,0 +1,34 @@
+<div id="sidebar">
+  <div class="subwrap">
+    <% if @location %>
+      <div class="map_widget">
+        <div class="subwrap">
+          <%= image_tag static_map_url(@location), :alt => @location.to_s %>
+        </div>
+      </div><!-- /map_widget -->
+      <div class="dotrule"></div>
+      <div class="stats">
+        <dl>
+          <dt>Population:</dt>
+          <dd>15,661 people</dd>
+
+          <dt>Parks:</dt>
+          <dd>Three, or maybe it's seven, or maybe only two</dd>
+
+          <dt>Observatories:</dt>
+          <dd>none</dd>
+        </dl>
+      </div>
+      <!-- /stats -->
+      <div class="dotrule"></div>
+      <div class="vicinity">
+        <h4>Cities Nearby</h4>
+        <ul>
+          <li><a href="">Keene, NH</a> 56 mi</li>
+          <li><a href="">Boston, MA</a> 5 mi</li>
+        </ul>
+      </div><!-- /vicinity -->
+    <% end %>
+  </div>
+</div><!-- /sidebar -->
+<div class="clearer"></div>

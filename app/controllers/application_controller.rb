@@ -10,6 +10,15 @@ class ApplicationController < ActionController::Base
   end
   helper_method :location_path
 
+  def factoid_path(factoid, location=nil)
+    if location
+      url_for(:controller => 'locations', :action => 'factoid', :id => factoid.id, :city => location.city, :state => location.state)      
+    else
+      super(factoid)
+    end
+  end
+  helper_method :factoid_path
+
 protected
  
 end

@@ -1,5 +1,4 @@
 class FactoidsController < ApplicationController
-  before_filter :find_zipcode
   # GET /factoids
   # GET /factoids.xml
   def index
@@ -14,39 +13,7 @@ class FactoidsController < ApplicationController
   # GET /factoids/1
   # GET /factoids/1.xml
   def show
-    @factoid = Factoid.find(params[:id])
-    
-	if @factoid.factoid_type == "Point"
-    	@result = @factoid.execute(@zip, 0)
-    else
-    	@result = @factoid.execute(@zip, 250)
-    end
-    
-    variables = []
-    @result.search("head variable").map{|var| var["name"]}.each_slice(2) do |slice|
-    	variables << slice
-	end
-    @headings = variables.map{|v|v[0]}
-    
-    
-    @data = [] #The list of data as received in the query, not organized by company name
-	#render :xml => @result
-	#return    
-	@result.search("result").each do |r|
-      row = {}
-      	variables.each do |lit_var, uri_var|
-	        row[lit_var.to_sym] = [
-	        						r.search("binding[name=#{lit_var}] literal").first.content, 
-	        						r.search("binding[name=#{uri_var}] uri").first.content
-        						]
-	    end
-	    @data << row
-    end
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @factoid }
-    end
+    redirect_to factoids_path
   end
 
   # GET /factoids/new
@@ -73,7 +40,7 @@ class FactoidsController < ApplicationController
     respond_to do |format|
       if @factoid.save
         flash[:notice] = 'Factoid was successfully created.'
-        format.html { redirect_to(@factoid) }
+        format.html { redirect_to factoids_path }
         format.xml  { render :xml => @factoid, :status => :created, :location => @factoid }
       else
         format.html { render :action => "new" }
@@ -90,7 +57,7 @@ class FactoidsController < ApplicationController
     respond_to do |format|
       if @factoid.update_attributes(params[:factoid])
         flash[:notice] = 'Factoid was successfully updated.'
-        format.html { redirect_to(@factoid) }
+        format.html { redirect_to factoids_path }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -117,7 +84,4 @@ class FactoidsController < ApplicationController
   
 protected
   
-  def find_zipcode
-  	@zip = Zipcode.new("05301")
-  end
 end

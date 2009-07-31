@@ -1,0 +1,214 @@
+* { margin: 0; padding: 0; }
+body { 
+	font-size: .8em;
+	background: #fff url(../images/page_bg.png) 0 0 repeat-x;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #333;
+}
+a {
+	color: #2D7BB2;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+ul { list-style: none }
+.clearer { clear: both; }
+.dotrule {
+	background: url(../images/dotrule.png) 0 0 repeat-x;
+	height: 1px;
+	margin: 10px 0;
+}
+label.hide {
+	display: block;
+	float: left;
+	width: 1px;
+	height: 1px;
+	text-indent: 100em;
+	white-space: nowrap;
+	overflow: hidden;
+}
+div#wrapper {
+	width: 970px;
+	margin: 0 auto;
+}
+div#header {
+	position: relative;
+	height: 88px;
+	margin-bottom: 20px;
+}
+div#header h1 {
+	background: url(../images/twk_banner_logo.png);
+	position: absolute;
+	top: 34px;
+	left: 0;
+	text-indent: 100em;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 210px;
+	height: 24px;
+}
+div#header h1 a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 210px;
+	height: 24px;
+}
+div#header form {
+	position: absolute;
+	top: 27px;
+	left: 214px;
+}
+div#header form input {
+	vertical-align: top;
+}
+div#header form input.button {
+	position: relative;
+	top: 4px;
+}
+div#header form input#primary_search {
+	width: 404px;
+	height: 20px;
+	font-size: 16px;
+	border: 1px solid #999;
+	padding: 4px 7px;
+}
+div#header form span#primary_search_wrap {
+	display: block;
+	float: left;
+	width: 420px;
+	height: 30px;
+	border: 4px solid #DEDED8;
+	margin-right: 5px;
+}
+div#header a#whats_this {
+	position: absolute;
+	right: 0;
+	top: 36px;
+	background: url(../images/whats_twk_link.png) 0 0 no-repeat;
+	display: block;
+	height: 15px;
+	width: 177px;
+	text-indent: 100em;
+	overflow: hidden;
+	white-space: nowrap;
+}
+div#footer {
+	width: 970px;
+	margin: 0 auto;
+	background: url(../images/dotrule.png) 0 0 repeat-x;
+	padding-top: 3px;
+	font-size: 90%;
+	color: #999;
+}
+div#footer div.subwrap {
+	background-color: #F4F4EE;
+	padding: 5px 20px;
+}
+div#footer ul.nav {
+	list-style: none;
+}
+div#footer ul.nav li {
+	display: block;
+	float: left;
+	padding-left: 12px;
+	background: url(../images/bullet_sm.png) 3px 5px no-repeat;
+}
+div#footer ul.nav li.first {
+	padding-left: 0;
+	background: none;
+}
+div#footer p#copyright {
+	float: right;
+}
+div#content,
+div#sidebar {
+	margin-bottom: 50px;
+}
+body.two_column div#content {
+	float: left;
+	width: 718px;
+}
+h2#subject {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #fff;
+	background: #4E4C4A url(../images/subject_bg.png);
+	position: relative;
+	padding: 5px 10px;
+	font-weight: normal;
+}
+h2#subject span.pointer {
+	position: absolute;
+	display: block;
+	bottom: -17px;
+	left: 20px;
+	background: url(../images/pointer_bg.png) 0 0 no-repeat;
+	width: 32px;
+	height: 17px;
+}
+div.properties {
+	border: 4px solid #F4F4EE;
+	margin-top: 6px;
+	font-size: 130%;
+}
+div.properties div.subwrap {
+	border: 1px solid #ccc;
+	padding: 20px;
+}
+div.properties ul {
+	list-style: none;
+	color: #999;
+}
+div.properties ul li {
+	background: url(../images/dotrule.png) 0 100% repeat-x;
+	padding: 10px 0 10px 24px;
+	position: relative;
+}
+div.properties span.bullet {
+	display: block;
+	height: 15px;
+	width: 15px;
+	position: absolute;
+	top: 13px;
+	left: 0;
+	background: url(../images/properties_bullet.png) 0 0 no-repeat;
+}
+div.properties span.quantity {
+	font-weight: bold;
+	color: #333;
+}
+div.properties a.quality {
+	font-weight: bold;
+}
+div.properties span.subtext {
+	font-size: 80%;
+}
+div#sidebar {
+	float: right;
+	width: 230px;
+}
+div#sidebar div.map_widget {
+	border: 5px solid #F4F4EE;
+	margin-bottom: 10px;
+}
+div#sidebar div.map_widget div.subwrap {
+	border: 1px solid #ccc;
+	padding: 6px;
+}
+div#sidebar div.stats dt {
+	display: block;
+	float: left;
+	clear: left;
+	font-weight: bold;
+	color: #999;
+	margin-right: .2em;
+	margin-top: 1em;
+}
+div#sidebar div.stats dd {
+	color: #000;
+	padding-top: 1em;
+}
+div#sidebar div.vicinity {
+	border-bottom: 1px solid #EBEAE8;
+}
