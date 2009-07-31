@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require File.dirname(__FILE__) + '/../config/environment'
 
-City.all(:limit => 1000).each do |city|
+City.all.each do |city|
 	location = Location.new("#{city.name}, @{city.admin1_code}")
 	if city.population < 1000
 		print1 = FactoidDistance.create :city_id => city.id, :factoid_id => 1, :distance => 64
