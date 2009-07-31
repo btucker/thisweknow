@@ -8,17 +8,20 @@
     <%= javascript_include_tag 'prototype' %>
   </head>
 
-  <body class="generic">
+  <body class="<%= @body_classes ? @body_classes.join(" ") : 'generic' %>">
     <div id="wrapper">
       <div class="subwrap">
         <div id="header">
           <div class="subwrap">
             <h1><a href="/">This We Know:</a></h1>
-            <form action="">
+
+            <% form_tag({:controller => 'locations', :action => :search}, :method => :get) do %>
               <label for="primary_search" class="hide">Search:</label>
-              <span id="primary_search_wrap"><input id="primary_search" type="text" size="30" /></span>
-              <input type="image" src="images/search_button.png" alt="Search" class="button" />
-            </form>
+              <span id="primary_search_wrap">
+                <%= text_field_tag 'q', (@location and "#{@location.city}, #{@location.state}"), :id => "primary_search", :size => 30 %> 
+              </span>
+              <%= image_submit_tag 'search_button.png', :alt => "Search", :class => "button" %>
+            <% end %>
 
             <a id="whats_this" href="">What's This We Know?</a>
           </div>
@@ -28,6 +31,10 @@
             <%= yield %>
           </div>
         </div><!-- /content -->
+        <% if @body_classes and @body_classes.include? "two_column" %>
+          <%= render :partial => 'shared/sidebar' %>
+        <% end %>
+
       </div>
     </div><!-- /wrapper -->
 
@@ -41,7 +48,7 @@
         <p id="copyright">Copyright &copy; 2009 This We Know</p>
         <div class="clearer"></div>
       </div>
-    </div>
+    </div><!-- /footer -->
 
   </body>
 </html>
