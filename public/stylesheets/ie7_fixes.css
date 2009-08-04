@@ -1,0 +1,10 @@
+body.homepg div#header form input#primary_search {
+	position: relative;
+	top: -1px;
+}
+body.homepg div#header h1 {
+	top: 26px;
+}
+body.homepg div#header a#whats_this {
+	top: 34px;
+}

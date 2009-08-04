@@ -1,0 +1,24 @@
+body.homepg div#header form input#primary_search,
+div#header form input#primary_search {
+	margin-top: -1px;
+	margin-bottom: -1px;
+	margin-right: -5px;
+}
+body.homepg div#header h1 {
+	top: 26px;
+}
+body.homepg div#header a#whats_this {
+	top: 34px;
+}
+div.properties span.bullet {
+	left: -22px;
+}
+h2#subject {
+	height: 28px;
+}
+h2#subject span.pointer {
+	top: 43px;
+}
+div.data_table_wrap div.subwrap table {
+	width: 100%;
+}
