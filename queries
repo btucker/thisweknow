@@ -1,0 +1,10 @@
+INSERT into <data> {http://www.data.gov/data/FIPS/01/085 o:latitude 32.221464}
+INSERT into <data> {http://www.data.gov/data/FIPS/01/085 o:longitude -86.6611083}
+INSERT into <data> {http://www.data.gov/data/FIPS/13/181 o:latitude 33.7875101}
+INSERT into <data> {http://www.data.gov/data/FIPS/13/181 o:longitude -82.4319405}
+INSERT into <data> {http://www.data.gov/data/FIPS/47/113 o:latitude 35.6479574}
+INSERT into <data> {http://www.data.gov/data/FIPS/47/113 o:longitude -88.864698}
+INSERT into <data> {http://www.data.gov/data/FIPS/48/069 o:latitude 34.4985047}
+INSERT into <data> {http://www.data.gov/data/FIPS/48/069 o:longitude -102.3463875}
+INSERT into <data> {http://www.data.gov/data/FIPS/55/011 o:latitude 44.3102354}
+INSERT into <data> {http://www.data.gov/data/FIPS/55/011 o:longitude -91.7538817}

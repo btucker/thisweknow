@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../config/environment'
+
+doc = Sparql.execute("select ?fips ?county ?state from <data> where {
+?fips rdf:type o:County .
+?fips rdfs:label ?county .
+?fips o:partOfState ?fipstate .
+?fipstate o:shortName ?state}")
+county_data = []
+doc.search("result").each do |r| 
+	county_data << {
+		:county_name => county = "#{r.search('binding[name="county"] literal').first.content} county, #{r.search('binding[name="state"] literal').first.content}",
+		:uri => r.search('binding[name="fips"] uri').first.content
+	}
+end
+county_location_data = []
+county_data.each do |county|
+	begin
+		county_location = Location.new(county[:county_name])
+		county_location_data << {
+			:name => county[:county_name],
+			:latitude => county_location.lat,
+			:longitude => county_location.lon,
+			:uri => county[:uri]
+		}
+	rescue Graticule::Error
+	end
+	latq = "INSERT into <data> {#{county_location_data.last[:uri]} o:latitude #{county_location_data.last[:latitude]}}"
+	lonq = "INSERT into <data> {#{county_location_data.last[:uri]} o:longitude #{county_location_data.last[:longitude]}}"
+	File.open('queries', 'w') do |file|
+		file.puts latq
+		file.puts lonq
+	end
+end

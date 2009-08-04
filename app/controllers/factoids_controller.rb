@@ -8,6 +8,7 @@ class FactoidsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @factoids }
     end
+    @county_data = convert_county
   end
 
   # GET /factoids/1
@@ -82,6 +83,35 @@ class FactoidsController < ApplicationController
     end
   end
   
-protected
+  def convert_county
+  	doc = Sparql.execute("select ?fips ?county ?state from <data> where {
+?fips rdf:type o:County .
+?fips rdfs:label ?county .
+?fips o:partOfState ?fipstate .
+?fipstate o:shortName ?state}")
+	county_data = []
+	doc.search("result").each do |r| 
+		county_data << {
+			:county_name => county = "#{r.search('binding[name="county"] literal').first.content} county, #{r.search('binding[name="state"] literal').first.content}",
+			:uri => r.search('binding[name="fips"] uri').first.content
+		}
+	end
+	county_location_data = []
+
+	county_data.each do |county|
+		begin
+			county_location = Location.new(county[:county_name])
+			county_location_data << {
+				:name => county[:county_name],
+				:latitude => county_location.lat,
+				:longitude => county_location.lon,
+				:uri => county[:uri]
+			}
+		rescue Graticule::Error
+		end
+		puts county_location_data.last.inspect
+	end
+	return county_location_data
+  end
   
 end
