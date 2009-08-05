@@ -15,7 +15,6 @@ a:hover {
 a:active, a:focus { outline: 0; }
 ul { list-style: none }
 img { border: none; }
-fieldset { border: none; }
 .clearer { clear: both; }
 .dotrule {
 	background: url(../images/dotrule.png) 0 0 repeat-x;
