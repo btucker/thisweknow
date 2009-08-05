@@ -14,8 +14,12 @@ doc.search("result").each do |r|
 	}
 end
 county_location_data = []
+puts "total #{county_data.size}"
+i = 0
 File.open('queries', 'w') do |file|
   county_data.each do |county|
+    i += 1
+    puts i if i % 100 == 0
     begin
       county_location = Location.new(county[:county_name])
       county_location_data << {
@@ -27,11 +31,7 @@ File.open('queries', 'w') do |file|
     rescue Graticule::Error
     end
     q1 = "INSERT into <data> {<#{county_location_data.last[:uri]}> o:location :newid(#{county_location_data.last[:latitude]}, #{county_location_data.last[:longitude]})}"
-    q2 = "INSERT into <data> {
-    ?loc o:longitude #{county_location_data.last[:longitude]} .
-    ?loc o:latitude #{county_location_data.last[:latitude]}
-    ?loc rdf:type o:Location
-    } WHERE {<#{county_location_data.last[:uri]}> o:location ?loc}"
+    q2 = "INSERT into <data> {?loc o:longitude #{county_location_data.last[:longitude]} . ?loc o:latitude #{county_location_data.last[:latitude]} . ?loc rdf:type o:Location} WHERE {<#{county_location_data.last[:uri]}> o:location ?loc}"
     file.puts q1
     file.puts q2
   end
