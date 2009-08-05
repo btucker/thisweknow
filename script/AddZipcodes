@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../config/environment'
+
+require 'csv'
+
+CSV.open("zipcodes.csv", "r") do |row|
+	Zipcode.new(:zipcode => row[0], :city => row[1], :state => row[2])
+end
