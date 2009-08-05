@@ -14,21 +14,21 @@ doc.search("result").each do |r|
 	}
 end
 county_location_data = []
-county_data.each do |county|
-	begin
-		county_location = Location.new(county[:county_name])
-		county_location_data << {
-			:name => county[:county_name],
-			:latitude => county_location.lat,
-			:longitude => county_location.lon,
-			:uri => county[:uri]
-		}
-	rescue Graticule::Error
-	end
-	latq = "INSERT into <data> {#{county_location_data.last[:uri]} o:latitude #{county_location_data.last[:latitude]}}"
-	lonq = "INSERT into <data> {#{county_location_data.last[:uri]} o:longitude #{county_location_data.last[:longitude]}}"
-	File.open('queries', 'w') do |file|
-		file.puts latq
-		file.puts lonq
-	end
+File.open('queries', 'w') do |file|
+  county_data.each do |county|
+    begin
+      county_location = Location.new(county[:county_name])
+      county_location_data << {
+        :name => county[:county_name],
+        :latitude => county_location.lat,
+        :longitude => county_location.lon,
+        :uri => county[:uri]
+      }
+    rescue Graticule::Error
+    end
+    latq = "INSERT into <data> {<#{county_location_data.last[:uri]}> o:latitude #{county_location_data.last[:latitude]}}"
+    lonq = "INSERT into <data> {<#{county_location_data.last[:uri]}> o:longitude #{county_location_data.last[:longitude]}}"
+    file.puts latq
+    file.puts lonq
+  end
 end
