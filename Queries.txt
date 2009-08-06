@@ -1,2 +1,0 @@
-INSERT into <data> {http://www.data.gov/data/FIPS/55/011 o:latitude 44.3102354}
-INSERT into <data> {http://www.data.gov/data/FIPS/55/011 o:longitude -91.7538817}
