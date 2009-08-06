@@ -1,0 +1,38 @@
+<h2>Annotations on <%= @klass %></h2>
+
+<h3>Attributes</h3>
+<ul>
+  <% @attributes.each do |a| %>
+    <li><%= a %></li>
+  <% end %>
+</ul>
+
+<h3>Belongs To</h3>
+<ul>
+  <% @belongs_to.each do |a| %>
+    <li><%= a %></li>
+  <% end %>
+</ul>
+
+<h3>Has Many</h3>
+<ul>
+  <% @has_many.each do |a| %>
+    <li><%= a %></li>
+  <% end %>
+</ul>
+
+<h3>Data Example</h3>
+<table>
+  <tr>
+    <th>s</th>
+    <th>p</th>
+    <th>o</th>
+  </tr>
+  <% @example.each do |row| %>
+    <tr>
+      <td><%= row[:s] %></td>
+      <td><%= row[:p] %></td>
+      <td><%= row[:o] %></td>
+    </tr>
+  <% end %>
+</table>

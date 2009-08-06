@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../config/environment'
+
+File.open(ARGV.last, 'r').each do |line|
+  puts "executing #{line}..."
+  Sparql.execute(line) 
+end

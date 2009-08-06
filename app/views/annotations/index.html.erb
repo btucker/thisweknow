@@ -1,0 +1,7 @@
+<h1>Classes</h1>
+
+<ul>
+  <% @classes.each do |c| %>
+    <li><%= link_to c, :controller => '', :action => 'show', :uri => c %></li>
+  <% end %>
+</ul>
