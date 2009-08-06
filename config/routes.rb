@@ -31,5 +31,6 @@ ActionController::Routing::Routes.draw do |map|
         :uri => /.*/
 
   map.resources :chemicals
+  map.connect '/:controller/:action', :controller => /annotations|pages/
   map.root :controller => 'locations'
 end

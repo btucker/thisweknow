@@ -23,7 +23,7 @@
               <%= image_submit_tag 'search_button.png', :alt => "Search", :class => "button" %>
             <% end %>
 
-            <a id="whats_this" href="">What's This We Know?</a>
+            <%= link_to "What's This We Know?", {:controller => 'pages', :action => 'about'}, {:id => 'whats_this'} %>
           </div>
         </div><!-- /header -->
         <div id="content">
@@ -31,23 +31,19 @@
             <%= yield %>
           </div>
         </div><!-- /content -->
-        <% if @body_classes and @body_classes.include? "two_column" %>
+        <% if @content_for_sidebar or (@body_classes and @body_classes.include? "two_column") %>
           <%= render :partial => 'shared/sidebar' %>
         <% end %>
-
-        <%= yield :sidebar %>
-
       </div>
     </div><!-- /wrapper -->
 
     <div id="footer">
       <div class="subwrap">
         <ul class="nav">
-          <li class="first"><a href="">About Us</a></li>
-          <li><a href="">Terms of Service</a></li>
-          <li><a href="">Contact Us</a></li>
+          <li class="first"><%= link_to 'About Us', :controller => 'pages', :action => 'about' %></li>
+          <li><%= link_to 'Contact Us', :controller => 'pages', :action => 'contact' %></li>
         </ul>
-        <p id="copyright">Copyright &copy; 2009 This We Know</p>
+        <p id="copyright">This We Know</p>
         <div class="clearer"></div>
       </div>
     </div><!-- /footer -->
