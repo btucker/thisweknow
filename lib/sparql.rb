@@ -1,18 +1,43 @@
 require 'open-uri'
 
 class Sparql 
-  def self.execute(query)
+  def self.execute(query, format = :xml)
+    query = insert_from_clause(query)
     Rails.logger.info "[SPARQL] #{prefixes + query}"
-    Nokogiri::XML(open(URI.encode("http://206.192.70.249/data.gov/sparql.aspx?query=#{prefixes + query}")))
+    xml = Nokogiri::XML(open(URI.encode("http://206.192.70.249/data.gov/sparql.aspx?query=#{prefixes + query}")))
+    if format == :xml
+      xml
+    elsif format == :ruby
+      xml.search("result").map do |r|
+        returning({}) do |res|
+          r.search("binding").each do |b|
+            res[b.get_attribute('name').to_sym] = b.search("uri,literal").map(&:content).first
+          end
+        end
+      end
+    end
   end
 
   def self.describe(entity, graph='data')
-    execute(describe_prefix + "DESCRIBE <#{entity}> FROM <#{graph}>")
+    execute(describe_prefix + "DESCRIBE <#{entity}>" + graphs)
+  end
+
+  def self.insert_from_clause(query)
+    if query =~ /\bfrom\b/i
+      query
+    else
+      query.sub(/\bWHERE\b/i, graphs + 'WHERE') 
+    end
+  end
+
+  def self.graphs
+    %Q{ FROM <data> FROM <census> FROM <census_data> FROM <govtrack> FROM <ui> }
   end
 
   def self.prefixes
     %Q{
 		PREFIX o: <http://www.data.gov/ontology#>
+		PREFIX ui: <http://www.thisweknow.org/ui#>
 		PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 		PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 		PREFIX owl: <http://www.w3.org/2002/07/owl#>
