@@ -11,7 +11,7 @@ class Location
     @state = @location.region
     @lat = @location.coordinates.first
     @lon = @location.coordinates.second
-    @radius = 24
+    @radius = 24 #Put in the database distance HERE
   end
 
   def senators
@@ -125,8 +125,8 @@ class Location
     return self.radius
   end  
 
-  def distance(lon1, lon2, lat1, lat2) #Finds the distance between two coordinates of lat/lon in miles
-  	return Math.sqrt((lon_to_miles(lon1, lon2, self.lat))**2+(lat_to_miles(lat1, lat2))**2)
+  def distance(lon, lat) #Finds the distance between two coordinates of lat/lon in miles
+  	return Math.sqrt((lon_to_miles(lon, self.lon, self.lat))**2+(lat_to_miles(lat, self.lat))**2)
   end
   
   def lat_to_miles(lat1, lat2) #Converts a difference of latitude to miles

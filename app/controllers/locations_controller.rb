@@ -7,7 +7,7 @@ class LocationsController < ApplicationController
 
   def show
     @body_classes << 'two_column'
-    @facility_data = @location.find_facilities
+    #@facility_data = @location.find_facilities
   end
 
   def factoid
