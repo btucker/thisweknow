@@ -21,7 +21,7 @@
               <% if hash[keyname.to_sym][0].to_d == 0 %>
                 <td> <%= link_to hash[keyname.to_sym][0].titleize, :controller => :entities, :action => :show, :uri => hash[keyname.to_sym][1] %> </td>
               <% else %>
-                <td> <%= hash[keyname.to_sym][0].to_d.round(1) %> </td>
+                <td> <%= number_with_delimiter hash[keyname.to_sym][0].to_f %> </td>
               <% end %>
             <% end %>
           </tr>
