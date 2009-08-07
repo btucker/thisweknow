@@ -42,7 +42,7 @@
   </tr>
   <% @example.each do |row| %>
     <tr>
-      <td><%= row[:s] %></td>
+      <td><%= link_to row[:s], :controller => 'entities', :action => 'show', :uri => row[:s] %></td>
       <td><%= row[:p] %></td>
       <td><%= row[:o] %></td>
     </tr>

@@ -56,7 +56,7 @@ class Sparql
         
         select ?s ?p ?o ?r where {
                          ?r rdf:type ?class.
-                         ?class o:includedReference ?ref.
+                         ?class ui:belongsTo ?ref.
                          ?r ?ref ?included.
                          <description>(?s, ?p, ?o, ?included).
         }as <description>

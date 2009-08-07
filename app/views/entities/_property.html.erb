@@ -1,2 +1,2 @@
-<dt><%= property[1] %></dt>
-<dd><%= link_to property[2], :uri => property[0] %></dd>
+<dt><%= property[:p] %></dt>
+<dd><%= link_to property[:label], :uri => property[:uri] %> (<%= property[:type].join(", ") %>)</dd>

@@ -1,5 +1,10 @@
-<h2><%= @label %></h2>
+<h2 id="subject" class="drill"><%= @label %> <span class="pointer"></span></h2>
+
 
 <dt>
   <%= render :partial => 'property', :collection => @belongs_to %>
 </dt>
+
+<% content_for :sidebar do %>
+  
+<% end %>

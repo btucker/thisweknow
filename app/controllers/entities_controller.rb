@@ -11,22 +11,21 @@ class EntitiesController < ApplicationController
 
     respond_to do |f|
       f.html {
-        @label = xml.search("//rdf:Description[@rdf:about='#{@uri}']/rdfs:label", NAMESPACES).first.content
+        @label = xml.search("//rdf:Description[@rdf:about='#{@uri}']/rdfs:label", NAMESPACES).map(&:content).map(&:titleize).first || @uri
         @belongs_to = xml.search("//rdf:Description[@rdf:about='#{@uri}']/*[@rdf:resource]", NAMESPACES).select do |e|
           e.name != 'type'
         end
         @belongs_to.map! do |e|
-          [ 
-            uri = e.get_attribute("resource"),
-            e.name.underscore.humanize,
-            (xml.search("//rdf:Description[@rdf:about='#{uri}']/rdfs:label", NAMESPACES).first and
-              xml.search("//rdf:Description[@rdf:about='#{uri}']/rdfs:label", NAMESPACES).first.content
-            ) 
-          ]
+          { 
+            :uri => uri = e.get_attribute("resource"),
+            :p => e.name.underscore.humanize,
+            :type => xml.search("//rdf:Description[@rdf:about='#{uri}']/rdf:type", NAMESPACES).map{|e| e.get_attribute('resource')},
+            :label => xml.search("//rdf:Description[@rdf:about='#{uri}']/rdfs:label", NAMESPACES).map(&:content).first
+          }
         end
       }
       f.rdf {
-        render :rdf => xml
+        render :text => xml
       }
     end
   end
