@@ -1,5 +1,9 @@
 <li>
   <span class="bullet"></span>
   <%= factoid.render_sentence(@location) %>
-  <span class="subtext">(within <%= @location.radius %> mi.)</span>
+  <% unless factoid.radius.to_f = 0%>
+	  <span class="subtext">(within <%= factoid.radius %> mi.)</span>
+  <% else %>	  
+  	  <span class="subtext">(within <%= @location.radius %> mi.)</span>
+  <% end %>  
 </li>
