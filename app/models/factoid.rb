@@ -1,5 +1,5 @@
 class Factoid < ActiveRecord::Base
-	
+  attr_accessor :radius
   def execute(location)
   	@radius=100
     if factoid_type == 'Point'
