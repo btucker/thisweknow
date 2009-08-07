@@ -1,25 +1,37 @@
-<h2>Annotations on <%= @klass %></h2>
+<h2>Annotations on <%= params[:uri] %></h2>
 
 <h3>Attributes</h3>
 <ul>
   <% @attributes.each do |a| %>
-    <li><%= a %></li>
+    <li><%= button_to 'x', :action => 'remove_annotation', :t => 'attribute', :uri => params[:uri], :p => a %> <%= a %></li>
   <% end %>
 </ul>
+<br/>
+<% form_tag :action => 'add_annotation', :method => :post do %>
+  <p>
+    <%= hidden_field_tag 'uri', params[:uri] %>
+    <%= hidden_field_tag 't', 'attribute' %>
+    Predicate URI: <%= text_field_tag 'p' %>
+    <%= submit_tag 'Add Attribute' %>
+  </p>
+<% end %>
 
 <h3>Belongs To</h3>
 <ul>
   <% @belongs_to.each do |a| %>
-    <li><%= a %></li>
+    <li><%= button_to 'x', :action => 'remove_annotation', :t => 'belongsTo', :uri => params[:uri], :p => a %> <%= a %></li>
   <% end %>
 </ul>
+<br/>
+<% form_tag :action => 'add_annotation', :method => :post do %>
+  <p>
+    <%= hidden_field_tag 'uri', params[:uri] %>
+    <%= hidden_field_tag 't', 'belongsTo' %>
+    Predicate URI: <%= text_field_tag 'p' %>
+    <%= submit_tag 'Add belongsTo' %>
+  </p>
+<% end %>
 
-<h3>Has Many</h3>
-<ul>
-  <% @has_many.each do |a| %>
-    <li><%= a %></li>
-  <% end %>
-</ul>
 
 <h3>Data Example</h3>
 <table>
