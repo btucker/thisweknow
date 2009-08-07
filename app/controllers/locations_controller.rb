@@ -40,8 +40,9 @@ class LocationsController < ApplicationController
   def search
     @location = Location.new(params[:q])
     redirect_to location_path(@location)
-    rescue Graticule::Error
-      raise ActiveRecord::RecordNotFound
+    rescue Exception
+      flash[:notice] = "Sorry, we can't find that location.  Please try searching again."
+      redirect_to '/'
   end
 
   protected

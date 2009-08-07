@@ -5,13 +5,53 @@ class Location
   attr_accessor :radius
 
   def initialize(location)
-    @location = ::Geocode.geocoder.locate(location)
-    @zip = @location.postal_code
-    @city = @location.locality
-    @state = @location.region
-    @lat = @location.coordinates.first
-    @lon = @location.coordinates.second
+    if location =~ /^\d{5}$/ and 
+      (zip = Zipcode.find(:first, 
+                          :include => :city,
+                          :conditions => ['zipcode = ? AND city_id IS NOT NULL', location]))
+      @zip = location
+      @city = zip.city_name.humanize
+      @state = zip.state
+      @lat = zip.city.latitude
+      @lon = zip.city.longitude
+      @city_obj = zip.city
+    elsif location =~ /^([^,]+),\s+(\w{2})$/ and
+      (city = City.find(:first,
+                        :include => :zipcodes,
+                        :conditions => {:asciiname => $1, :admin1_code => $2}))
+      @city_obj = city
+      @zip = (city.zipcodes.first and city.zipcodes.first.zipcode)
+      @city = city.name
+      @state = city.admin1_code
+      @lat = city.latitude
+      @lon = city.longitude
+    else
+      @location = ::Geocode.geocoder.locate(location)
+      @zip = @location.postal_code
+      @city = @location.locality
+      @state = @location.region
+      @lat = @location.coordinates.first
+      @lon = @location.coordinates.second
+      @city_obj = City.find(:first,
+                            :include => :zipcodes,
+                            :conditions => {:name => @location.locality, 
+                                            :admin1_code => @location.region})
+    end
     @radius = 24 #Put in the database distance HERE
+  end
+
+  def population
+    if @city_obj
+      @city_obj.population
+    end
+  end
+
+  def cities_nearby
+    if @city_obj
+      nearest = City.find(:all, :origin => @city_obj.geocode, :within => 300, 
+                          :conditions => ['cities.id != ?', @city_obj.id])
+      nearest.sort_by { rand }[0..3].sort_by { |c| c.distance.to_i }
+    end
   end
 
   def senators
@@ -30,7 +70,7 @@ class Location
     unless @legislators
       @legislators = 
         ActiveSupport::JSON.decode(
-          open("http://services.sunlightlabs.com/api/legislators.allForZip?zip=#{@location.locality},%20#{@location.region}&apikey=#{SUNLIGHT_API_KEY}").string
+          open("http://services.sunlightlabs.com/api/legislators.allForZip?zip=#{@zip}&apikey=#{SUNLIGHT_API_KEY}").string
         )["response"]["legislators"]
       @legislators.map!{|l| l["legislator"]}
     end
@@ -38,7 +78,7 @@ class Location
   end
 
   def to_s
-    "#{@location.locality}, #{@location.region}"
+    "#{@city}, #{@state}"
   end
 
   def lat_min(radius)

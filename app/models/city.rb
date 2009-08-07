@@ -2,6 +2,14 @@ class City < ActiveRecord::Base
   has_many :zipcodes
   acts_as_geocodable :address => {:locality => :name, :region => :admin1_code, :country => :country_code}
 
+  def to_s
+    "#{name}, #{state}"
+  end
+
+  def state
+    admin1_code
+  end
+
   def geocode
     if geocoding
       geocoding.geocode
