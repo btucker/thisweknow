@@ -44,7 +44,7 @@ Rails::Initializer.run do |config|
 end
 
 SUNLIGHT_API_KEY = '4882ac4cb40d0ef34e4ee6576a63e5c7'
-GOOGLE_MAPS_API_KEY = 'ABQIAAAAYCj92a1XA1huILESx2GjSxRi4oveorZe7mwxtUZRjxycUeOp9xTJXvhqFw-0v0c7PCORiYak8XdvMA'
+GOOGLE_MAPS_API_KEY = 'ABQIAAAAYCj92a1XA1huILESx2GjSxRaNFg0MscGlnSs3Mqfp8aqWji86RTM1EDfN-qUyBXAmsA_cv529hvCvQ'
 YAHOO_API_KEY = '1GnV5onV34Fsoz2Wa3TTYRdAF0akfiZzeeF6RFdxEfHkJVy0fThA64KtuSUbolRa'
 #Geocode.geocoder = Graticule.service(:yahoo).new(YAHOO_API_KEY)
 Geocode.geocoder = Graticule.service(:google).new(GOOGLE_MAPS_API_KEY)
