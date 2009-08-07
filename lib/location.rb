@@ -12,8 +12,8 @@ class Location
       @zip = location
       @city = zip.city_name.humanize
       @state = zip.state
-      @lat = zip.city.latitude
-      @lon = zip.city.longitude
+      @lat = zip.city.latitude.to_f
+      @lon = zip.city.longitude.to_f
       @city_obj = zip.city
     elsif location =~ /^([^,]+),\s+(\w{2})$/ and
       (city = City.find(:first,
@@ -23,8 +23,8 @@ class Location
       @zip = (city.zipcodes.first and city.zipcodes.first.zipcode)
       @city = city.name
       @state = city.admin1_code
-      @lat = city.latitude
-      @lon = city.longitude
+      @lat = city.latitude.to_f
+      @lon = city.longitude.to_f
     else
       @location = ::Geocode.geocoder.locate(location)
       @zip = @location.postal_code
