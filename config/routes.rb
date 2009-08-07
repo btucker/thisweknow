@@ -32,5 +32,5 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :chemicals
   map.connect '/:controller/:action', :controller => /annotations|pages/
-  map.root :controller => 'locations'
+  map.root :controller => 'pages', :action => 'homepage'
 end

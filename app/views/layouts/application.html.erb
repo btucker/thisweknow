@@ -14,13 +14,25 @@
         <div id="header">
           <div class="subwrap">
             <h1><a href="/">This We Know:</a></h1>
+            <% if @homepage %>
+              <div class="dotrule"></div>
+              <div id="tagline">Learn What the U.S. Government Knows About Your Neighborhood.</div>
+            <% end %>
 
             <% form_tag({:controller => 'locations', :action => :search}, :method => :get) do %>
               <label for="primary_search" class="hide">Search:</label>
               <span id="primary_search_wrap">
                 <%= text_field_tag 'q', (@location and "#{@location.city}, #{@location.state}"), :id => "primary_search", :size => 30 %> 
               </span>
-              <%= image_submit_tag 'search_button.png', :alt => "Search", :class => "button" %>
+              <%= image_submit_tag (@homepage ? 'search_button_lg.png' : 'search_button.png'), 
+                    :alt => "Search", :class => "button" %>
+            <% end %>
+            <% if @examples %>
+              <p class="examples">e.g. 
+                <%= @examples.map do |ex|
+                  "\"#{link_to ex, :controller => 'locations', :action => 'search', :q => ex }\""
+                 end.join ", " %>
+              </p>
             <% end %>
 
             <%= link_to "What's This We Know?", {:controller => 'pages', :action => 'about'}, {:id => 'whats_this'} %>
