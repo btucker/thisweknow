@@ -1,65 +1,36 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-    <title>This We Know</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" />
-    <!--[if IE 6 ]>
-          <link href="stylesheets/ie6_fixes.css" media="screen" rel="stylesheet" type="text/css" />
-    <![endif]-->
-    <!--[if IE 7 ]>
-          <link href="stylesheets/ie7_fixes.css" media="screen" rel="stylesheet" type="text/css" />
-    <![endif]-->
-</head>
+<h2 id="subject" class="drill"><%= @location %> <span class="pointer"></span></h2>
 
-
-<body class="two_column">
-	<div id="wrapper">
-		<div class="subwrap">
-			<div id="content">
-				<div class="subwrap">
-					<h2 id="subject" class="drill"><%= @location.city %>, <%= @location.state %> <%= @location.zip %> <span class="pointer"></span></h2>
-<!-- DATA TABLE UNIT STARTS HERE -->
-					<div class="data_table_toprule"></div>
-					<div class="data_table_wrap">
-						<h3><%= @factoid.render_sentence(@location) %><span class="subtext">(within LOCATION DISTANCE mi.)</span>
-						<div class="subwrap">
-							<table>
-								<thead>
-									<tr>
-										<% @headings.each do |h| %>
-											<td><%= h.humanize %></td>
-										<% end %>
-									</tr>
-								</thead>
-								<tbody>
-									<% @data.each do |hash| %>
-										<tr>
-											<% @headings.each do |keyname| %>
-												<% if hash[keyname.to_sym][0].to_d == 0 # is really a string? %>	
-													<td> <%= link_to hash[keyname.to_sym][0].titleize, :controller => :entities, :action => :show, :uri => hash[keyname.to_sym][1] %> </td>
-												<% else %>
-													<td> <%= hash[keyname.to_sym][0].to_d.round(1) %> </td>
-												<% end %>
-											<% end %>
-										</tr>
-									<% end %>
-								</tbody>
-							</table>
-						</div>
-						<div class="source">
-							Source: <a href="">www.source.com</a>
-						</div>
-					</div>
-					<!-- /data_table_wrap -->
-					<div class="data_table_bottomrule"></div>
-<!-- DATA TABLE UNIT ENDS HERE -->
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
-
-
+<div class="data_table_toprule"></div>
+<div class="data_table_wrap">
+  <h3><%= @factoid.render_sentence(@location) %>
+    <span class="subtext">(within <%= @location.radius %> mi.)</span>
+  </h3>
+  <div class="subwrap">
+    <table>
+      <thead>
+        <tr>
+          <% @headings.each do |h| %>
+            <th><span><%= h.humanize %></span></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @data.each do |hash| %>
+          <tr>
+            <% @headings.each do |keyname| %>
+              <% if hash[keyname.to_sym][0].to_d == 0 %>
+                <td> <%= link_to hash[keyname.to_sym][0].titleize, :controller => :entities, :action => :show, :uri => hash[keyname.to_sym][1] %> </td>
+              <% else %>
+                <td> <%= hash[keyname.to_sym][0].to_d.round(1) %> </td>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="source">
+    Source: <a href="">www.source.com</a>
+  </div>
+</div><!-- /data_table_wrap -->
+<div class="data_table_bottomrule"></div>

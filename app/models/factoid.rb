@@ -62,4 +62,10 @@ class Factoid < ActiveRecord::Base
   def path(location)
     "/l/#{location.state}/#{location.city}/factoids/#{id}" 
   end 
+
+  def entity
+    sentence =~ /<e>([^<]+)<\/e>/
+    $1.humanize
+  end
+
 end

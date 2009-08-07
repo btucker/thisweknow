@@ -1,21 +1,34 @@
 <div id="sidebar">
   <div class="subwrap">
     <% if @location %>
-      <div class="map_widget">
-        <div class="subwrap">
-          <%= image_tag static_map_url(@location), :alt => @location.to_s %>
+      <% if @factoid %>
+        <div class="more_we_know">
+          <h3>More We Know:<span class="pointer"></span></h3>
+          <ul>
+            <% Factoid.all.each do |f| %>
+              <% if f.entity %>
+                <li><%= link_to_if f != @factoid, f.entity, factoid_path(f, @location) %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div><!-- /more_we_know -->
+      <% else %>
+        <div class="map_widget">
+          <div class="subwrap">
+            <%= image_tag static_map_url(@location), :alt => @location.to_s %>
+          </div>
+        </div><!-- /map_widget -->
+        <div class="dotrule"></div>
+        <div class="stats">
+          <dl>
+            <% if @location.population %>
+              <dt>Population:</dt>
+              <dd><%= number_with_delimiter @location.population %> people</dd>
+            <% end %>
+          </dl>
         </div>
-      </div><!-- /map_widget -->
-      <div class="dotrule"></div>
-      <div class="stats">
-        <dl>
-          <% if @location.population %>
-            <dt>Population:</dt>
-            <dd><%= number_with_delimiter @location.population %> people</dd>
-          <% end %>
-        </dl>
-      </div>
-      <!-- /stats -->
+        <!-- /stats -->
+      <% end %>
       <div class="dotrule"></div>
       <% if nearby = @location.cities_nearby %> 
         <div class="vicinity">
