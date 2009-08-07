@@ -19,16 +19,14 @@ ActionController::Routing::Routes.draw do |map|
         :action => 'search',
         :q => /\d{5}/
 
-  map.connect '/e/:uri', 
+  map.connect '/e/rdf', 
         :controller => 'entities',
         :action => 'show',
-        :uri => /.*\.rdf/,
         :format => 'rdf'
 
-  map.connect '/e/:uri', 
+  map.connect '/e',
         :controller => 'entities',
-        :action => 'show',
-        :uri => /.*/
+        :action => 'show'
 
   map.resources :chemicals
   map.connect '/:controller/:action', :controller => /annotations|pages/
