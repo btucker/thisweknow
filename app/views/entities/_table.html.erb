@@ -1,0 +1,48 @@
+<div class="data_table_toprule"></div>
+<div class="data_table_wrap">
+  <h3><%= label %></h3>
+  <div class="subwrap">
+    <table>
+      <% if table.first.is_a? Hash %>
+        <thead>
+          <tr>
+            <% table.first.keys.each do |head| %>
+              <% unless head == :uri %>
+                <th><%= head.to_s.humanize %></th>
+              <% end %>
+            <% end %>
+          </tr>
+        </thead>
+      <% end %>
+      <tbody>
+        <% if table.first.is_a? Hash %>
+            <% table.each do |row| %>
+              <tr>
+                <% row.keys.each do |key| %>
+                  <% unless key == :uri %>
+                    <td><%= link_to_if !row[:uri].blank?, 
+                                        row[key], 
+                                        :controller => 'entities',
+                                        :action => 'show',
+                                        :uri => row[:uri] %></td>
+                  <% end %>
+                <% end %>
+              </tr>
+            <% end %>
+          </tr>
+        <% else %>
+          <% table.compact.each do |row| %>
+            <tr class="<%= cycle('','alt') %>">
+              <td><%= row %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="source">
+  Source: <a href="">www.source.com</a>
+  </div>
+</div>
+<!-- /data_table_wrap -->
+<div class="data_table_bottomrule"></div>
