@@ -1,7 +1,7 @@
 <h2 id="subject" class="drill"><%= @label %> <span class="pointer"></span></h2>
 
-<% @entity.sort{|a,b| a[1].size <=> b[1].size}.each do |k,v| %>
-  <% if v and v.any? %>
+<% @entity.select{|k,v| v}.sort{|a,b| a[1].size <=> b[1].size}.each do |k,v| %>
+  <% if v and !k.is_a? Symbol and v.any? %>
     <% if v.size == 1 %>
       <p>
         <h4><%= k.underscore.humanize %>:</h4>
