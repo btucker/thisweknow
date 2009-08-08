@@ -9,7 +9,7 @@ class EntitiesController < ApplicationController
     @xml.search("//rdf:Description[@rdf:about='#{uri}']/rdf:type", NAMESPACES).map{|e| e.get_attribute('resource')}.compact.each do |type|
       if @annotations[type] and @annotations[type][:attribute]
         @annotations[type][:attribute].each do |at|
-          at.match(/^([^#]+#)(.*)$/)
+          at.match(/(.*)([^#\/]+)$/)
           attributes[$2] = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}", 
                       NAMESPACES.merge('nsx' => $1)).map(&:content)
         end
@@ -23,7 +23,7 @@ class EntitiesController < ApplicationController
     @xml.search("//rdf:Description[@rdf:about='#{uri}']/rdf:type", NAMESPACES).map{|e| e.get_attribute('resource')}.compact.each do |type|
       if @annotations[type] and @annotations[type][:belongs_to]
         @annotations[type][:belongs_to].each do |at|
-          at.match(/^([^#]+#)(.*)$/)
+          at.match(/(.*)([^#\/]+)$/)
           belongs_tos[$2] = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}", 
                       NAMESPACES.merge('nsx' => $1)).map{|e| e.get_attribute('resource')}.map {|u| belongs_to_for(u).merge(:uri => u).merge(attributes_for(u))}
         end
