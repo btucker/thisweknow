@@ -24,13 +24,13 @@ class PagesController < ApplicationController
                                                         :order => 'count1 ASC',
                                                         :limit => 5)
 
-    @unemployed_factoid = Factoid.find(11)
-    @lowest_unemployment = @unemployed_factoid.factoid_results.find(:all,
+    @unemployment_factoid = Factoid.find(11)
+    @lowest_unemployment = @unemployment_factoid.factoid_results.find(:all,
                                                        :conditions => 'count3 IS NOT NULL AND count3 > 0',
                                                        :order => 'count3 ASC',
                                                        :limit => 5)
 
-    @highest_unemployment = @unemployed_factoid.factoid_results.find(:all,
+    @highest_unemployment = @unemployment_factoid.factoid_results.find(:all,
                                                        :conditions => 'count3 IS NOT NULL',
                                                        :order => 'count3 DESC',
                                                        :limit => 5)
