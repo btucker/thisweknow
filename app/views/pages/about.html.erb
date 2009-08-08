@@ -1,10 +1,56 @@
 <h2>What's This We Know?</h2>
-<p class="tagline">Tagline Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-<h3>H3 is Green</h3>
-<h4>H4 has no bottom margin</h4>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<h5>H5 is essentially bold text</h5>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p class="tagline">
+ThisWeKnow's mission is to present the information the government has in its possession - to show what the government knows about every community.  Publishing its data in one large, integrated application, the government empowers its citizens to react to, and act on, what's known. 
+</p>
+
+<p>
+In this first phase of development, we focused on a handful of nationwide datasets from each of six different agencies in the data.gov catalog.  We picked databases that each had a spatial component.  
+</p>
+
+
+<h3>Our Vision</h3>
+
+<p>
+Our long-term vision for the WhatWeKnow application is to model the entire data.gov catalog in an ontology and load all the data in an RDF database. This provides citizens with a single destination where they can query and browse all information at data.gov. We are working towards a comprehensive ontology of all information in the catalog. Loading hundreds of governmental databases into a single data store breaks down the silos of information evolving out of the thousands of governmental agencies and their departments This allows one to make inferences across, for example, census demographic data from the Agency of Commerce, factory information from the Environmental Protection Agency, information about employment from the Department of Labor, and so on. We can imagine many of the inferences that will be possible using integrated data from multiple federal agencies.  What we can't even imagine are the innumerable discoveries that will become possible after all these data are loaded into an integrated repository.   </p>
+
+<p>
+In the future, in addition to the place-based (geographic) queries currently featured on the landing pages of the thisweknow.org site, we also plan to add history.  This would allow us to showcase what the government knew at specific moment in time, and to demonstrate trends in these data over time.   
+</p>
+
+<p>
+Tim Berner's Lee's vision for the Semantic Web calls for data across the Internet to be readable by people while simultaneously being available and manipulable by software agents.  To that end, in addition to building our Web pages for browsing and searching these data, we've exposed all the data in the catalog to computers via the SPARQL Query Language.  
+</p>
+
+<h3>Implementation</h3>
+<p>
+To manage the complexity of presenting so much information, we developed the 'factoid' approach, where queries are presented as simple sentences about a town.  While we also envision presenting the data spatially and graphically in the future, we felt that factoids are a helpful summary of these data, and a good entry point into the data browser.  By clicking on the factoid, citizens bring up tables of data, which in turn are hyperlinked to detailed information about the entities.  We envision citizens who use the application being able to generate their own factoids. This allows them to browse the database looking for interesting information and compile it into factoids.  In the next phase of development, we will add a feature where citizens can save the factoids and vote on the usefulness of the factoids others have generated.  This will allow us to rotate the set of factoids on the homepage on an ongoing basis, and present them in order of popularity. 
+</p>
+
+<p>
+RDF triples (like the subject, verb and object of a sentence) express the data at data.gov.   In RDF, particular things (people, companies or any other entity in the data.gov collection) have properties (such as "is the parent company of," "is the author of") with certain values (another person, another Web page) .  An advantage of storing the data.gov information using RDF is that the database and applications can readily expand as new data sources are added to the catalog, without requiring new coding or revisions to existing coding.  In a relational database, the connections between information will need to be made in advance, revisions will be necessary as new databases are loaded, and the data model will become extremely large and unwieldy if thousands of databases were to be modeled in a single database.  
+</p>
+
+<p>
+We have developed an ontology defining the relationship between fields in the database for the databases from the data.gov catalog we've loaded.  The ontology needs to grow to include all databases in the data.gov catalog.  This will depict the relationship of information collected across the federal government, and it is our recommendation that the development of a data.gov ontology become a major component of future work on this initiative.   
+</p>
+
+<h4>Sources of Data</h4>
+
+<ul>
+  <li>Datasets appearing on Data.gov (sourced throughtout the application)</li>
+  <li><a href="http://geonames.org">GeoNames.org</a> for geographical information</li>
+  <li><a href="http://govtrack.us">GovTrack.us</a> for legislative data</li>
+  <li><a href="http://www.rdfabout.com/demo/census/">Joshua Tauberer</a> for an RDF version of the 2000 U.S. Census</li>
+</ul>
+
+<h4>Technologies</h4>
+
+<p>
+  ThisWeKnow is written in Ruby on Rails.  It communicates via sparql to an RDF database.  The source code is available under an MIT license at <a href="http://github.com/btucker/thisweknow">github.com/btucker/thisweknow</a>
+</p>
+
+<h3>About the Developers</h3>
+
+<p>The developers of this application are a consortium of a Web application development and data analysis firm (GreenRiver.org), a Web design shop (Sway Design), and a semantic web database company (Intellidimension). This collaboration allowed us take on the project of transforming the current data.gov site into a semantic web application.  The potential for this project is very exciting, and we hope you enjoy our phase 1 application. </p>
 
 <%= render :partial => 'sidebar' %>
