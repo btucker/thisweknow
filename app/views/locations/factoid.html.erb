@@ -20,6 +20,8 @@
             <% @headings.each do |keyname| %>
               <% if hash[keyname.to_sym][0] =~ /\w+/ %>
                 <td> <%= link_to hash[keyname.to_sym][0].titleize, :controller => :entities, :action => :show, :uri => hash[keyname.to_sym][1] %> </td>
+              <% elsif hash[keyname.to_sym][0].blank? %>
+                <td></td>
               <% else %>
                 <td> <%= number_with_delimiter hash[keyname.to_sym][0].to_f %> </td>
               <% end %>
