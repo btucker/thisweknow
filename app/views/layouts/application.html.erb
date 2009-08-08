@@ -22,8 +22,16 @@
             <% form_tag({:controller => 'locations', :action => :search}, :method => :get) do %>
               <label for="primary_search" class="hide">Search:</label>
               <span id="primary_search_wrap">
-                <%= text_field_tag 'q', (@location and "#{@location.city}, #{@location.state}"), :id => "primary_search", :size => 30 %> 
+                <%= text_field_tag 'q', ((@location and "#{@location.city}, #{@location.state}") or 'Enter a Location...'), 
+                      :id => "primary_search", :size => 30 %> 
               </span>
+              <% javascript_tag do %>
+                $('primary_search').observe('focus', function(ev) {
+                  if (ev.element().value == 'Enter a Location...') {
+                    ev.element().value = '';
+                  } 
+                });
+              <% end %>
               <%= image_submit_tag (@homepage ? 'search_button_lg.png' : 'search_button.png'), 
                     :alt => "Search", :class => "button" %>
             <% end %>
