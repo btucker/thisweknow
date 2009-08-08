@@ -9,7 +9,7 @@ class EntitiesController < ApplicationController
     @xml.search("//rdf:Description[@rdf:about='#{uri}']/rdf:type", NAMESPACES).map{|e| e.get_attribute('resource')}.compact.each do |type|
       if @annotations[type] and @annotations[type][:attribute]
         @annotations[type][:attribute].each do |at|
-          at.match(/(.*)([^#\/]+)$/)
+          at.match(/(.*[#\/])([^#\/]+)$/)
           attributes[$2] = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}", 
                       NAMESPACES.merge('nsx' => $1)).map(&:content)
         end
@@ -25,11 +25,11 @@ class EntitiesController < ApplicationController
         @annotations[type][:belongs_to].each do |at|
           at.match(/(.*)([^#\/]+)$/)
           belongs_tos[$2] = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}", 
-                      NAMESPACES.merge('nsx' => $1)).map{|e| e.get_attribute('resource')}.map {|u| belongs_to_for(u).merge(:uri => u).merge(attributes_for(u))}
+                      NAMESPACES.merge('nsx' => $1)).map{|e| e.get_attribute('resource')}.map {|u| belongs_to_for(u).merge(:uri => u)}
         end
       end
     end
-    belongs_tos
+    belongs_tos.merge(attributes_for(uri))
   end
 
   def flatten(hash, top=true)
