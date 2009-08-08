@@ -37,5 +37,11 @@
       </tbody>
     </table>
   </div>
+
+  <% if @factoid.source %>
+    <div class="source">
+      Source: <%= @factoid.source %>
+    </div>
+  <% end %>
 </div><!-- /data_table_wrap -->
 <div class="data_table_bottomrule"></div>
