@@ -3,11 +3,11 @@
 <div class="data_table_toprule"></div>
 <div class="data_table_wrap">
   <h3><%= render_sentence(@factoid, @location) %>
-  	  <% if factoid.radius.to_f == 0 %>
+  <% if @factoid.factoid_type == 'Point' %>
 	  <span class="subtext">(within <%= @location.radius %> mi.)</span>
-  <% elsif factoid.radius.to_f == 100 %>	  
+  <% elsif @factoid.radius.to_f == "County" %>	  
   	  <span class="subtext">(in your county.)</span>
-  <% else factoid.radius.to_f == 50 %>	  
+  <% else @factoid.radius.to_f == "Town" %>	  
   	  <span class="subtext">(in your town.)</span>
   <% end %>  
   </h3>
@@ -37,10 +37,5 @@
       </tbody>
     </table>
   </div>
-  <% if @factoid.source %>
-    <div class="source">
-      Source: <%= @factoid.source %>
-    </div>
-  <% end %>
 </div><!-- /data_table_wrap -->
 <div class="data_table_bottomrule"></div>
