@@ -20,11 +20,27 @@
               <tr>
                 <% row.keys.each do |key| %>
                   <% unless key == :uri %>
-                    <td><%= link_to_if !row[:uri].blank?, 
+                    <td>
+                      <% if row[key].is_a? Array and row[key].size > 1 %>
+                        <ul>
+                          <% row[key].each do |subrow| %>
+                            <li>
+                              <%= link_to_if !subrow[:uri].blank?, 
+                                        subrow[subrow.keys.first], 
+                                        :controller => 'entities',
+                                        :action => 'show',
+                                        :uri => subrow[:uri] %>
+                            </li>
+                          <% end %>
+                        </ul>
+                      <% else %>  
+                        <%= link_to_if !row[:uri].blank?, 
                                         row[key], 
                                         :controller => 'entities',
                                         :action => 'show',
-                                        :uri => row[:uri] %></td>
+                                        :uri => row[:uri] %>
+                      <% end %>
+                    </td>
                   <% end %>
                 <% end %>
               </tr>
