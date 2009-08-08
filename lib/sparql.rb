@@ -1,10 +1,13 @@
-require 'open-uri'
+require 'net/http'
+require 'uri'
 
 class Sparql 
   def self.execute(query, format = :xml)
     query = insert_from_clause(query)
     Rails.logger.info "[SPARQL] #{prefixes + query}"
-    xml = Nokogiri::XML(open(URI.encode("http://206.192.70.249/data.gov/sparql.aspx?query=#{prefixes + query}")))
+    res = Net::HTTP.post_form(URI.parse('http://206.192.70.249/data.gov/sparql.aspx'),
+                              {'query' => prefixes + query})
+    xml = Nokogiri::XML(res.body)
     if format == :xml
       xml
     elsif format == :ruby
