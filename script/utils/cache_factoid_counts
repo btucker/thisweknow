@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../../config/environment'
+
+City.all(:order => 'population DESC').each do |city|
+  Factoid.all.each do |factoid|
+    fr = factoid.factoid_results.build(:city_id => city.id)
+    factoid.count(city.location).each_with_index do |count,i|
+      fr.send("count#{i+1}=".to_sym, count)
+    end
+    fr.save
+  end
+end

@@ -5,7 +5,14 @@ class Location
   attr_accessor :radius
 
   def initialize(location)
-    if location =~ /^\d{5}$/ and 
+    if location.is_a? City
+      @city_obj = city = location
+      @zip = (city.zipcodes.first and city.zipcodes.first.zipcode)
+      @city = city.name
+      @state = city.admin1_code
+      @lat = city.latitude.to_f
+      @lon = city.longitude.to_f
+    elsif location =~ /^\d{5}$/ and 
       (zip = Zipcode.find(:first, 
                           :include => :city,
                           :conditions => ['zipcode = ? AND city_id IS NOT NULL', location]))

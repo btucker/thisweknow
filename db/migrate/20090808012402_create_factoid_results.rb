@@ -11,6 +11,7 @@ class CreateFactoidResults < ActiveRecord::Migration
       t.timestamps
     end
     add_index :factoid_results, [:city_id, :factoid_id]
+    add_index :factoid_results, [:factoid_id, :count1, :count2]
   end
 
   def self.down

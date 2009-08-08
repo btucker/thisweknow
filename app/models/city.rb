@@ -12,6 +12,11 @@ class City < ActiveRecord::Base
     admin1_code
   end
 
+  def location # our location, not to be confused with the gaticule one
+    @location = Location.new(self) unless @location
+    @location
+  end
+
   def geocode
     if geocoding
       geocoding.geocode
