@@ -7,15 +7,14 @@ module ApplicationHelper
 
 
   def render_sentence(factoid, location)
-    result = factoid.sentence % factoid.count(location)
+    result = factoid.sentence % factoid.count(location) 
     result.gsub!(/<n(,?)>([^<]+)<\/n,?>/) do 
       "<span class='quantity'>#{$1 == ',' ? number_with_delimiter($2) : $2}</span>"
     end
     result.gsub!(/<e>([^<]+)<\/e>/, "<a class='quality' href='#{factoid_path(factoid, location)}'>\\1</a>")
     result
-    #factoid.count(location).inspect
- #   rescue Exception
-  #    ""
+    rescue Exception
+      ""
   end
 
 end
