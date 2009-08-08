@@ -6,18 +6,21 @@ class PagesController < ApplicationController
 
     @toxins_factoid = Factoid.find(2)
     @most_toxins = @toxins_factoid.factoid_results.find(:all,
+                                                        :conditions => 'count1 IS NOT NULL',
                                                         :order => 'count1 DESC',
                                                         :limit => 5)
     @least_toxins = @toxins_factoid.factoid_results.find(:all,
+                                                        :conditions => 'count1 IS NOT NULL AND count1 > 0',
                                                          :order => 'count1 ASC',
                                                          :limit => 5)
 
     @crime_factoid = Factoid.find(7)
     @most_crime = @toxins_factoid.factoid_results.find(:all,
+                                                        :conditions => 'count1 IS NOT NULL',
                                                        :order => 'count1 DESC',
                                                        :limit => 5)
     @least_crime = @toxins_factoid.factoid_results.find(:all,
-                                                        :conditions => 'count1 > 0',
+                                                        :conditions => 'count1 IS NOT NULL AND count1 > 0',
                                                         :order => 'count1 ASC',
                                                         :limit => 5)
 
