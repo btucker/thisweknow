@@ -3,7 +3,10 @@
 <% @entity.each do |k,v| %>
   <% if v and v.any? %>
     <% if v.size == 1 %>
-      <%= k.underscore.humanize %>
+      <p>
+        <h4><%= k.underscore.humanize %>:</h4>
+        <%= v %>
+      </p>
     <% else %>
       <%= render :partial => 'table', :locals => {:label => k.underscore.humanize.pluralize}, :object => v %>
     <% end %>
