@@ -39,16 +39,15 @@
   <div class="first unit">
     <h3>Lowest <a href="">Unemployment</a>:</h3>
     <div class="subwrap">
-      <%= image_tag 'homepage/homepg_lowest_jobless.jpg', :alt => 'least crime' %>
+      <%= link_to image_tag('homepage/homepg_lowest_jobless.jpg', :alt => 'least crime'),
+                  location_path(@lowest_unemployment.first.city.location) %>
       <ol>
-        <li><em>Data coming soon...</em></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <% @lowest_unemployment.each do |fr| %>
+          <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
+        <% end %>
       </ol>
     </div>
-    <!-- <div class="source">Source: <%= @crime_factoid.source %></div> -->
+    <div class="source">Source: <%= @unemployment_factoid.source %></div>
   </div>
 </div>
 
@@ -98,16 +97,15 @@
   <div class="first unit">
     <h3>Highest <a href="">Unemployment</a>:</h3>
     <div class="subwrap">
-      <%= image_tag 'homepage/homepg_highest_jobless.jpg', :alt => 'least crime' %>
+      <%= link_to image_tag('homepage/homepg_highest_jobless.jpg', :alt => 'least crime'),
+                  location_path(@highest_unemployment.first.city.location) %>
       <ol>
-        <li><em>Data coming soon...</em></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <% @highest_unemployment.each do |fr| %>
+          <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
+        <% end %>
       </ol>
     </div>
-    <!--  <div class="source">Source: <%= @crime_factoid.source %></div> -->
+    <div class="source">Source: <%= @unemployment_factoid.source %></div>
   </div>
 </div>
 
