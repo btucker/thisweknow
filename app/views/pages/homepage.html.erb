@@ -63,7 +63,8 @@
   <div class="first unit">
     <h3>Most <a href="">Toxins</a>:</h3>
     <div class="subwrap">
-      <%= image_tag 'homepage/homepg_most_toxins.jpg', :alt => 'most toxins' %>
+      <%= link_to image_tag('homepage/homepg_most_toxins.jpg', :alt => 'most toxins'),
+                    location_path(@most_toxins.first.city.location) %>
       <ol>
         <% @most_toxins.each do |fr| %>
           <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
@@ -79,7 +80,8 @@
   <div class="first unit">
     <h3>Most <a href="">Violent Crime</a>:</h3>
     <div class="subwrap">
-      <%= image_tag 'homepage/homepg_most_crime.jpg', :alt => 'most crime' %>
+      <%= link_to image_tag('homepage/homepg_most_crime.jpg', :alt => 'most crime'),
+                    location_path(@most_crime.first.city.location) %>
       <ol>
         <% @most_crime.each do |fr| %>
           <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
