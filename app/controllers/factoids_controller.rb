@@ -1,4 +1,6 @@
 class FactoidsController < ApplicationController
+  before_filter :digest_authenticate
+
   # GET /factoids
   # GET /factoids.xml
   def index
@@ -81,4 +83,12 @@ class FactoidsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+
+  def digest_authenticate
+    authenticate_or_request_with_http_basic("TWK Administration") do |username, pw|
+        username == 'twk' && pw == 'thisweknow'
+    end
+  end
+
 end

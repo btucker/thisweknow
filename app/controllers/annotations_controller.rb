@@ -3,6 +3,7 @@
 # ui:belongsTo
 
 class AnnotationsController < ApplicationController
+  before_filter :digest_authenticate
   before_filter :scrub_whitespace
 
   def index
@@ -33,4 +34,11 @@ class AnnotationsController < ApplicationController
       params[p].gsub!(/\s+/, '') if params[p]
     end
   end
+
+  def digest_authenticate
+    authenticate_or_request_with_http_basic("TWK Administration") do |username, pw|
+        username == 'twk' && pw == 'thisweknow'
+    end
+  end
+
 end
