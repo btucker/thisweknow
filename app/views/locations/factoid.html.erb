@@ -3,7 +3,13 @@
 <div class="data_table_toprule"></div>
 <div class="data_table_wrap">
   <h3><%= render_sentence(@factoid, @location) %>
-    <span class="subtext">(within <%= @location.radius %> mi.)</span>
+  	  <% if factoid.radius.to_f == 0 %>
+	  <span class="subtext">(within <%= @location.radius %> mi.)</span>
+  <% elsif factoid.radius.to_f == 100 %>	  
+  	  <span class="subtext">(in your county.)</span>
+  <% else factoid.radius.to_f == 50 %>	  
+  	  <span class="subtext">(in your town.)</span>
+  <% end %>  
   </h3>
   <div class="subwrap">
     <table>
