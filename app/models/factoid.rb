@@ -40,7 +40,7 @@ class Factoid < ActiveRecord::Base
           c
 		end.min {|a,b| a[:distance] <=> b[:distance]}[:county]
         
-	    	doc = Sparql.execute(count_query % [county, county])
+	    	doc = Sparql.execute(count_query % [county, county, county, county])
 	    	@count = doc.search("result literal").map(&:content)
 		    @count = @count.map {|val| val.to_f.round}
     	end
