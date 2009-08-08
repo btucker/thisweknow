@@ -50,19 +50,6 @@ class Factoid < ActiveRecord::Base
     return @count
   end
 
-  def render_sentence(location)
-    result = sentence % count(location)
-    result.gsub!(/<n>([^<]+)<\/n>/, '<span class="quantity">\1</span>')
-    result.gsub!(/<e>([^<]+)<\/e>/, "<a class='quality' href='#{path(location)}'>\\1</a>")
-    result
- #   rescue Exception
-  #    ""
-  end
-
-  def path(location)
-    "/l/#{location.state}/#{location.city}/factoids/#{id}" 
-  end 
-
   def entity
     sentence =~ /<e>([^<]+)<\/e>/
     $1.humanize

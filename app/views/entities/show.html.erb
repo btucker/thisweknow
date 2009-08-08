@@ -1,9 +1,14 @@
 <h2 id="subject" class="drill"><%= @label %> <span class="pointer"></span></h2>
 
-
-<dt>
-  <%= render :partial => 'property', :collection => @belongs_to %>
-</dt>
+<% @entity.each do |k,v| %>
+  <% if v and v.any? %>
+    <% if v.size == 1 %>
+      <%= k.underscore.humanize %>
+    <% else %>
+      <%= render :partial => 'table', :locals => {:label => k.underscore.humanize.pluralize}, :object => v %>
+    <% end %>
+  <% end %>
+<% end %>
 
 <% content_for :sidebar do %>
   

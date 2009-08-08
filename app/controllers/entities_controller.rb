@@ -25,11 +25,32 @@ class EntitiesController < ApplicationController
         @annotations[type][:belongs_to].each do |at|
           at.match(/^([^#]+#)(.*)$/)
           belongs_tos[$2] = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}", 
-                      NAMESPACES.merge('nsx' => $1)).map{|e| e.get_attribute('resource')}.map {|u| attributes_for(u)}
+                      NAMESPACES.merge('nsx' => $1)).map{|e| e.get_attribute('resource')}.map {|u| belongs_to_for(u).merge(:uri => u).merge(attributes_for(u))}
         end
       end
     end
     belongs_tos
+  end
+
+  def flatten(hash, top=true)
+    if hash.is_a? Hash
+      hash.each do |k,v|
+        if v.is_a? Array
+          if v and v.size == 1 and v.first.is_a? Hash
+            hash.delete(k)
+            hash.merge!(flatten(v.first))
+          elsif v and v.size > 1 and v.first.is_a? Hash  
+            # collection of things
+            flatten(v)
+          elsif v.blank?
+            hash.delete(k)
+          end
+        end
+      end
+    elsif hash.is_a? Array
+      hash.map!{|e| flatten(e) }
+    end
+    hash
   end
 
   def show
@@ -40,8 +61,7 @@ class EntitiesController < ApplicationController
 
     respond_to do |f|
       f.html {
-        @entity = @xml.search("//rdf:Description[@rdf:about='#{@uri}']")
-        @label = @entity.search("//rdf:Description[@rdf:about='#{@uri}']/rdfs:label", NAMESPACES).map(&:content).map(&:titleize).first || @uri
+        @label = @xml.search("//rdf:Description[@rdf:about='#{@uri}']/rdfs:label", NAMESPACES).map(&:content).map(&:titleize).first || @uri
 
         # get all the types 
         # get all the belongs_tos & attributes for each type
@@ -51,12 +71,12 @@ class EntitiesController < ApplicationController
                                FILTER( #{types.map{|uri| "?s=<#{uri}>"}.join(" || ") } )}", :ruby)
         res.group_by { |r| r[:s] }.each do |klass, annotations|
           @annotations[klass] = {
-            :attribute => %w(http://www.w3.org/2000/01/rdf-schema#label) + annotations.select { |r| r[:t] =~ /attribute$/ }.map { |r| r[:p] },
+            :attribute => annotations.select { |r| r[:t] =~ /attribute$/ }.map { |r| r[:p] },
             :belongs_to => annotations.select { |r| r[:t] =~ /belongsTo$/ }.map { |r| r[:p] }
           }
         end
 
-       raise belongs_to_for(@uri).inspect 
+        @entity = flatten(belongs_to_for(@uri))
 
     #    @belongs_to = {}
     #    types.each do |t|

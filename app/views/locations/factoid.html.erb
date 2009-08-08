@@ -1,8 +1,8 @@
-<h2 id="subject" class="drill"><%= @location %> <span class="pointer"></span></h2>
+<h2 id="subject" class="drill"><%= link_to @location, location_path(@location) %> <span class="pointer"></span></h2>
 
 <div class="data_table_toprule"></div>
 <div class="data_table_wrap">
-  <h3><%= @factoid.render_sentence(@location) %>
+  <h3><%= render_sentence(@factoid, @location) %>
     <span class="subtext">(within <%= @location.radius %> mi.)</span>
   </h3>
   <div class="subwrap">

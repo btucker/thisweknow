@@ -142,6 +142,10 @@ h2#subject {
 	font-weight: normal;
 	font-size: 170%;
 }
+h2#subject a {
+	color: #fff;
+}
+
 h2#subject span.pointer {
 	position: absolute;
 	display: block;

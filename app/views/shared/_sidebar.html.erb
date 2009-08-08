@@ -32,7 +32,7 @@
       <div class="dotrule"></div>
       <% if nearby = @location.cities_nearby %> 
         <div class="vicinity">
-          <h4>Cities Nearby</h4>
+          <h4>Some Cities Nearby</h4>
           <ul>
             <% nearby.each do |city| %>
               <li><%= link_to city.to_s, :controller => 'locations', 

@@ -3,6 +3,8 @@
 # ui:belongsTo
 
 class AnnotationsController < ApplicationController
+  before_filter :scrub_whitespace
+
   def index
     res = Sparql.execute("SELECT ?o WHERE { ?s rdf:type ?o }", :ruby)
     @classes = res.map { |r| r[:o] }.compact
@@ -24,5 +26,11 @@ class AnnotationsController < ApplicationController
   def remove_annotation
     Sparql.execute("DELETE FROM <ui> { <#{params[:uri]}> ui:#{params[:t]} <#{params[:p]}> }")
     redirect_to :action => 'show', :uri => params[:uri]
+  end
+
+  def scrub_whitespace
+    [:uri, :t, :p].each do |p|
+      params[p].gsub!(/\s+/, '') if params[p]
+    end
   end
 end
