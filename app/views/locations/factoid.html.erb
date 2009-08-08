@@ -31,8 +31,10 @@
       </tbody>
     </table>
   </div>
-  <div class="source">
-    Source: <a href="">www.source.com</a>
-  </div>
+  <% if @factoid.source %>
+    <div class="source">
+      Source: <%= @factoid.source %>
+    </div>
+  <% end %>
 </div><!-- /data_table_wrap -->
 <div class="data_table_bottomrule"></div>
