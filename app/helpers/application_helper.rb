@@ -14,7 +14,13 @@ module ApplicationHelper
     result.gsub!(/<e>([^<]+)<\/e>/, "<a class='quality' href='#{factoid_path(factoid, location)}'>\\1</a>")
     result
     rescue Exception
-      ""
+      if factoid.factoid_type == 'County' 
+        "Sorry, there is no data for some facts in this county"
+      elsif factoid.factoid_type == 'Town'
+        "Sorry, there is no data for this factoid in this town"
+      elsif factoid.factoid_type == 'Point'
+        "Sorry, there is no data for the facilities in this area"
+      end
   end
 
 end
