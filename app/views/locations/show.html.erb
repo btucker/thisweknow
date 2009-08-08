@@ -3,7 +3,7 @@
 <div class="properties">
   <div class="subwrap">
     <ul>
-      <%= render :partial => 'factoid', :collection => Factoid.all %>
+      <%= render :partial => 'factoid', :collection => Factoid.all.select{|f| f.has_data?(@location)} %>
     </ul>
   </div>
   <%#= render :partial => 'legislators' %>

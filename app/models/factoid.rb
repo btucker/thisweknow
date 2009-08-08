@@ -2,6 +2,11 @@ class Factoid < ActiveRecord::Base
   has_many :factoid_results
 
   attr_accessor :radius
+
+  def has_data?(location)
+    self.count(location).compact.any?
+  end
+
   def execute(location)
   	@radius=100
     if factoid_type == 'Point'
@@ -26,6 +31,9 @@ class Factoid < ActiveRecord::Base
 
   def count(location)
   	@radius=100
+    if city = location.city_obj and (fr = factoid_results.find(:first, :conditions => {:city_id => city.id}))
+      return (1..9).map {|i| fr.send("count#{i}".to_sym)}
+    end
     if factoid_type == 'Point'
       	@radius = 0
       	unless @count
@@ -56,7 +64,14 @@ class Factoid < ActiveRecord::Base
 		    @count = @count.map {|val| val.to_f.round}
 	    end
     end
-    return @count
+    if city = location.city_obj
+      fr = factoid_results.build(:city_id => city.id)
+      @count.each_with_index do |c,i|
+        fr.send("count#{i+1}=".to_sym, c)
+      end
+      fr.save
+    end
+    return @count + [nil, nil, nil, nil, nil, nil, nil, nil]
   end
 
   def entity

@@ -14,7 +14,7 @@ module ApplicationHelper
     result.gsub!(/<e>([^<]+)<\/e>/, "<a class='quality' href='#{factoid_path(factoid, location)}'>\\1</a>")
     result
     rescue Exception
-      "Sorry, there is not enough data about your location."
+      "Sorry, there is not enough data about this location."
   end
 
 end

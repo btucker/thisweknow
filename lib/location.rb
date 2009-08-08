@@ -1,7 +1,7 @@
 require 'open-uri'
 
 class Location
-  attr_reader :location, :lat, :lon, :city, :state, :zip
+  attr_reader :location, :lat, :lon, :city, :state, :zip, :city_obj
   attr_accessor :radius
 
   def initialize(location)
