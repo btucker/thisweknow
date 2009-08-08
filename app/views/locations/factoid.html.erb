@@ -18,7 +18,7 @@
         <% @data.each do |hash| %>
           <tr>
             <% @headings.each do |keyname| %>
-              <% if hash[keyname.to_sym][0].to_d == 0 %>
+              <% if hash[keyname.to_sym][0] =~ /\w+/ %>
                 <td> <%= link_to hash[keyname.to_sym][0].titleize, :controller => :entities, :action => :show, :uri => hash[keyname.to_sym][1] %> </td>
               <% else %>
                 <td> <%= number_with_delimiter hash[keyname.to_sym][0].to_f %> </td>

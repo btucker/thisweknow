@@ -38,7 +38,7 @@ class Factoid < ActiveRecord::Base
           c
 		end.min {|a,b| a[:distance] <=> b[:distance]}[:county]
         
-	    	doc = Sparql.execute(count_query % county)
+	    	doc = Sparql.execute(count_query % [county, county])
 	    	@count = doc.search("result literal").map(&:content)
 		    @count = @count.map {|val| val.to_f.round}
     	end
@@ -62,8 +62,14 @@ class Factoid < ActiveRecord::Base
     result.gsub!(/<n>([^<]+)<\/n>/, '<span class="quantity">\1</span>')
     result.gsub!(/<e>([^<]+)<\/e>/, "<a class='quality' href='#{path(location)}'>\\1</a>")
     result
- #   rescue Exception
-  #    ""
+    rescue Exception
+      if factoid_type == 'County' 
+      	"No data for some facts in this county.  Try one nearby"
+  	  elsif factoid_type == 'Town'
+  	  	"No data for this factoid in this town"
+  	  elsif factoid_type == 'Point'
+  	  	"No data for the facilities in this area"
+  	  end 
   end
 
   def path(location)
