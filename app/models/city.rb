@@ -1,5 +1,7 @@
 class City < ActiveRecord::Base
   has_many :zipcodes
+  has_many :factoid_results
+
   acts_as_geocodable :address => {:locality => :name, :region => :admin1_code, :country => :country_code}
 
   def to_s

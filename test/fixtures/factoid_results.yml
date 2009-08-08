@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  location_id: 1
+  factoid_id: 1
+  count1: 1.5
+  count2: 1.5
+  count3: 1.5
+  count4: 1.5
+
+two:
+  location_id: 1
+  factoid_id: 1
+  count1: 1.5
+  count2: 1.5
+  count3: 1.5
+  count4: 1.5

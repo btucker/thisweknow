@@ -1,4 +1,6 @@
 class Factoid < ActiveRecord::Base
+  has_many :factoid_results
+
   attr_accessor :radius
   def execute(location)
   	@radius=100
