@@ -60,7 +60,7 @@ class Factoid < ActiveRecord::Base
   end
 
   def entity
-    sentence =~ /<e>([^<]+)<\/e>/
+    sentence =~ /<e>([^<:]+)<\/e>/
     $1.humanize
   end
 
