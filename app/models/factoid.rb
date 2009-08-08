@@ -15,7 +15,7 @@ class Factoid < ActiveRecord::Base
     	doc = Sparql.execute(query % county)
     elsif factoid_type == 'Town'
     	@radius = 50
-    	town = Sparql.execute("select ?town ?lat ?lon from <data> from <census> from <census_data> where{?town rdf:type <tag:govshare.info,2005:rdf/usgovt/Town> . ?town <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?lat . ?town <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?lon . FILTER(?lat > #{location.lat_min(@radius).to_f}) . FILTER(?lat < #{location.lat_max(@radius).to_f}) . FILTER(?lon > #{location.lon_min(@radius).to_f}) . FILTER(?lon < #{location.lon_max(@radius).to_f})}", :ruby).map do |t|
+    	town = Sparql.execute("select ?town ?lat ?lon from <census> where{?town rdf:type <tag:govshare.info,2005:rdf/usgovt/Town> . ?town <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?lat . ?town <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?lon . FILTER(?lat > #{location.lat_min(@radius).to_f}) . FILTER(?lat < #{location.lat_max(@radius).to_f}) . FILTER(?lon > #{location.lon_min(@radius).to_f}) . FILTER(?lon < #{location.lon_max(@radius).to_f})}", :ruby).map do |t|
           t[:distance] = location.distance(t[:lon].to_f, t[:lat].to_f)
           t
 		end.min {|a,b| a[:distance] <=> b[:distance]}[:town]
