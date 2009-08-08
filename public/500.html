@@ -1,30 +1,110 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>This We Know</title>
+    <link href="/stylesheets/screen.css?1249757400" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/prototype.js?1249757400" type="text/javascript"></script>
+  </head>
 
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>We're sorry, but something went wrong (500)</title>
-	<style type="text/css">
-		body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-		div.dialog {
-			width: 25em;
-			padding: 0 4em;
-			margin: 4em auto 0 auto;
-			border: 1px solid #ccc;
-			border-right-color: #999;
-			border-bottom-color: #999;
-		}
-		h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-	</style>
-</head>
+  <body class="generic">
+    <div id="wrapper">
+      <div class="subwrap">
+        <div id="header">
+          <div class="subwrap">
+            <h1><a href="/">This We Know:</a></h1>
+            
 
-<body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <h1>We're sorry, but something went wrong.</h1>
-    <p>We've been notified about this issue and we'll take a look at it shortly.</p>
+            <form action="/l/search" method="get">
+              <label for="primary_search" class="hide">Search:</label>
+
+              <span id="primary_search_wrap">
+                <input id="primary_search" name="q" size="30" type="text" value="Enter a Location..." /> 
+              </span>
+              <script type="text/javascript">
+//<![CDATA[
+
+                $('primary_search').observe('focus', function(ev) {
+                  if (ev.element().value == 'Enter a Location...') {
+                    ev.element().value = '';
+                  } 
+                });
+              
+//]]>
+</script>
+              <input alt="Search" class="button" src="/images/search_button.png?1249757400" type="image" />
+            </form>
+            
+
+            <a href="/pages/about" id="whats_this">What's This We Know?</a>
+          </div>
+
+        </div><!-- /header -->
+        <div id="content">
+          <div class="subwrap">
+            <h2>It Broke! This we (now) know.</h2>
+<p class="tagline">
+	We're very sorry, you seem to have uncovered something which is being bashful.  We'll get it fixed ASAP.
+</p>
+
+          </div>
+        </div><!-- /content -->
+        
+          <div id="sidebar">
+  <div class="subwrap">
+    
+
+    
+  <div class="dotrule"></div>
+  <div class="side_nav">
+    <ul>
+
+      <li>What's This We Know?</li>
+      <li><a href="/pages/contact">Contact Us</a></li>
+    </ul>
   </div>
-</body>
+  <!-- /side_nav -->
+  <div class="dotrule"></div>
+  <div class="dev_team">
+    <img src="/images/dev_team_header.png" alt="Development Team:" />
+
+    <a href="http://www.greenriver.org/"><img src="/images/dev_team_gr.png" alt="GreenRiver.org" /></a>
+    <a href="http://www.intellidimension.com/"><img src="/images/dev_team_intellid.png" alt="Intellidimension" /></a>
+    <a href="http://www.swaydesign.com/"<img src="/images/dev_team_sway.png" alt="swaydesign" /></a>
+    <div class="clearer"></div>
+  </div>
+  <!-- /dev_team -->
+
+  </div>
+</div><!-- /sidebar -->
+<div class="clearer"></div>
+
+        
+      </div>
+    </div><!-- /wrapper -->
+
+    <div id="footer">
+      <div class="subwrap">
+        <ul class="nav">
+          <li class="first"><a href="/pages/about">About Us</a></li>
+          <li><a href="/pages/contact">Contact Us</a></li>
+
+        </ul>
+        <p id="copyright">This We Know</p>
+        <div class="clearer"></div>
+      </div>
+    </div><!-- /footer -->
+
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-10142523-1");
+        pageTracker._trackPageview();
+        } catch(err) {}</script>
+
+  </body>
 </html>
