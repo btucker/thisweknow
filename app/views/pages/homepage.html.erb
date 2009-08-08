@@ -1,124 +1,112 @@
-<h2 id="cities_env">Cities / Environment</h2>
-<!-- CONTENT UNIT BEGINS -->
-					<div class="first unit_wrap">
-						<div class="unit_toprule"></div>
-						<div class="first unit">
-							<h3>Most <a href="">Toxic</a>:</h3>
-							<div class="subwrap">
-								<img src="images/TEMP_homepg.jpg" alt="temp image" />
-								<ol>
-									<li><a href="">Detroit, Michigan</a></li>
-									<li><a href="">Los Angeles, CA</a></li>
-									<li><a href="">Brattleboro, VT</a></li>
-									<li><a href="">Wendell, MA</a></li>
-									<li><a href="">Salvador, BA</a></li>
-								</ol>
-							</div>
-							<div class="source">Source: <a href="">www.source.com</a></div>
-						</div>
-					</div>
-					<!-- /unit_wrap -->
-<!-- CONTENT UNIT ENDS -->
-<!-- CONTENT UNIT BEGINS -->
-					<div class="unit_wrap">
-						<div class="unit_toprule"></div>
-						<div class="first unit">
-							<h3>Most <a href="">Toxic</a>:</h3>
-							<div class="subwrap">
-								<img src="images/TEMP_homepg.jpg" alt="temp image" />
-								<ol>
-									<li><a href="">Detroit, Michigan</a></li>
-									<li><a href="">Los Angeles, CA</a></li>
-									<li><a href="">Brattleboro, VT</a></li>
-									<li><a href="">Wendell, MA</a></li>
-									<li><a href="">Salvador, BA</a></li>
-								</ol>
-							</div>
-							<div class="source">Source: <a href="">www.source.com</a></div>
-						</div>
-					</div>
-					<!-- /unit_wrap -->
-<!-- CONTENT UNIT ENDS -->
-<!-- CONTENT UNIT BEGINS -->
-					<div class="unit_wrap">
-						<div class="unit_toprule"></div>
-						<div class="first unit">
-							<h3>Most <a href="">Toxic</a>:</h3>
-							<div class="subwrap">
-								<img src="images/TEMP_homepg.jpg" alt="temp image" />
-								<ol>
-									<li><a href="">Detroit, Michigan</a></li>
-									<li><a href="">Los Angeles, CA</a></li>
-									<li><a href="">Brattleboro, VT</a></li>
-									<li><a href="">Wendell, MA</a></li>
-									<li><a href="">Salvador, BA</a></li>
-								</ol>
-							</div>
-							<div class="source">Source: <a href="">www.source.com</a></div>
-						</div>
-					</div>
-					<!-- /unit_wrap -->
-<!-- CONTENT UNIT ENDS -->
+<%# <h2 id="cities_env">Cities / Environment</h2> %>
 
-					<h2 id="cities_health">Cities / Health</h2>
-<!-- CONTENT UNIT BEGINS -->
-					<div class="first health unit_wrap">
-						<div class="unit_toprule"></div>
-						<div class="first unit">
-							<h3>Most <a href="">Toxic</a>:</h3>
-							<div class="subwrap">
-								<img src="images/TEMP_homepg.jpg" alt="temp image" />
-								<ol>
-									<li><a href="">Detroit, Michigan</a></li>
-									<li><a href="">Los Angeles, CA</a></li>
-									<li><a href="">Brattleboro, VT</a></li>
-									<li><a href="">Wendell, MA</a></li>
-									<li><a href="">Salvador, BA</a></li>
-								</ol>
-							</div>
-							<div class="source">Source: <a href="">www.source.com</a></div>
-						</div>
-					</div>
-					<!-- /unit_wrap -->
-<!-- CONTENT UNIT ENDS -->
-<!-- CONTENT UNIT BEGINS -->
-					<div class="health unit_wrap">
-						<div class="unit_toprule"></div>
-						<div class="first unit">
-							<h3>Most <a href="">Toxic</a>:</h3>
-							<div class="subwrap">
-								<img src="images/TEMP_homepg.jpg" alt="temp image" />
-								<ol>
-									<li><a href="">Detroit, Michigan</a></li>
-									<li><a href="">Los Angeles, CA</a></li>
-									<li><a href="">Brattleboro, VT</a></li>
-									<li><a href="">Wendell, MA</a></li>
-									<li><a href="">Salvador, BA</a></li>
-								</ol>
-							</div>
-							<div class="source">Source: <a href="">www.source.com</a></div>
-						</div>
-					</div>
-					<!-- /unit_wrap -->
-<!-- CONTENT UNIT ENDS -->
-<!-- CONTENT UNIT BEGINS -->
-					<div class="health unit_wrap">
-						<div class="unit_toprule"></div>
-						<div class="first unit">
-							<h3>Most <a href="">Toxic</a>:</h3>
-							<div class="subwrap">
-								<img src="images/TEMP_homepg.jpg" alt="temp image" />
-								<ol>
-									<li><a href="">Detroit, Michigan</a></li>
-									<li><a href="">Los Angeles, CA</a></li>
-									<li><a href="">Brattleboro, VT</a></li>
-									<li><a href="">Wendell, MA</a></li>
-									<li><a href="">Salvador, BA</a></li>
-								</ol>
-							</div>
-							<div class="source">Source: <a href="">www.source.com</a></div>
-						</div>
-					</div>
-					<!-- /unit_wrap -->
-<!-- CONTENT UNIT ENDS -->
-					<div class="clearer"></div>
+<div class="first unit_wrap">
+  <div class="unit_toprule"></div>
+  <div class="first unit">
+    <h3>Least <a href="">Toxins</a>:</h3>
+    <div class="subwrap">
+      <%= link_to image_tag('homepage/homepg_least_toxins.jpg', :alt => 'least toxins'),
+               location_path(@least_toxins.first.city.location) %>
+      <ol>
+        <% @least_toxins.each do |fr| %>
+          <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="source">Source: <%= @toxins_factoid.source %></div>
+  </div>
+</div>
+
+<div class="unit_wrap">
+  <div class="unit_toprule"></div>
+  <div class="first unit">
+    <h3>Least <a href="">Violent Crime</a>:</h3>
+    <div class="subwrap">
+      <%= link_to image_tag('homepage/homepg_most_moving_in.jpg', :alt => 'least crime'),
+                  location_path(@least_crime.first.city.location) %>
+      <ol>
+        <% @least_crime.each do |fr| %>
+          <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="source">Source: <%= @crime_factoid.source %></div>
+  </div>
+</div>
+
+<div class="unit_wrap">
+  <div class="unit_toprule"></div>
+  <div class="first unit">
+    <h3>Lowest <a href="">Unemployment</a>:</h3>
+    <div class="subwrap">
+      <%= image_tag 'homepage/homepg_lowest_jobless.jpg', :alt => 'least crime' %>
+      <ol>
+        <li><em>Data coming soon...</em></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </div>
+    <!-- <div class="source">Source: <%= @crime_factoid.source %></div> -->
+  </div>
+</div>
+
+<div class="clearer"></div>
+
+<%#
+  <h2 id="cities_health">Cities / Health</h2>
+%>
+
+<div class="first health unit_wrap">
+  <div class="unit_toprule"></div>
+  <div class="first unit">
+    <h3>Most <a href="">Toxins</a>:</h3>
+    <div class="subwrap">
+      <%= image_tag 'homepage/homepg_most_toxins.jpg', :alt => 'most toxins' %>
+      <ol>
+        <% @most_toxins.each do |fr| %>
+          <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="source">Source: <%= @toxins_factoid.source %></div>
+  </div>
+</div>
+
+<div class="health unit_wrap">
+  <div class="unit_toprule"></div>
+  <div class="first unit">
+    <h3>Most <a href="">Violent Crime</a>:</h3>
+    <div class="subwrap">
+      <%= image_tag 'homepage/homepg_most_crime.jpg', :alt => 'most crime' %>
+      <ol>
+        <% @most_crime.each do |fr| %>
+          <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="source">Source: <%= @crime_factoid.source %></div>
+  </div>
+</div>
+<!-- /unit_wrap -->
+
+<div class="health unit_wrap">
+  <div class="unit_toprule"></div>
+  <div class="first unit">
+    <h3>Highest <a href="">Unemployment</a>:</h3>
+    <div class="subwrap">
+      <%= image_tag 'homepage/homepg_highest_jobless.jpg', :alt => 'least crime' %>
+      <ol>
+        <li><em>Data coming soon...</em></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </div>
+    <!--  <div class="source">Source: <%= @crime_factoid.source %></div> -->
+  </div>
+</div>
+
+<div class="clearer"></div>
