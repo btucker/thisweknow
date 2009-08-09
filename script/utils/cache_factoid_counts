@@ -2,10 +2,15 @@
 require File.dirname(__FILE__) + '/../../config/environment'
 
 City.all(:order => 'population DESC').each do |city|
+  puts city.to_s
   Factoid.all.each do |factoid|
+    next if factoid.factoid_results.find(:first, :conditions => {:city_id => city.id})
     fr = factoid.factoid_results.build(:city_id => city.id)
-    factoid.count(city.location).each_with_index do |count,i|
-      fr.send("count#{i+1}=".to_sym, count)
+    count = factoid.count(city.location)
+    if count.compact.any?
+      count.each_with_index do |count,i|
+        fr.send("count#{i+1}=".to_sym, count) if i < 9
+      end
     end
     fr.save
   end
