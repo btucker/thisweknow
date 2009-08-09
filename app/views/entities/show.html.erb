@@ -12,6 +12,11 @@
 </div>
 
 <% content_for :sidebar do %>
-  <h3><%= link_to 'Download as RDF', :format => 'rdf', :uri => @uri %></h3>  
-  <h3><%= link_to 'Download as JSON', :format => 'json', :uri => @uri %></h3>  
+<div class="more_we_know">
+  <h3>Download:<span class="pointer"></span></h3>
+  <ul>
+    <li><%= link_to 'Download as RDF', :format => 'rdf', :uri => @uri %></li>  
+    <li><%= link_to 'Download as JSON', :format => 'json', :uri => @uri %></li>  
+  </ul>
+</div>
 <% end %>

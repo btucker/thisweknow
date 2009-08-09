@@ -18,14 +18,19 @@ class EntitiesController < ApplicationController
     attributes
   end
 
-  def belongs_to_for(uri)
+  def belongs_to_for(uri, seen=[])
+    if seen.include? uri
+      return {}
+    else
+      seen << uri
+    end
     belongs_tos = {}
     @xml.search("//rdf:Description[@rdf:about='#{uri}']/rdf:type", NAMESPACES).map{|e| e.get_attribute('resource')}.compact.each do |type|
       if @annotations[type] and @annotations[type][:belongs_to]
         @annotations[type][:belongs_to].each do |at|
           at.match(/(.*[#\/])([^#\/]+)$/)
           belongs_tos[$2] = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}", 
-                      NAMESPACES.merge('nsx' => $1)).map{|e| e.get_attribute('resource')}.map {|u| belongs_to_for(u).merge(:uri => u)}
+                      NAMESPACES.merge('nsx' => $1)).map{|e| e.get_attribute('resource')}.map {|u| belongs_to_for(u,seen).merge(:uri => u)}
         end
       end
     end
