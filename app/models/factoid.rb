@@ -75,18 +75,27 @@ class Factoid < ActiveRecord::Base
 
   def find_town(location, radius=nil)
     radius ||= location.radius
-   	Sparql.execute("select ?town ?lat ?lon from <census> where {
-                             ?town rdf:type <tag:govshare.info,2005:rdf/usgovt/Town>;
-                                   <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?lat;
-                                   <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?lon;
-                                   ?p ?o .
-                            FILTER(?lat > #{location.lat_min(radius).to_f}) . 
-                            FILTER(?lat < #{location.lat_max(radius).to_f}) . 
-                            FILTER(?lon > #{location.lon_min(radius).to_f}) . 
-                            FILTER(?lon < #{location.lon_max(radius).to_f}) . 
-                            FILTER(contains(?o, '#{location.city}'))}", :ruby).map do |t|
-          t[:distance] = location.distance(t[:lon].to_f, t[:lat].to_f)
-          t
+    query_start = %Q|
+      select ?town ?lat ?lon from <census> where {
+        ?town rdf:type <tag:govshare.info,2005:rdf/usgovt/Town>;
+        geo:lat ?lat;
+        geo:long ?lon;
+        ?p ?o .
+        FILTER(?lat > #{location.lat_min(radius).to_f}) . 
+        FILTER(?lat < #{location.lat_max(radius).to_f}) . 
+        FILTER(?lon > #{location.lon_min(radius).to_f}) . 
+        FILTER(?lon < #{location.lon_max(radius).to_f}) . 
+    |
+   	res = Sparql.execute(query_start + "FILTER(contains(?o, '#{location.city.split.first}'))}", :ruby).map do |t|
+      t[:distance] = location.distance(t[:lon].to_f, t[:lat].to_f)
+      t
+		end.min {|a,b| a[:distance] <=> b[:distance]}
+    return res[:town] if res
+
+    # fallback to not using name if we can't find it that way
+   	res = Sparql.execute(query_start + "}", :ruby).map do |t|
+      t[:distance] = location.distance(t[:lon].to_f, t[:lat].to_f)
+      t
 		end.min {|a,b| a[:distance] <=> b[:distance]}[:town]
   end
 
