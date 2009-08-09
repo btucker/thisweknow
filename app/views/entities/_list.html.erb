@@ -1,0 +1,24 @@
+<% i = 0; started = false %>
+<% list.select{|k,v| v}.sort{|a,b| a[1].size <=> b[1].size}.each do |k,v| %>
+  <% if v and !k.is_a? Symbol and v.any? and (v.size > 1 or !v.first.blank?) %>
+    <% if (i += 1) == 1 %>
+      <% started = true %>
+      <ul>
+    <% end %>
+    <li>
+      <% unless k == 'label' %>
+        <b><%= k.underscore.humanize %>:</b>  
+      <% end %>
+      <% if v.size == 1 and v.first.is_a? String %>
+        <%= link_to_if list[:uri], v.first, :action => 'show', :uri => list[:uri] %>
+      <% elsif v.size == 1 %>  
+        <%= render :partial => 'list', :object => v.first %>
+      <% else %>
+        <%= render :partial => 'list', :collection => v %>
+      <% end %>
+    </li>
+  <% end %>
+<% end %>
+<% if started %>
+  </ul>
+<% end %>

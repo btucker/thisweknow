@@ -19,10 +19,9 @@ ActionController::Routing::Routes.draw do |map|
         :action => 'search',
         :q => /\d{5}/
 
-  map.connect '/e/rdf', 
+  map.connect '/e.:format', 
         :controller => 'entities',
-        :action => 'show',
-        :format => 'rdf'
+        :action => 'show'
 
   map.connect '/e',
         :controller => 'entities',

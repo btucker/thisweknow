@@ -70,7 +70,7 @@ class Factoid < ActiveRecord::Base
 
   def entity
     sentence =~ /<e>([^<:]+)/
-    $1.humanize if $1  
+    $1.titleize if $1  
   end
 
   def find_town(location, radius=nil)

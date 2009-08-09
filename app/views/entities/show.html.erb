@@ -1,18 +1,17 @@
 <h2 id="subject" class="drill"><%= @label %> <span class="pointer"></span></h2>
 
-<% @entity.select{|k,v| v}.sort{|a,b| a[1].size <=> b[1].size}.each do |k,v| %>
-  <% if v and !k.is_a? Symbol and v.any? %>
-    <% if v.size == 1 %>
-      <p>
-        <h4><%= k.underscore.humanize %>:</h4>
-        <%= v %>
-      </p>
-    <% else %>
-      <%= render :partial => 'table', :locals => {:label => k.underscore.humanize.pluralize}, :object => v %>
-    <% end %>
-  <% end %>
-<% end %>
+<style type="text/css">
+  div#entity ul {
+    padding-left: 20px !important;
+    padding-bottom: 10px !important;
+  }
+</style>
+
+<div id="entity">
+  <%= render :partial => 'list', :object => @entity %>
+</div>
 
 <% content_for :sidebar do %>
-  <h3><%= link_to 'Download RDF', :format => 'rdf', :uri => @uri %></h3>  
+  <h3><%= link_to 'Download as RDF', :format => 'rdf', :uri => @uri %></h3>  
+  <h3><%= link_to 'Download as JSON', :format => 'json', :uri => @uri %></h3>  
 <% end %>
