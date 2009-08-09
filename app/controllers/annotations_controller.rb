@@ -35,10 +35,4 @@ class AnnotationsController < ApplicationController
     end
   end
 
-  def digest_authenticate
-    authenticate_or_request_with_http_basic("TWK Administration") do |username, pw|
-        username == 'twk' && pw == 'thisweknow'
-    end
-  end
-
 end

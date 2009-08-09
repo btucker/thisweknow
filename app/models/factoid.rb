@@ -58,7 +58,7 @@ class Factoid < ActiveRecord::Base
 		    @count = @count.map {|val| val.to_f.round}
 	    end
     end
-    if city = location.city_obj
+    if city = location.city_obj and @count.compact.any?
       fr = factoid_results.build(:city_id => city.id)
       @count.each_with_index do |c,i|
         fr.send("count#{i+1}=".to_sym, c)

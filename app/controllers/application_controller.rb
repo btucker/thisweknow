@@ -21,4 +21,9 @@ class ApplicationController < ActionController::Base
 
 protected
  
+  def digest_authenticate
+    authenticate_or_request_with_http_basic("TWK Administration") do |username, pw|
+        username == APP_CONFIG['admin']['username'] && pw == APP_CONFIG['admin']['password']
+    end
+  end
 end
