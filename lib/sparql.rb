@@ -39,14 +39,13 @@ class Sparql
 
   def self.prefixes
     %Q{
-		PREFIX o: <http://www.data.gov/ontology#>
-		PREFIX ui: <http://www.thisweknow.org/ui#>
-		PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-		PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-		PREFIX owl: <http://www.w3.org/2002/07/owl#>
-		prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-    	prefix samp: <http://www.rdfabout.com/rdf/schema/uscensus/details/samp/>
-        prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX o: <http://www.data.gov/ontology#>
+    PREFIX ui: <http://www.thisweknow.org/ui#>
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX owl: <http://www.w3.org/2002/07/owl#>
+    prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+    prefix samp: <http://www.rdfabout.com/rdf/schema/uscensus/details/samp/>
     } 
   end
 
