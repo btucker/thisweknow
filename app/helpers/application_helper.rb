@@ -5,6 +5,19 @@ module ApplicationHelper
     "http://maps.google.com/staticmap?center=#{location.lat},#{location.lon}&span=#{location.miles_to_lat(location.radius)},#{location.miles_to_lon(location.radius, location.lat)}&size=206x233&key=#{GOOGLE_MAPS_API_KEY}&maptype=mobile"
   end
 
+  def subtext(factoid, location)
+    out = '<span class="subtext">'
+    case factoid.factoid_type
+    when 'Point' 
+	    out << "(within #{location.radius} mi.)"
+    when "County"
+  	  out << '(in this county)'
+    when "Town"
+  	  out << '(in this town)'
+    end
+    out << '</span>'
+    out
+  end
 
   def render_sentence(factoid, location)
     result = factoid.sentence % factoid.count(location) 

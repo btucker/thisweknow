@@ -2,15 +2,7 @@
 
 <div class="data_table_toprule"></div>
 <div class="data_table_wrap">
-  <h3><%= render_sentence(@factoid, @location) %>
-  <% if @factoid.factoid_type == 'Point' %>
-	  <span class="subtext">(within <%= @location.radius %> mi.)</span>
-  <% elsif @factoid.radius.to_f == "County" %>	  
-  	  <span class="subtext">(in this county)</span>
-  <% else @factoid.radius.to_f == "Town" %>	  
-  	  <span class="subtext">(in this town)</span>
-  <% end %>  
-  </h3>
+  <h3><%= render_sentence(@factoid, @location) %> <%= subtext(@factoid, @location) %></h3>
   <div class="subwrap">
     <table>
       <thead>
