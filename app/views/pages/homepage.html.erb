@@ -3,7 +3,7 @@
 <div class="first unit_wrap">
   <div class="unit_toprule"></div>
   <div class="first unit">
-    <h3>Least <a href="">Toxins</a>:</h3>
+    <h3>Least <%= link_to 'Toxins', location_path(@least_toxins.first.city.location) %>:</h3>
     <div class="subwrap">
       <%= link_to image_tag('homepage/homepg_least_toxins.jpg', :alt => 'least toxins'),
                location_path(@least_toxins.first.city.location) %>
@@ -20,7 +20,7 @@
 <div class="unit_wrap">
   <div class="unit_toprule"></div>
   <div class="first unit">
-    <h3>Least <a href="">Violent Crime</a>:</h3>
+    <h3>Least <%= link_to "Violent Crime", location_path(@least_crime.first.city.location) %>:</h3>
     <div class="subwrap">
       <%= link_to image_tag('homepage/homepg_most_moving_in.jpg', :alt => 'least crime'),
                   location_path(@least_crime.first.city.location) %>
@@ -37,7 +37,7 @@
 <div class="unit_wrap">
   <div class="unit_toprule"></div>
   <div class="first unit">
-    <h3>Lowest <a href="">Unemployment</a>:</h3>
+    <h3>Lowest <%= link_to "Unemployment", location_path(@lowest_unemployment.first.city.location) %>:</h3>
     <div class="subwrap">
       <%= link_to image_tag('homepage/homepg_lowest_jobless.jpg', :alt => 'least crime'),
                   location_path(@lowest_unemployment.first.city.location) %>
@@ -60,7 +60,7 @@
 <div class="first health unit_wrap">
   <div class="unit_toprule"></div>
   <div class="first unit">
-    <h3>Most <a href="">Toxins</a>:</h3>
+    <h3>Most <%= link_to "Toxins", location_path(@most_toxins.first.city.location) %>:</h3>
     <div class="subwrap">
       <%= link_to image_tag('homepage/homepg_most_toxins.jpg', :alt => 'most toxins'),
                     location_path(@most_toxins.first.city.location) %>
@@ -77,7 +77,7 @@
 <div class="health unit_wrap">
   <div class="unit_toprule"></div>
   <div class="first unit">
-    <h3>Most <a href="">Violent Crime</a>:</h3>
+    <h3>Most <%= link_to "Violent Crime", location_path(@most_crime.first.city.location) %>:</h3>
     <div class="subwrap">
       <%= link_to image_tag('homepage/homepg_most_crime.jpg', :alt => 'most crime'),
                     location_path(@most_crime.first.city.location) %>
@@ -95,7 +95,7 @@
 <div class="health unit_wrap">
   <div class="unit_toprule"></div>
   <div class="first unit">
-    <h3>Highest <a href="">Unemployment</a>:</h3>
+    <h3>Highest <%= link_to "Unemployment", location_path(@highest_unemployment.first.city.location) %>:</h3>
     <div class="subwrap">
       <%= link_to image_tag('homepage/homepg_highest_jobless.jpg', :alt => 'least crime'),
                   location_path(@highest_unemployment.first.city.location) %>
