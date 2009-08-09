@@ -16,22 +16,30 @@ class PagesController < ApplicationController
 
     @crime_factoid = Factoid.find(7)
     @most_crime = @crime_factoid.factoid_results.find(:all,
-                                                        :conditions => 'count1 IS NOT NULL',
+                                                       :conditions => 'count1 IS NOT NULL',
+						       :joins => 'inner join cities on city_id = cities.id',
+						       :group => 'cities.admin2_code',
                                                        :order => 'count1 DESC',
                                                        :limit => 5)
     @least_crime = @crime_factoid.factoid_results.find(:all,
                                                         :conditions => 'count1 IS NOT NULL AND count1 > 0',
+							:joins => 'inner join cities on city_id = cities.id',
+							:group => 'cities.admin2_code',
                                                         :order => 'count1 ASC',
                                                         :limit => 5)
 
     @unemployment_factoid = Factoid.find(11)
     @lowest_unemployment = @unemployment_factoid.factoid_results.find(:all,
                                                        :conditions => 'count3 IS NOT NULL AND count3 > 0',
+						       :joins => 'inner join cities on city_id = cities.id',
+						       :group => 'cities.admin2_code',
                                                        :order => 'count3 ASC',
                                                        :limit => 5)
 
     @highest_unemployment = @unemployment_factoid.factoid_results.find(:all,
                                                        :conditions => 'count3 IS NOT NULL',
+						       :joins => 'inner join cities on city_id = cities.id',
+						       :group => 'cities.admin2_code',
                                                        :order => 'count3 DESC',
                                                        :limit => 5)
 
