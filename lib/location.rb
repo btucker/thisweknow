@@ -56,6 +56,7 @@ class Location
   def cities_nearby
     if @city_obj
       nearest = City.find(:all, :origin => @city_obj.geocode, :within => 300, 
+                          :group => 'admin2_code',
                           :conditions => ['cities.id != ?', @city_obj.id])
       nearest.sort { |a,b| b.population.to_i <=> a.population.to_i }[0..15].sort_by { rand }[0..4].sort_by { |c| c.distance.to_f }
     end
@@ -171,6 +172,45 @@ class Location
     end   
     return self.radius
   end  
+
+  def find_town(radius=nil)
+    if @city_obj and @city_obj.town_uri
+      return @city_obj.town_uri
+    else
+      radius ||= self.radius
+      query_start = %Q|
+        select ?town ?lat ?lon from <census> where {
+          ?town rdf:type <tag:govshare.info,2005:rdf/usgovt/Town>;
+          geo:lat ?lat;
+          geo:long ?lon;
+          ?p ?o .
+          FILTER(?lat > #{self.lat_min(radius).to_f}) . 
+          FILTER(?lat < #{self.lat_max(radius).to_f}) . 
+          FILTER(?lon > #{self.lon_min(radius).to_f}) . 
+          FILTER(?lon < #{self.lon_max(radius).to_f}) . 
+      |
+      res = Sparql.execute(query_start + "FILTER(contains(?o, '#{self.city}'))}", :ruby).map do |t|
+        t[:distance] = self.distance(t[:lon].to_f, t[:lat].to_f)
+        t
+      end.min {|a,b| a[:distance] <=> b[:distance]}
+
+      if res
+        @city_obj.update_attribute(:town_uri, res[:town]) if @city_obj
+        return res[:town]
+      end
+
+      # fallback to not using name if we can't find it that way
+      res = Sparql.execute(query_start + "}", :ruby).map do |t|
+        t[:distance] = self.distance(t[:lon].to_f, t[:lat].to_f)
+        t
+      end.min {|a,b| a[:distance] <=> b[:distance]}
+
+      if res
+        @city_obj.update_attribute(:town_uri, res[:town]) if @city_obj
+        return res[:town]
+      end
+    end
+  end
 
   def distance(lon, lat) #Finds the distance between two coordinates of lat/lon in miles
   	return Math.sqrt((lon_to_miles(lon, self.lon, self.lat))**2+(lat_to_miles(lat, self.lat))**2)

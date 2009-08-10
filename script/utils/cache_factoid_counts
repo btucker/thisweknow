@@ -11,7 +11,7 @@ City.all(:order => 'population DESC').each do |city|
       count.each_with_index do |count,i|
         fr.send("count#{i+1}=".to_sym, count) if i < 9
       end
+      fr.save
     end
-    fr.save
   end
 end

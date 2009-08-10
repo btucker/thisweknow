@@ -12,6 +12,24 @@ class City < ActiveRecord::Base
     admin1_code
   end
 
+  def stats
+    town = location.find_town    
+    res = Sparql.execute("SELECT ?label ?value FROM <census> FROM <ui> WHERE {
+                            ?town rdf:type <tag:govshare.info,2005:rdf/usgovt/Town>;
+                                  ?label ?value .
+                            <tag:govshare.info,2005:rdf/usgovt/Town> ui:attribute ?label .
+                            FILTER(?town=<#{town}>)
+                         }", :ruby)
+    res.each do |stat|
+      stat[:label] = stat[:label].sub(/.*[#\/]([^#\/]+)$/, '\1').underscore.titleize
+      stat[:value].sub!(/\s*(\w+)\^(\d+)$/) do
+        stat[:label] << " <small>(#{$1}<sup>#{$2}</sup>)</small>" 
+        ''
+      end
+    end
+    res.select {|stat| stat[:label] != 'Title'}
+  end
+
   def location # our location, not to be confused with the gaticule one
     @location = Location.new(self) unless @location
     @location
