@@ -6,12 +6,19 @@ class EntitiesController < ApplicationController
 
   def attributes_for(uri)
     attributes = {}
-    @xml.search("//rdf:Description[@rdf:about='#{uri}']/rdf:type", NAMESPACES).map{|e| e.get_attribute('resource')}.compact.each do |type|
+    if uri.is_a? Nokogiri::XML::NodeSet
+      nodeset = uri.search(".//rdf:type", NAMESPACES)
+      entity = uri
+    else
+      nodeset = @xml.search("//rdf:Description[@rdf:about='#{uri}']/rdf:type", NAMESPACES)
+    end
+    nodeset.map{|e| e.get_attribute('resource')}.compact.each do |type|
       if @annotations[type] and @annotations[type][:attribute]
         @annotations[type][:attribute].each do |at|
           at.match(/(.*[#\/])([^#\/]+)$/)
-          attributes[$2] = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}", 
-                      NAMESPACES.merge('nsx' => $1)).map(&:content)
+          attributes[$2] = (entity || @xml.search("//rdf:Description[@rdf:about='#{uri}']", 
+                                                  NAMESPACES)).search(".//nsx:#{$2}", 
+                                                  NAMESPACES.merge('nsx' => $1)).map(&:content)
         end
       end
     end
@@ -29,8 +36,14 @@ class EntitiesController < ApplicationController
       if @annotations[type] and @annotations[type][:belongs_to]
         @annotations[type][:belongs_to].each do |at|
           at.match(/(.*[#\/])([^#\/]+)$/)
-          belongs_tos[$2] = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}", 
-                      NAMESPACES.merge('nsx' => $1)).map{|e| e.get_attribute('resource')}.map {|u| belongs_to_for(u,seen).merge(:uri => u)}
+          entities = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}", NAMESPACES.merge('nsx' => $1))
+          belongs_tos[$2] = entities.map{|e| 
+            if u = e.get_attribute('resource')
+              belongs_to_for(u,seen).merge(:uri => u) 
+            elsif sub_entity = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}/rdf:Description", NAMESPACES.merge('nsx' => $1))
+              attributes_for(sub_entity) 
+            end
+          }
         end
       end
     end
