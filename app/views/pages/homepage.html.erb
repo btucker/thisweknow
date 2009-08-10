@@ -20,19 +20,20 @@
 <div class="unit_wrap">
   <div class="unit_toprule"></div>
   <div class="first unit">
-    <h3>Least <%= link_to "Violent Crime", location_path(@least_crime.first.city.location) %>:</h3>
+    <h3>Most <%= link_to "Nomadic", location_path(@most_nomadic.first.city.location) %>:</h3>
     <div class="subwrap">
-      <%= link_to image_tag('homepage/homepg_most_moving_in.jpg', :alt => 'least crime'),
-                  location_path(@least_crime.first.city.location) %>
+      <%= link_to image_tag('homepage/homepg_most_moving_in.jpg', :alt => 'most nomadic'),
+                    location_path(@most_nomadic.first.city.location) %>
       <ol>
-        <% @least_crime.each do |fr| %>
+        <% @most_nomadic.each do |fr| %>
           <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
         <% end %>
       </ol>
     </div>
-    <div class="source">Source: <%= @crime_factoid.source %></div>
+    <div class="source">Source: <%= @nomad_factoid.source %></div>
   </div>
 </div>
+<!-- /unit_wrap -->
 
 <div class="unit_wrap">
   <div class="unit_toprule"></div>
@@ -77,20 +78,19 @@
 <div class="health unit_wrap">
   <div class="unit_toprule"></div>
   <div class="first unit">
-    <h3>Most <%= link_to "Violent Crime", location_path(@most_crime.first.city.location) %>:</h3>
+    <h3>Most <%= link_to "Cancer", location_path(@most_cancer.first.city.location) %>:</h3>
     <div class="subwrap">
-      <%= link_to image_tag('homepage/homepg_most_crime.jpg', :alt => 'most crime'),
-                    location_path(@most_crime.first.city.location) %>
+      <%= link_to image_tag('homepage/homepg_highest_cancer.jpg', :alt => 'least crime'),
+                  location_path(@most_cancer.first.city.location) %>
       <ol>
-        <% @most_crime.each do |fr| %>
+        <% @most_cancer.each do |fr| %>
           <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
         <% end %>
       </ol>
     </div>
-    <div class="source">Source: <%= @crime_factoid.source %></div>
+    <div class="source">Source: <%= @cancer_factoid.source %></div>
   </div>
 </div>
-<!-- /unit_wrap -->
 
 <div class="health unit_wrap">
   <div class="unit_toprule"></div>

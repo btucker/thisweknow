@@ -14,18 +14,17 @@ class PagesController < ApplicationController
                                                          :order => 'count1 ASC',
                                                          :limit => 5)
 
-    @crime_factoid = Factoid.find(7)
-    @most_crime = @crime_factoid.factoid_results.find(:all,
-                                                       :conditions => 'count1 IS NOT NULL',
-						       :joins => 'inner join cities on city_id = cities.id',
-						       :group => 'cities.admin2_code',
-                                                       :order => 'count1 DESC',
-                                                       :limit => 5)
-    @least_crime = @crime_factoid.factoid_results.find(:all,
+    @cancer_factoid = Factoid.find(17)
+    @most_cancer = @cancer_factoid.factoid_results.find(:all,
                                                         :conditions => 'count1 IS NOT NULL AND count1 > 0',
 							:joins => 'inner join cities on city_id = cities.id',
 							:group => 'cities.admin2_code',
-                                                        :order => 'count1 ASC',
+                                                        :order => 'count1 DESC',
+                                                        :limit => 5)
+    @nomad_factoid = Factoid.find(15)
+    @most_nomadic = @nomad_factoid.factoid_results.find(:all,
+                                                        :conditions => 'count1 IS NOT NULL AND count1 > 0',
+                                                        :order => 'count1 DESC',
                                                         :limit => 5)
 
     @unemployment_factoid = Factoid.find(11)
