@@ -51,3 +51,6 @@ YAHOO_API_KEY = '1GnV5onV34Fsoz2Wa3TTYRdAF0akfiZzeeF6RFdxEfHkJVy0fThA64KtuSUbolR
 Geocode.geocoder = Graticule.service(:yahoo).new(YAHOO_API_KEY)
 #Geocode.geocoder = Graticule.service(:google).new(GOOGLE_MAPS_API_KEY)
 
+ExceptionNotifier.sender_address = %("ThisWeKnow Error" <noreply@greenriver.org>)
+ExceptionNotifier.email_prefix = "[TWK] "
+ExceptionNotifier.exception_recipients = %w(ben@greenriver.org)
