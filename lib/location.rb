@@ -56,6 +56,7 @@ class Location
   def cities_nearby
     if @city_obj
       nearest = City.find(:all, :origin => @city_obj.geocode, :within => 300, 
+                          :group => 'admin2_code',
                           :conditions => ['cities.id != ?', @city_obj.id])
       nearest.sort { |a,b| b.population.to_i <=> a.population.to_i }[0..15].sort_by { rand }[0..4].sort_by { |c| c.distance.to_f }
     end
