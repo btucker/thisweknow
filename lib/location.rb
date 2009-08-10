@@ -25,7 +25,7 @@ class Location
     elsif location =~ /^([^,]+),\s+(\w{2})$/ and
       (city = City.find(:first,
                         :include => :zipcodes,
-                        :conditions => {:asciiname => $1, :admin1_code => $2}))
+                        :conditions => ['asciiname LIKE ? AND admin1_code = ?', $1 + '%', $2]))
       @city_obj = city
       @zip = (city.zipcodes.first and city.zipcodes.first.zipcode)
       @city = city.name
@@ -41,8 +41,9 @@ class Location
       @lon = @location.coordinates.second
       @city_obj = City.find(:first,
                             :include => :zipcodes,
-                            :conditions => {:name => @location.locality, 
-                                            :admin1_code => @location.region})
+                            :conditions => ['name LIKE ? AND admin1_code = ?', 
+                                            @location.locality + '%', 
+                                            @location.region])
     end
     @radius = 24 #Put in the database distance HERE
   end
