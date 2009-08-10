@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   def homepage
     @body_classes = %w(homepg)
     @homepage = true
-    @examples = ['New York, NY', '90210', 'Miami, FL', 'Los Angeles, CA']
+    @examples = ['Bridgeport, CT', '90210', 'Miami, FL', 'Los Angeles, CA']
 
     @toxins_factoid = Factoid.find(2)
     @most_toxins = @toxins_factoid.factoid_results.find(:all,
