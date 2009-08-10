@@ -6,6 +6,7 @@ set :deploy_to, "/var/www/#{application}-production"
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
 set :scm, :git
+set :keep_releases, 10
 
 role :app, "ruby2.greenriver.org"
 role :web, "ruby2.greenriver.org"
