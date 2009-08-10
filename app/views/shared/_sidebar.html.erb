@@ -19,15 +19,23 @@
           </div>
         </div><!-- /map_widget -->
         <div class="dotrule"></div>
-        <div class="stats">
-          <dl>
-            <% if @location.population %>
-              <dt>Population:</dt>
-              <dd><%= number_with_delimiter @location.population %> people</dd>
-            <% end %>
-          </dl>
-        </div>
-        <!-- /stats -->
+        <% if @location.city_obj %>
+          <div class="stats">
+            <dl>
+              <% @location.city_obj.stats.each do |stat| %>
+                <dt><%= stat[:label] %>: </dt>
+                <dd>
+                  <% if stat[:value] =~ /^[\d\.]+$/ %>
+                    <%= number_with_delimiter stat[:value] %>
+                  <% else %>
+                    <%= stat[:value] %>
+                  <% end %>
+                </dd>
+              <% end %>
+            </dl>
+          </div>
+          <!-- /stats -->
+        <% end %>
       <% end %>
       <div class="dotrule"></div>
       <% if nearby = @location.cities_nearby %> 
