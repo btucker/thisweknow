@@ -12,6 +12,8 @@ module ApplicationHelper
 	    out << "(within #{location.radius} mi.)"
     when "County"
   	  out << '(in this county)'
+    when 'CBSA'  
+      out << '(in this <abbr title="Core Based Statistical Area">CBSA</abbr>)'
     when "Town"
   	  out << '(in this town)'
     end

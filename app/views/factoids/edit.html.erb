@@ -11,7 +11,12 @@
   </p>
   <p>
     <%= f.label :factoid_type %><br />
-    <%= f.text_field :factoid_type %>
+    <%= f.select :factoid_type, [
+      'Point',
+      'Town',
+      'County',
+      'CBSA'
+    ] %>
   </p>
   <p>
     <%= f.label :count_query %><br />
