@@ -43,7 +43,11 @@ class Location
                             :include => :zipcodes,
                             :conditions => ['name LIKE ? AND admin1_code = ?', 
                                             @location.locality + '%', 
-                                            @location.region])
+                                            @location.region]) or
+                  City.create(:name => @location.locality, :asciiname => @location.locality, 
+                              :admin1_code => @location.region, :latitude => @location.latitude,
+                              :longitude => @location.longitude,
+                              :feature_class => 'P', :feature_code => 'PPL', :country_code => 'US')
     end
     @radius = 24 #Put in the database distance HERE
   end
