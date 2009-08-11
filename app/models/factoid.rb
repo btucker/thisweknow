@@ -7,23 +7,36 @@ class Factoid < ActiveRecord::Base
     self.count(location).compact.any?
   end
 
-  def execute(location)
+  def execute_query(location)
   	@radius=100
-    if factoid_type == 'Point'
-      	@radius = 0
-      	doc = Sparql.execute(query % [location.lat_min(@radius).to_f, location.lat_max(@radius).to_f, location.lon_min(@radius).to_f, location.lon_max(@radius).to_f])
-    elsif factoid_type == 'County'
-    	county = Sparql.execute("select ?county ?lat ?lon from <data> where{?county rdf:type <http://www.data.gov/ontology#County> . ?county o:location ?loc . ?loc o:latitude ?lat . ?loc o:longitude ?lon . FILTER(?lat > #{location.lat_min(@radius).to_f}) . FILTER(?lat < #{location.lat_max(@radius).to_f}) . FILTER(?lon > #{location.lon_min(@radius).to_f}) . FILTER(?lon < #{location.lon_max(@radius).to_f})}", :ruby).map do |c|
-          c[:distance] = location.distance(c[:lon].to_f, c[:lat].to_f)
-          c
-		end.min {|a,b| a[:distance] <=> b[:distance]}[:county]
-    	doc = Sparql.execute(query % county)
-    elsif factoid_type == 'Town'
-    	@radius = 50
-	   	town = location.find_town(@radius)
-      doc = Sparql.execute(query % town)
+    @formatted_query ||= {}
+    unless @formatted_query[location.city_obj.id]
+      if factoid_type == 'Point'
+        @radius = 0
+        @formatted_query[location.city_obj.id] = query % [location.lat_min(@radius).to_f, 
+                                                          location.lat_max(@radius).to_f, 
+                                                          location.lon_min(@radius).to_f, 
+                                                          location.lon_max(@radius).to_f]
+
+      elsif factoid_type == 'County'
+        county = Sparql.execute("select ?county ?lat ?lon from <data> where{?county rdf:type <http://www.data.gov/ontology#County> . ?county o:location ?loc . ?loc o:latitude ?lat . ?loc o:longitude ?lon . FILTER(?lat > #{location.lat_min(@radius).to_f}) . FILTER(?lat < #{location.lat_max(@radius).to_f}) . FILTER(?lon > #{location.lon_min(@radius).to_f}) . FILTER(?lon < #{location.lon_max(@radius).to_f})}", :ruby).map do |c|
+            c[:distance] = location.distance(c[:lon].to_f, c[:lat].to_f)
+            c
+        end.min {|a,b| a[:distance] <=> b[:distance]}[:county]
+        @formatted_query[location.city_obj.id] = query % county
+
+      elsif factoid_type == 'Town'
+        @radius = 50
+        town = location.find_town(@radius)
+        @formatted_query[location.city_obj.id] = query % town
+
+      end
     end
-    return doc
+    @formatted_query[location.city_obj.id]
+  end
+
+  def execute(location)
+    Sparql.execute(execute_query(location))
   end
 
   def count(location)

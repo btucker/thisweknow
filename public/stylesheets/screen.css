@@ -526,3 +526,8 @@ div#sidebar div.dev_team {
 div#sidebar div.dev_team img {
 	float: left;
 }
+
+div#sparql_query {
+  padding: 6px;
+  background-color: rgb(244, 244, 238);
+}
