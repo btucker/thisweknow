@@ -47,7 +47,8 @@
 <div id="sparql_query" style="display:none">
   <pre>
     <code>
-      <%= word_wrap @factoid.execute_query(@location) %>
+<%=h Sparql.prefixes.gsub(/^\s*/,'') %>
+<%=h word_wrap @factoid.execute_query(@location).sub(/^\s*/,'') %>
     </code>
   </pre>
 <p><small><a href="http://www.w3.org/TR/rdf-sparql-query/">SPARQL</a> is an RDF query language ThisWeKnow uses to formulate the information displayed on these pages.</small>
