@@ -14,7 +14,7 @@
       </thead>
       <tbody>
         <% @data.each do |hash| %>
-          <tr>
+          <tr class="<%= cycle('','alt') %>">
             <% @headings.each do |keyname| %>
               <% if hash[keyname.to_sym][0] =~ /\w+/ %>
                 <td> <%= link_to hash[keyname.to_sym][0].titleize, :controller => :entities, :action => :show, :uri => hash[keyname.to_sym][1] %> </td>
