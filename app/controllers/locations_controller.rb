@@ -7,7 +7,7 @@ class LocationsController < ApplicationController
 
   def show
     @body_classes << 'two_column'
-    #@facility_data = @location.find_facilities
+    @factoids = Factoid.all.select{|f| f.has_data?(@location)}
   end
 
   def factoid

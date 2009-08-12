@@ -156,14 +156,19 @@ h2#subject span.pointer {
 	height: 17px;
 }
 div.properties {
-	border: 5px solid #F4F4EE;
 	margin-top: 6px;
+  margin-bottom: 15px;
 	font-size: 140%;
+  padding: 5px;
+  background-color: #F4F4EE;
+  border-bottom: 1px solid #dededc;
 }
 div.properties div.subwrap {
 	border: 1px solid #ccc;
 	padding: 6px 16px 25px;
+  background-color: #fff;
 }
+
 div.properties ul {
 	list-style: none;
 	color: #999;
@@ -286,10 +291,13 @@ div.data_table_wrap td {
 div.data_table_wrap tr.alt td {
 	background-color: #F6F6F6;
 }
-div.data_table_wrap div.source {
+div.data_table_wrap div.source, div.properties div.source {
 	margin: 5px 10px 0 19px;
-	font-size: 85%;
+	font-size: 11px;
 	color: #999;
+}
+div.source span.bull {
+  font-size: 14px;
 }
 div.data_table_bottomrule {
 	border-top: 1px solid #DEDED8;

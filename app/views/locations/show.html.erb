@@ -3,8 +3,16 @@
 <div class="properties">
   <div class="subwrap">
     <ul>
-      <%= render :partial => 'factoid', :collection => Factoid.all.select{|f| f.has_data?(@location)} %>
+      <%= render :partial => 'factoid', :collection => @factoids %>
     </ul>
   </div>
-  <%#= render :partial => 'legislators' %>
+    <div class="source">
+      <p><b>Tip:</b> Click on any of the highlighted items above to explore the underlying data.</p>
+      <p><b>Sources:</b> <%= @factoids.map(&:source).compact.join ' <span class="bull">&bull;</span> ' %></p>
+    </div>
 </div>
+
+<h3>We Know More</h3>
+<p>This is just the beginning of what is known about <%=h @location %>.  We are actively loading more data into
+This We Know. We also intend to open up our system to allow the community to create the queries that generate
+the statistics on these pages.</p>
