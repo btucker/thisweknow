@@ -32,12 +32,12 @@ module ApplicationHelper
       end
     end
     i = 0
-    result.gsub!(/<e>([^<]+)<\/e>/) do 
+    result.gsub!(/<e(1?)>([^<]+)<\/e1?>/) do 
       i += 1
       if opt[:as_text]
-        pluralize_without_count(counts[i-1], $1.singularize)
+        $1 == '1' ? $2 : pluralize_without_count(counts[i-1], $2.singularize)
       else
-        "<a class='quality' href='#{factoid_path(factoid, location)}'>#{pluralize_without_count(counts[i-1], $1.singularize)}</a>"
+        "<a class='quality' href='#{factoid_path(factoid, location)}'>#{$1 == '1' ? $2 : pluralize_without_count(counts[i-1], $2.singularize)}</a>"
       end
     end
     result
