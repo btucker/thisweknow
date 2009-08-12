@@ -4,6 +4,7 @@ class Location
   attr_reader :location, :lat, :lon, :city, :state, :zip, :city_obj
   attr_accessor :radius
 
+
   def initialize(location)
     if location.is_a? City
       @city_obj = city = location
@@ -49,7 +50,11 @@ class Location
                               :longitude => @location.longitude,
                               :feature_class => 'P', :feature_code => 'PPL', :country_code => 'US')
     end
-    @radius = 24 #Put in the database distance HERE
+    if @city_obj and area = @city_obj.stats(find_town).select{|s| s[:label] =~ /^Land Area/}.first
+      @radius = Math.sqrt(area[:value].to_f).round
+    else
+      @radius = 24 
+    end
   end
 
   def population
@@ -61,9 +66,8 @@ class Location
   def cities_nearby
     if @city_obj
       nearest = City.find(:all, :origin => @city_obj.geocode, :within => 150, 
-                          :group => 'admin2_code',
                           :conditions => ['cities.id != ?', @city_obj.id])
-      nearest.sort { |a,b| b.population.to_i <=> a.population.to_i }[0..15].sort_by { rand }[0..4].sort_by { |c| c.distance.to_f }
+      nearest.sort { |a,b| b.population.to_i <=> a.population.to_i }[0..4].sort_by { |c| c.distance.to_f }
     end
   end
 

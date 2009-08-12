@@ -8,11 +8,10 @@ class Factoid < ActiveRecord::Base
   end
 
   def execute_query(location)
-  	@radius=100
+  	@radius=location.radius
     @formatted_query ||= {}
     unless @formatted_query[location.city_obj.id]
       if factoid_type == 'Point'
-        @radius = 0
         @formatted_query[location.city_obj.id] = query % [location.lat_min(@radius).to_f, 
                                                           location.lat_max(@radius).to_f, 
                                                           location.lon_min(@radius).to_f, 

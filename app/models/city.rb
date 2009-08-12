@@ -2,6 +2,8 @@ class City < ActiveRecord::Base
   has_many :zipcodes
   has_many :factoid_results
 
+  METERS_IN_MILE = 1609.344
+
   acts_as_geocodable :address => {:locality => :name, :region => :admin1_code, :country => :country_code}
 
   def to_s
@@ -12,22 +14,50 @@ class City < ActiveRecord::Base
     admin1_code
   end
 
-  def stats
-    town = location.find_town    
-    res = Sparql.execute("SELECT ?label ?value FROM <census> FROM <ui> WHERE {
-                            ?town rdf:type <tag:govshare.info,2005:rdf/usgovt/Town>;
-                                  ?label ?value .
-                            <tag:govshare.info,2005:rdf/usgovt/Town> ui:attribute ?label .
-                            FILTER(?town=<#{town}>)
-                         }", :ruby)
-    res.each do |stat|
-      stat[:label] = stat[:label].sub(/.*[#\/]([^#\/]+)$/, '\1').underscore.titleize
-      stat[:value].sub!(/\s*(\w+)\^(\d+)$/) do
-        stat[:label] << " <small>(#{$1}<sup>#{$2}</sup>)</small>" 
-        ''
-      end
+  def stats(town=nil)
+    unless @stats
+      town ||= location.find_town    
+      res = Sparql.execute("SELECT ?label ?value FROM <census> FROM <ui> WHERE {
+                              ?town rdf:type <tag:govshare.info,2005:rdf/usgovt/Town>;
+                                    ?label ?value .
+                              <tag:govshare.info,2005:rdf/usgovt/Town> ui:attribute ?label .
+                              FILTER(?town=<#{town}>)
+                           }", :ruby)
+      res.each do |stat|
+        stat[:label] = stat[:label].sub(/.*[#\/]([^#\/]+)$/, '\1').underscore.titleize
+        # update population if we don't already have it (used for nearby)
+        if stat[:label] == 'Population' and !self.population
+          self.update_attribute(:population, stat[:value])
+          self.geocode
+        end
+        stat[:value].sub!(/\s*(\w+)\^(\d+)$/) do
+          if $1 == 'm'
+            unit = 'mi'
+          else
+            unit = $1
+          end
+          stat[:label] << " <small>(#{unit}<sup>#{$2}</sup>)</small>" 
+          ''
+        end
+        stat[:value] = (stat[:value].to_f / (METERS_IN_MILE ** 2) * 10).round / 10.0 if stat[:label] =~ /\(mi<sup>/
+        
+        stat[:order] =
+            case stat[:label]
+              when /Population/
+                0
+              when /Households/
+                1
+              when /Land/
+                2
+              when /Water/
+                3
+              else
+                4
+            end
+        end
+      @stats = res.select {|stat| stat[:label] != 'Title'}.sort_by {|s| s[:order]}
     end
-    res.select {|stat| stat[:label] != 'Title'}
+    @stats
   end
 
   def location # our location, not to be confused with the gaticule one
