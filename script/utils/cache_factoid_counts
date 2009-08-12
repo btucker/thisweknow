@@ -12,6 +12,7 @@ City.all(:order => 'population DESC').each do |city|
         fr.send("count#{i+1}=".to_sym, count) if i < 9
       end
       fr.save
+puts "\t* saved #{factoid.id}"
     end
   end
 end
