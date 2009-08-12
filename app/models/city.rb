@@ -17,19 +17,22 @@ class City < ActiveRecord::Base
   def stats(town=nil)
     unless @stats
       town ||= location.find_town    
-      res = Sparql.execute("SELECT ?label ?value FROM <census> FROM <ui> WHERE {
+      columns = %w(populations households land_area water_area)
+      if columns.all?{|c| self[c]}
+        res = columns.map {|c| {:label => c.humanize.titleize, :value => self[c]} } 
+      else
+        res = Sparql.execute("SELECT ?label ?value FROM <census> FROM <ui> WHERE {
                               ?town rdf:type <tag:govshare.info,2005:rdf/usgovt/Town>;
                                     ?label ?value .
                               <tag:govshare.info,2005:rdf/usgovt/Town> ui:attribute ?label .
                               FILTER(?town=<#{town}>)
                            }", :ruby)
+      end
+
       res.each do |stat|
         stat[:label] = stat[:label].sub(/.*[#\/]([^#\/]+)$/, '\1').underscore.titleize
         # update population if we don't already have it (used for nearby)
-        if stat[:label] == 'Population' and !self.population
-          self.update_attribute(:population, stat[:value])
-          self.geocode
-        end
+        column = stat[:label].downcase.gsub(' ','_').to_sym
         stat[:value].sub!(/\s*(\w+)\^(\d+)$/) do
           if $1 == 'm'
             unit = 'mi'
@@ -40,6 +43,11 @@ class City < ActiveRecord::Base
           ''
         end
         stat[:value] = (stat[:value].to_f / (METERS_IN_MILE ** 2) * 10).round / 10.0 if stat[:label] =~ /\(mi<sup>/
+
+        if self.respond_to?(column) and !self.send(column)
+          self.update_attribute(column, stat[:value])
+          self.geocode if column == :population
+        end
         
         stat[:order] =
             case stat[:label]
