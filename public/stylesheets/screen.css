@@ -539,3 +539,16 @@ div#sparql_query {
   padding: 6px;
   background-color: rgb(244, 244, 238);
 }
+
+a.tweet-this {
+  font-size: 60%;
+  opacity: .5;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+}
+
+li:hover a.tweet-this {
+  opacity: 1;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+}
