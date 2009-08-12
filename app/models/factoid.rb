@@ -18,7 +18,8 @@ class Factoid < ActiveRecord::Base
                                                           location.lon_max(@radius).to_f]
 
       elsif factoid_type == 'County' || factoid_type == 'CBSA'
-        county = Sparql.execute("select ?county ?lat ?lon from <data> where{?county rdf:type <http://www.data.gov/ontology#County> . ?county o:location ?loc . ?loc o:latitude ?lat . ?loc o:longitude ?lon . FILTER(?lat > #{location.lat_min(@radius).to_f}) . FILTER(?lat < #{location.lat_max(@radius).to_f}) . FILTER(?lon > #{location.lon_min(@radius).to_f}) . FILTER(?lon < #{location.lon_max(@radius).to_f})}", :ruby).map do |c|
+        radius = 100
+        county = Sparql.execute("select ?county ?lat ?lon from <data> where{?county rdf:type <http://www.data.gov/ontology#County> . ?county o:location ?loc . ?loc o:latitude ?lat . ?loc o:longitude ?lon . FILTER(?lat > #{location.lat_min(radius).to_f}) . FILTER(?lat < #{location.lat_max(radius).to_f}) . FILTER(?lon > #{location.lon_min(radius).to_f}) . FILTER(?lon < #{location.lon_max(radius).to_f})}", :ruby).map do |c|
             c[:distance] = location.distance(c[:lon].to_f, c[:lat].to_f)
             c
         end.min {|a,b| a[:distance] <=> b[:distance]}[:county]
