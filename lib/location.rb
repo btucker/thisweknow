@@ -182,11 +182,10 @@ class Location
     return self.radius
   end  
 
-  def find_town(radius=nil)
+  def find_town(radius=24)
     if @city_obj and @city_obj.town_uri
       return @city_obj.town_uri
     else
-      radius ||= self.radius
       query_start = %Q|
         select ?town ?lat ?lon from <census> where {
           ?town rdf:type <tag:govshare.info,2005:rdf/usgovt/Town>;
