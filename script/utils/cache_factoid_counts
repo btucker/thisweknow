@@ -3,6 +3,12 @@ require File.dirname(__FILE__) + '/../../config/environment'
 
 City.all(:order => 'population DESC').each do |city|
   puts city.to_s
+  city.stats # cache stats
+
+  # store pollutants by area
+  fr = Factoid.find(2).factoid_results.find(:first, :conditions => {:city_id => city.id})
+  fr.count3 = fr.count1 / (city.land_area + city.water_area) if fr and fr.count1 and city.land_area > 0
+
   Factoid.all.each do |factoid|
     next if factoid.factoid_results.find(:first, :conditions => {:city_id => city.id})
     fr = factoid.factoid_results.build(:city_id => city.id)
