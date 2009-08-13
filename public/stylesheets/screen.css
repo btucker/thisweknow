@@ -407,7 +407,7 @@ body.homepg div#header div.dotrule {
 	margin-bottom: 24px;
 }
 div#header div#tagline {
-	background: url(../images/tagline_homepg.png);
+	background: url(../images/tagline2.gif) no-repeat;
 	text-indent: 100em;
 	white-space: nowrap;
 	overflow: hidden;
