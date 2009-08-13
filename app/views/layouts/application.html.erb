@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <title>This We Know<%= @location and " about #{@factoid ? "#{@factoid.entity} in " : ''}#{@location}" %></title>
+    <title>This We Know<%= @location ? " about #{@factoid ? "#{@factoid.entity} in " : ''}#{@location}" : ': Explore U.S. Government Data About Your Community' %></title>
     <%= stylesheet_link_tag 'screen' %>
     <%= javascript_include_tag 'prototype' %>
   </head>
@@ -67,7 +67,14 @@
        </p>
      </div>
      <div class="sparql">
-       <%= yield :sparql %>
+       <% if @content_for_sparql %>
+         <%= yield :sparql %>
+       <% else %>
+        <p>
+          <b>Our vision:</b> Provide citizens with a single destination where they can explore all the information from the <a href="http://data.gov">Data.gov</a> catalog. 
+          <a href="/pages/about">Learn more about how our semantic RDF-based application works &raquo;</a>
+        </p>
+       <% end %>
      </div>
    </div>
 
