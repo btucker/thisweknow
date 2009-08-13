@@ -8,7 +8,7 @@
   </div>
     <div class="source">
       <p><b>Tip:</b> Click on any of the highlighted items above to explore the underlying data.</p>
-      <p><b>Sources:</b> <%= @factoids.map(&:source).compact.join ' <span class="bull">&bull;</span> ' %></p>
+      <p><b>Sources:</b> <%= @factoids.map(&:source).compact.uniq.join ' <span class="bull">&bull;</span> ' %></p>
     </div>
 </div>
 
