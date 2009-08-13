@@ -2,31 +2,33 @@
 require File.dirname(__FILE__) + '/../../config/environment'
 
 City.all(:order => 'population DESC').each do |city|
-  puts city.to_s
-  city.stats # cache stats
+  puts city
+  #city.stats # cache stats
 
-  # store pollutants by area
-  fr = Factoid.find(2).factoid_results.find(:first, :conditions => ['city_id = ? AND count3 IS NULL', city.id])
-  if fr and fr.count1 and city.land_area > 0
-    fr.count3 = fr.count1 / (city.land_area + city.water_area)
-    puts "\t *#{fr.count3}" if fr
-    fr.save
+  Factoid.all.each do |factoid|
+    unless factoid.factoid_results.exists?(:city_id => city.id)
+    fr = factoid.factoid_results.build(:city_id => city.id)
+    begin
+    count = factoid.count(city.location)
+    if count.compact.any?
+      count.each_with_index do |count,i|
+        fr.send("count#{i+1}=".to_sym, count) if i < 9
+      end
+      fr.save
+puts "\t* saved #{factoid.id}"
+    end
+    rescue Exception => e;
+      puts "Exception: #{e}"
+    end
+    end
   end
 
-#  Factoid.all.each do |factoid|
-#    next if factoid.factoid_results.find(:first, :conditions => {:city_id => city.id})
-#    fr = factoid.factoid_results.build(:city_id => city.id)
-#    begin
-#    count = factoid.count(city.location)
-#    if count.compact.any?
-#      count.each_with_index do |count,i|
-#        fr.send("count#{i+1}=".to_sym, count) if i < 9
-#      end
-#      fr.save
-#puts "\t* saved #{factoid.id}"
-#    end
-#    rescue Exception => e;
-#      puts "Exception: #{e}"
-#    end
-#  end
+  # store pollutants by area
+  Factoid.find(2).factoid_results.find(:all, :conditions => ['city_id = ? AND count3 is null', city.id]).each do |fr|
+    if fr.count1 and city.land_area > 0
+      fr.count3 = (fr.count1 / (city.land_area + city.water_area))
+      puts "\t *#{fr.count3}"
+      fr.save
+    end
+  end
 end
