@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  caches_page :homepage
+
   def homepage
     @body_classes = %w(homepg)
     @homepage = true

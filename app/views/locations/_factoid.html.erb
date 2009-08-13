@@ -1,4 +1,10 @@
 <li>
   <span class="bullet"></span>
   <%= render_sentence(factoid, @location) %> <%= subtext(factoid, @location) %>
+  <% if text = render_sentence(factoid, @location, :as_text => true).sub(/[\.\s]+$/,'') and text.size < 100 %>
+    <%= link_to 'tweet this', 
+        "http://twitter.com/home?status=#{text} " +
+        "in #{@location} #{location_path(@location)}", 
+        :title => 'Post to Twitter', :class => 'tweet-this' %>
+  <% end %>
 </li>

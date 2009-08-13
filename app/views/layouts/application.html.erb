@@ -57,6 +57,19 @@
       </div>
     </div><!-- /wrapper -->
 
+   <div id="subfooter">
+     <div class="feedback">
+       <%= link_to_function image_tag('feedback_bu.gif', :alt => 'Feedback'), 'UserVoice.Popin.show(); return false;' %>
+       <p>
+         <b>Have some Feedback?</b><br/>
+         <%= link_to_function 'Help us improve this site.', 'UserVoice.Popin.show(); return false;' %>
+       </p>
+     </div>
+     <div class="sparql">
+       <%= yield :sparql %>
+     </div>
+   </div>
+
     <div id="footer">
       <div class="subwrap">
         <ul class="nav">
@@ -68,19 +81,15 @@
       </div>
     </div><!-- /footer -->
     <script type="text/javascript">
-        var uservoiceJsHost = ("https:" == document.location.protocol) ? "https://uservoice.com" : "http://cdn.uservoice.com";
-          document.write(unescape("%3Cscript src='" + uservoiceJsHost + "/javascripts/widgets/tab.js' type='text/javascript'%3E%3C/script%3E"))
+      var uservoiceJsHost = ("https:" == document.location.protocol) ? "https://uservoice.com" : "http://cdn.uservoice.com";
+      document.write(unescape("%3Cscript src='" + uservoiceJsHost + "/javascripts/widgets/tab.js' type='text/javascript'%3E%3C/script%3E"))
     </script>
     <script type="text/javascript">
-      UserVoice.Tab.show({ 
-          key: 'thisweknow',
-          host: 'thisweknow.uservoice.com', 
-          forum: 'general', 
-          alignment: 'left',
-          background_color:'#009C00', 
-          text_color: 'white',
-          hover_color: '#2D7BB2',
-          lang: 'en'
+      UserVoice.Popin.setup({ 
+        key: 'thisweknow',
+        host: 'thisweknow.uservoice.com', 
+        forum: 'general', 
+        lang: 'en'
       })
     </script>
     <script type="text/javascript">

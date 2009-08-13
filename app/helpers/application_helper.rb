@@ -21,15 +21,32 @@ module ApplicationHelper
     out
   end
 
-  def render_sentence(factoid, location)
-    result = factoid.sentence % factoid.count(location) 
+  def render_sentence(factoid, location, opt = {})
+    counts = factoid.count(location)
+    result = factoid.sentence % counts
     result.gsub!(/<n(,?)>([^<]+)<\/n,?>/) do 
-      "<span class='quantity'>#{$1 == ',' ? number_with_delimiter($2) : $2}</span>"
+      if opt[:as_text]
+        $1 == ',' ? number_with_delimiter($2) : $2
+      else
+        "<span class='quantity'>#{$1 == ',' ? number_with_delimiter($2) : $2}</span>"
+      end
     end
-    result.gsub!(/<e>([^<]+)<\/e>/, "<a class='quality' href='#{factoid_path(factoid, location)}'>\\1</a>")
+    i = 0
+    result.gsub!(/<e(1?)>([^<]+)<\/e1?>/) do 
+      i += 1
+      if opt[:as_text]
+        $1 == '1' ? $2 : pluralize_without_count(counts[i-1], $2.singularize)
+      else
+        "<a class='quality' href='#{factoid_path(factoid, location)}'>#{$1 == '1' ? $2 : pluralize_without_count(counts[i-1], $2.singularize)}</a>"
+      end
+    end
     result
     rescue Exception
       "Sorry, there is not enough data about this location."
+  end
+
+  def pluralize_without_count(count, singular, plural = nil)
+    ((count == 1 || count == '1') ? singular : (plural || singular.pluralize))
   end
 
 end

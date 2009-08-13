@@ -38,19 +38,27 @@
 </div><!-- /data_table_wrap -->
 <div class="data_table_bottomrule"></div>
 
-<h4>Speak SPARQL?</h4>
-<p>
-<%= link_to_function 'Show the query that generated this page &raquo;' do |page| 
-  page[:sparql_query].toggle
- end %>
-</p>
-<div id="sparql_query" style="display:none">
-  <pre>
-    <code>
-<%=h Sparql.prefixes.gsub(/^\s*/,'') %>
-<%=h word_wrap @factoid.execute_query(@location).sub(/^\s*/,'') %>
-    </code>
-  </pre>
-<p><small><a href="http://www.w3.org/TR/rdf-sparql-query/">SPARQL</a> is an RDF query language ThisWeKnow uses to formulate the information displayed on these pages.</small>
-</p>
-</div>
+<% content_for :sparql do %>
+  <%= link_to_function image_tag('sparql_bu.gif', :alt => 'SPARQL') do |page| 
+      page[:sparql_query].toggle
+      page[:sparql_query].scroll_to
+    end
+  %>
+  <p>
+    <b>Speak SPARQL?</b><br/>
+    <%= link_to_function 'Show the query that generated this page &raquo;' do |page| 
+      page[:sparql_query].toggle
+      page[:sparql_query].scroll_to
+     end %>
+  </p>
+  <div id="sparql_query" style="display:none">
+    <pre>
+      <code>
+  <%=h Sparql.prefixes.gsub(/^\s*/,'') %>
+  <%=h word_wrap @factoid.execute_query(@location).sub(/^\s*/,'') %>
+      </code>
+    </pre>
+    <p><small><a href="http://www.w3.org/TR/rdf-sparql-query/">SPARQL</a> is an RDF query language ThisWeKnow uses to formulate the information displayed on these pages.</small>
+    </p>
+  </div>
+<% end %>

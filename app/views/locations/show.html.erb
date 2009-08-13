@@ -12,7 +12,10 @@
     </div>
 </div>
 
-<h3>We Know More</h3>
-<p>This is just the beginning of what is known about <%=h @location %>.  We are actively loading more data into
-This We Know. We also intend to open up our system to allow the community to create the queries that generate
-the statistics on these pages.</p>
+<% content_for :sparql do %>
+  <p><b>We Know More:</b>
+    This is just some of what is known about <%=link_to h(@location), location_path(@location) %>.  We are 
+    actively loading more data. We also plan to allow the community to contribute &amp; select the queries that generate
+    these statistics.
+  </p>
+<% end %>
