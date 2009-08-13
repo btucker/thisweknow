@@ -96,7 +96,7 @@ div#header a#whats_this {
 	overflow: hidden;
 	white-space: nowrap;
 }
-div#footer {
+div#footer, div#subfooter {
 	width: 970px;
 	margin: 0 auto;
 	background: url(../images/dotrule.png) 0 0 repeat-x;
@@ -104,6 +104,37 @@ div#footer {
 	font-size: 85%;
 	color: #999;
 }
+
+div#subfooter {
+  width: 930px;
+  background-image: none;
+  background-color: #F4F4EE;
+  border-top: 1px solid #dededc;
+  margin-bottom: 4px;
+  padding: 10px 20px;
+  position: relative;
+  color: #333;
+  font-size: 90%;
+}
+div#subfooter img {
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+div#subfooter p {
+  padding-top: 3px;
+}
+div#subfooter div.feedback {
+  width: 270px;
+  background: url(../images/ft_div_img.gif) center right repeat-y;
+}
+div#subfooter div.sparql {
+  position: absolute;
+  left: 310px;
+  width: 650px;
+  top: 10px;
+}
+
 div#footer div.subwrap {
 	background-color: #F4F4EE;
 	padding: 8px 15px 5px 23px;
@@ -536,8 +567,13 @@ div#sidebar div.dev_team img {
 }
 
 div#sparql_query {
-  padding: 6px;
+  padding: 10px;
   background-color: rgb(244, 244, 238);
+  font-size: 110%;
+  border-left: 1px solid #dededc;
+  border-right: 1px solid #dededc;
+  border-bottom: 1px solid #dededc;
+  margin-top: 10px;
 }
 
 a.tweet-this {
