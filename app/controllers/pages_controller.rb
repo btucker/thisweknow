@@ -10,14 +10,14 @@ class PagesController < ApplicationController
     @most_toxins = @toxins_factoid.factoid_results.find(:all,
 							:include => :city,
 							:group => :city_id,
-                                                        :conditions => 'count1 IS NOT NULL',
-                                                        :order => 'count1 DESC',
+                                                        :conditions => 'count3 IS NOT NULL',
+                                                        :order => 'count3 DESC',
                                                         :limit => 5)
     @least_toxins = @toxins_factoid.factoid_results.find(:all,
 							:include => :city,
                                                         :group => :city_id,
-                                                        :conditions => 'count1 IS NOT NULL AND count1 > 0',
-                                                         :order => 'count1 ASC',
+                                                        :conditions => 'count3 IS NOT NULL AND count3 > 0',
+                                                         :order => 'count3 ASC',
                                                          :limit => 5)
 
     @cancer_factoid = Factoid.find(17)
