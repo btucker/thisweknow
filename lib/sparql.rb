@@ -43,6 +43,8 @@ class Sparql
     PREFIX ui: <http://www.thisweknow.org/ui#>
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX dc: <http://purl.org/dc/elements/1.1/>
+    PREFIX dcterms: <http://purl.org/dc/terms/>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
     PREFIX samp: <http://www.rdfabout.com/rdf/schema/uscensus/details/samp/>

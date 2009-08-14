@@ -11,6 +11,21 @@
   <%= render :partial => 'list', :object => @entity %>
 </div>
 
+<% @back_links.each do |link| %>
+  <h3><%= link[0] %></h3>
+  <table>
+  <% link[1].each do |res,cols| %>
+    <tr>
+      <th><%= link_to res, :action => 'show', :uri => res %></th>
+      <% cols.each do |col| %>
+        <td><%= col[:o] %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
+
+
 <% content_for :sidebar do %>
 <div class="more_we_know">
   <h3>Download:<span class="pointer"></span></h3>
