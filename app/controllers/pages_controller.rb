@@ -21,12 +21,20 @@ class PagesController < ApplicationController
                                                          :limit => 5)
 
     @cancer_factoid = Factoid.find(17)
-    @most_cancer = @cancer_factoid.factoid_results.find(:all,
-                                                        :conditions => 'count1 IS NOT NULL AND count1 > 0 AND cities.population > 30000',
-							:joins => 'inner join cities on city_id = cities.id',
-							:group => 'count1',
-                                                        :order => 'count1 DESC',
-                                                        :limit => 5)
+    # we do this so we get the largest town in a given CBSA
+    @most_cancer = []
+    @cancer_factoid.factoid_results.find(:all,
+                                         :select => 'distinct count1',
+                                         :order => 'count1 DESC',
+                                         :limit => 5).map(&:count1).each do |count|
+      @most_cancer << @cancer_factoid.factoid_results.find(:first,
+                                                           :conditions => {:count1 => count},
+                                                           :include => :city,
+                                                           :order => 'cities.population DESC',
+                                                           :limit => 1)
+
+    end
+
     @nomad_factoid = Factoid.find(15)
     @most_nomadic = @nomad_factoid.factoid_results.find(:all,
 							:include => :city,
