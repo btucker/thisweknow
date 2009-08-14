@@ -40,7 +40,8 @@ namespace :deploy do
 end
 
 after 'deploy:update_code', 'deploy:link_conf', 'deploy:link_public'
-after 'deploy:update', 'deploy:chown_environment', 'deploy:restart'
+#after 'deploy:update', 'deploy:chown_environment', 'deploy:restart'
+after 'deploy:update', 'deploy:restart'
 
 ## Rake helper task.
 def run_remote_rake(rake_cmd)
