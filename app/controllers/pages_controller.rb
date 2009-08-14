@@ -22,9 +22,9 @@ class PagesController < ApplicationController
 
     @cancer_factoid = Factoid.find(17)
     @most_cancer = @cancer_factoid.factoid_results.find(:all,
-                                                        :conditions => 'count1 IS NOT NULL AND count1 > 0',
+                                                        :conditions => 'count1 IS NOT NULL AND count1 > 0 AND cities.population > 30000',
 							:joins => 'inner join cities on city_id = cities.id',
-							:group => 'city_id,cities.admin2_code',
+							:group => 'count1',
                                                         :order => 'count1 DESC',
                                                         :limit => 5)
     @nomad_factoid = Factoid.find(15)
