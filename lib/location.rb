@@ -197,7 +197,7 @@ class Location
           FILTER(?lon > #{self.lon_min(radius).to_f}) . 
           FILTER(?lon < #{self.lon_max(radius).to_f}) . 
       |
-      res = Sparql.execute(query_start + "FILTER(contains(?o, '#{self.city}'))}", :ruby).map do |t|
+      res = Sparql.execute(query_start + "FILTER(contains(?o, '\"#{self.city}\"'))}", :ruby).map do |t|
         t[:distance] = self.distance(t[:lon].to_f, t[:lat].to_f)
         t
       end.min {|a,b| a[:distance] <=> b[:distance]}
