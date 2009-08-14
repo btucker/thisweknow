@@ -42,13 +42,13 @@
   </tr>
   <% @example.each do |row| %>
     <tr>
-      <td><%= link_to row[:s], :controller => 'entities', :action => 'show', :uri => params[:uri], :p => row[:s] %></td>
+      <td><%= link_to row[:s], :controller => 'entities', :action => 'show', :uri => row[:s] %></td>
       <td><%= row[:p] %></td>
       <td>
         <%= button_to 'a', :action => "add_annotation", :uri => params[:uri], :p => row[:p], :t => 'attribute', :method => :post %>
       </td>
       <td>
-        <%= button_to 'bt', :action => "add_annotation", :uri => row[:p], :t => 'belongsTo', :method => :post %>
+        <%= button_to 'bt', :action => "add_annotation", :uri => params[:uri], :p => row[:p], :t => 'belongsTo', :method => :post %>
       </td>
       </td>
       <td><%= row[:o] %></td>
