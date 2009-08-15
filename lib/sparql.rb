@@ -48,6 +48,7 @@ class Sparql
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
     PREFIX samp: <http://www.rdfabout.com/rdf/schema/uscensus/details/samp/>
+    PREFIX foaf: <http://xmlns.com/foaf/0.1/>
     } 
   end
 
