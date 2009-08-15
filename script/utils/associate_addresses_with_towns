@@ -65,44 +65,37 @@ state_abbr = {
 offset = 0
 while true
   Sparql.execute(%Q{
-    select ?s ?city ?state ?state_abbr from <data> from <govtrack> WHERE {
-      ?s rdf:type o:Address;
+    select ?addr ?city ?state ?state_abbr from <data> from <govtrack> WHERE {
+      ?addr rdf:type o:Address;
           o:city ?city;
           o:state ?state .
         OPTIONAL {
           ?state o:shortName ?state_abbr
         }
-    } limit 2 offset #{offset}
+    } limit 1000 offset #{offset}
   }, :ruby).each do |row|
     state = state_abbr[(row[:state_abbr] or row[:state])] 
+    next unless state and row[:city]
+    puts state + ' ' + row[:city].downcase.titleize + ' ' + offset.to_s
     Sparql.execute(%Q{
-      select ?town ?town_name ?state_name from <data> from <census> WHERE {
+      insert into <data> { ?addr dcterms:isPartOf ?town } 
+      from <data> from <census> WHERE {
+        ?addr rdf:type o:Address;
+	      o:city ?city;
+              o:state ?state .
+        OPTIONAL {
+		?state o:shortName ?state_abbr
+        } .
         ?town rdf:type <tag:govshare.info,2005:rdf/usgovt/Town> .
         ?town dc:title ?town_name;
         dcterms:isPartOf [  dcterms:isPartOf [ dc:title ?state_name] ]  .
-        FILTER(?town_name="#{row[:city]}") .
-        FILTER(?state_name="#{state}")
-       } LIMIT 1
-    }, :ruby).each do |t|
-      puts t[:town]
-    end
+        FILTER(?town_name="#{row[:city].downcase.titleize}") .
+        FILTER(?state_name="#{state}") .
+        FILTER(?state="#{(row[:state_abbr] or row[:state])}" || ?state_abbr="#{(row[:state_abbr] or row[:state])}") .
+        FILTER(?city="#{row[:city]}")
+       }
+    })
   end
-  exit
+  break if offset > 50000
   offset += 1000
-end
-
-
-
-City.all(:conditions => 'town_uri is not null', :order => 'population DESC').each do |city|
-  puts city
-  res = Sparql.execute(%Q{INSERT INTO <govtrack> 
-                       { ?s dcterms:references <#{city.town_uri}> }
-                       FROM <govtrack>
-                       WHERE {
-                   noopt(1).
-                  ?title rdf:value ?title_content .
-                  FILTER(contains(?title_content, '"#{city.asciiname}" ~ "#{state_abbr[city.state.upcase]}"'))
-                  ?title rdf:type <http://www.rdfabout.com/rdf/schema/usbill/OfficialTitle> .
-                  ?s <http://www.rdfabout.com/rdf/schema/usbill/hasTitle> ?title .
-                 }}, :ruby)
 end
