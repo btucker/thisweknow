@@ -1,0 +1,108 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../../config/environment'
+
+state_abbr = {
+  'AL' => 'Alabama',
+  'AK' => 'Alaska',
+  'AS' => 'America Samoa',
+  'AZ' => 'Arizona',
+  'AR' => 'Arkansas',
+  'CA' => 'California',
+  'CO' => 'Colorado',
+  'CT' => 'Connecticut',
+  'DE' => 'Delaware',
+  'DC' => 'District of Columbia',
+  'FM' => 'Micronesia1',
+  'FL' => 'Florida',
+  'GA' => 'Georgia',
+  'GU' => 'Guam',
+  'HI' => 'Hawaii',
+  'ID' => 'Idaho',
+  'IL' => 'Illinois',
+  'IN' => 'Indiana',
+  'IA' => 'Iowa',
+  'KS' => 'Kansas',
+  'KY' => 'Kentucky',
+  'LA' => 'Louisiana',
+  'ME' => 'Maine',
+  'MH' => 'Islands1',
+  'MD' => 'Maryland',
+  'MA' => 'Massachusetts',
+  'MI' => 'Michigan',
+  'MN' => 'Minnesota',
+  'MS' => 'Mississippi',
+  'MO' => 'Missouri',
+  'MT' => 'Montana',
+  'NE' => 'Nebraska',
+  'NV' => 'Nevada',
+  'NH' => 'New Hampshire',
+  'NJ' => 'New Jersey',
+  'NM' => 'New Mexico',
+  'NY' => 'New York',
+  'NC' => 'North Carolina',
+  'ND' => 'North Dakota',
+  'OH' => 'Ohio',
+  'OK' => 'Oklahoma',
+  'OR' => 'Oregon',
+  'PW' => 'Palau',
+  'PA' => 'Pennsylvania',
+  'PR' => 'Puerto Rico',
+  'RI' => 'Rhode Island',
+  'SC' => 'South Carolina',
+  'SD' => 'South Dakota',
+  'TN' => 'Tennessee',
+  'TX' => 'Texas',
+  'UT' => 'Utah',
+  'VT' => 'Vermont',
+  'VI' => 'Virgin Island',
+  'VA' => 'Virginia',
+  'WA' => 'Washington',
+  'WV' => 'West Virginia',
+  'WI' => 'Wisconsin',
+  'WY' => 'Wyoming'
+}
+
+offset = 0
+while true
+  Sparql.execute(%Q{
+    select ?s ?city ?state ?state_abbr from <data> from <govtrack> WHERE {
+      ?s rdf:type o:Address;
+          o:city ?city;
+          o:state ?state .
+        OPTIONAL {
+          ?state o:shortName ?state_abbr
+        }
+    } limit 2 offset #{offset}
+  }, :ruby).each do |row|
+    state = state_abbr[(row[:state_abbr] or row[:state])] 
+    Sparql.execute(%Q{
+      select ?town ?town_name ?state_name from <data> from <census> WHERE {
+        ?town rdf:type <tag:govshare.info,2005:rdf/usgovt/Town> .
+        ?town dc:title ?town_name;
+        dcterms:isPartOf [  dcterms:isPartOf [ dc:title ?state_name] ]  .
+        FILTER(?town_name="#{row[:city]}") .
+        FILTER(?state_name="#{state}")
+       } LIMIT 1
+    }, :ruby).each do |t|
+      puts t[:town]
+    end
+  end
+  exit
+  offset += 1000
+end
+
+
+
+City.all(:conditions => 'town_uri is not null', :order => 'population DESC').each do |city|
+  puts city
+  res = Sparql.execute(%Q{INSERT INTO <govtrack> 
+                       { ?s dcterms:references <#{city.town_uri}> }
+                       FROM <govtrack>
+                       WHERE {
+                   noopt(1).
+                  ?title rdf:value ?title_content .
+                  FILTER(contains(?title_content, '"#{city.asciiname}" ~ "#{state_abbr[city.state.upcase]}"'))
+                  ?title rdf:type <http://www.rdfabout.com/rdf/schema/usbill/OfficialTitle> .
+                  ?s <http://www.rdfabout.com/rdf/schema/usbill/hasTitle> ?title .
+                 }}, :ruby)
+end
