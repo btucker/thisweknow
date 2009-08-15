@@ -34,7 +34,7 @@ class Sparql
   end
 
   def self.graphs
-    %Q{ FROM <data> FROM <census> FROM <census_data> FROM <govtrack> FROM <ui> }
+    %Q{ FROM <data> FROM <census> FROM <census_data> FROM <govtrack> FROM <ui> FROM <lobbyists> FROM <cancer> }
   end
 
   def self.prefixes
