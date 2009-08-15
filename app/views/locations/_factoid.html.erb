@@ -1,6 +1,9 @@
 <li>
   <span class="bullet"></span>
-  <%= render_sentence(factoid, @location) %> <%= subtext(factoid, @location) %>
+  <%= render_sentence(factoid, @location) %> 
+  <% unless factoid.sentence =~ /<nosubtext\/?>/ %>
+    <%= subtext(factoid, @location) %>
+  <% end %>
   <% if text = render_sentence(factoid, @location, :as_text => true).sub(/[\.\s]+$/,'') and text.size < 100 %>
     <%= link_to 'tweet this', 
         "http://twitter.com/home?status=#{text} " +

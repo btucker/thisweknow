@@ -40,7 +40,7 @@ module ApplicationHelper
         "<a class='quality' href='#{factoid_path(factoid, location)}'>#{$1 == '1' ? $2 : pluralize_without_count(counts[i-1], $2.singularize)}</a>"
       end
     end
-    result
+    result.gsub(/<nosubtext\/?>/,'')
     rescue Exception
       "Sorry, there is not enough data about this location."
   end
