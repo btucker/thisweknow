@@ -11,20 +11,19 @@
   <%= render :partial => 'list', :object => @entity %>
 </div>
 
-<% @back_links.each do |link| %>
-  <h3><%= link[0] %></h3>
-  <table>
-  <% link[1].each do |res,cols| %>
-    <tr>
-      <th><%= link_to res, :action => 'show', :uri => res %></th>
-      <% cols.each do |col| %>
-        <td><%= col[:o] %></td>
-      <% end %>
-    </tr>
-  <% end %>
-  </table>
+<% @back_links.each do |pred,links| %>
+  <p>
+    <h4><%= pred.sub(/.*[#\/]([^#\/]+)$/,'\1').underscore.titleize %></h4>
+    <ul>
+    <% links.each do |res| %>
+      <li>
+        <%= link_to_if((res[:label] or res[:title]), 
+                     (res[:label] or res[:title]), :action => 'show', :uri => res[:s]) %>
+      </li>
+    <% end %>
+    </ul>
+  </p>
 <% end %>
-
 
 <% content_for :sidebar do %>
 <div class="more_we_know">

@@ -93,20 +93,12 @@ class EntitiesController < ApplicationController
     end
     @entity = belongs_to_for(@uri)
 
-    @back_links = Sparql.execute("SELECT distinct ?p WHERE {
+    @back_links = Sparql.execute("SELECT ?s ?p ?label ?title WHERE {
       ?s ?p ?o .
+      OPTIONAL { ?s rdfs:label ?label } .
+      OPTIONAL { ?s dc:title ?title } .
       FILTER(?o=<#{@uri}>) .
-    } limit 25", :ruby).map do |res|
-      [res[:p],
-      Sparql.execute("SELECT ?s ?p ?o WHERE {
-        ?s ?bt ?self .
-        ?s ?p ?o .
-        ?s rdf:type ?type .
-        ?type ui:attribute ?p .             
-        FILTER(?bt=<#{res[:p]}>) .
-        FILTER(?self=<#{@uri}>)
-      } limit 20", :ruby).group_by {|r| r[:s]}]
-    end
+    } limit 25", :ruby).group_by { |r| r[:p] }
 
     respond_to do |f|
       f.html 
