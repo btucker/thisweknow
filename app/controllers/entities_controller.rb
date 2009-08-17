@@ -32,22 +32,26 @@ class EntitiesController < ApplicationController
       seen << uri
     end
     belongs_tos = {}
-    @xml.search("//rdf:Description[@rdf:about='#{uri}']/rdf:type", NAMESPACES).map{|e| e.get_attribute('resource')}.compact.each do |type|
-      if @annotations[type] and @annotations[type][:belongs_to]
-        @annotations[type][:belongs_to].each do |at|
-          at.match(/(.*[#\/])([^#\/]+)$/)
-          entities = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}", NAMESPACES.merge('nsx' => $1))
-          belongs_tos[$2] = entities.map{|e| 
-            if u = e.get_attribute('resource')
-              belongs_to_for(u,seen).merge(:uri => u) 
-            elsif sub_entity = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}/rdf:Description", NAMESPACES.merge('nsx' => $1))
-              attributes_for(sub_entity) 
-            end
-          }
+    Timeout::timeout(10) do 
+      @xml.search("//rdf:Description[@rdf:about='#{uri}']/rdf:type", NAMESPACES).map{|e| e.get_attribute('resource')}.compact.each do |type|
+        if @annotations[type] and @annotations[type][:belongs_to]
+          @annotations[type][:belongs_to].each do |at|
+            at.match(/(.*[#\/])([^#\/]+)$/)
+            entities = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}", NAMESPACES.merge('nsx' => $1))
+            belongs_tos[$2] = entities.map{|e| 
+              if u = e.get_attribute('resource')
+                belongs_to_for(u,seen).merge(:uri => u) 
+              elsif sub_entity = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}/rdf:Description", NAMESPACES.merge('nsx' => $1))
+                attributes_for(sub_entity) 
+              end
+            }
+          end
         end
       end
     end
     belongs_tos.merge(attributes_for(uri))
+  rescue Timeout::Error  
+    attributes_for(uri)
   end
 
   def flatten(hash, top=true)
