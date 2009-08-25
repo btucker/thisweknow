@@ -74,7 +74,7 @@ class Factoid < ActiveRecord::Base
     if city = location.city_obj and @count.compact.any?
       fr = factoid_results.build(:city_id => city.id)
       @count.each_with_index do |c,i|
-        fr.send("count#{i+1}=".to_sym, c) if i < 10
+        fr.send("count#{i+1}=".to_sym, c) if i < 9
       end
       fr.save
     end
