@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../../config/environment'
+
+Crime.all(:include => :city).each do |crime|
+  if crime.city
+    town_uri = (crime.city.town_uri || crime.city.location.find_town)
+  else
+    town_uri = Location.new("#{crime.city_name}, #{crime.state}").find_town
+  end
+  puts "#{crime.city_name}, #{crime.state}: #{town_uri}"
+  crime.update_attribute(:town_uri, town_uri)
+end
