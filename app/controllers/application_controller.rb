@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   def location_path(location)
-    url_for(:controller => 'locations', :action => 'show', :city => location.city, :state => location.state)
+    url_for(:controller => 'locations', :action => 'show', :city => location.city.gsub(' ','_'), :state => location.state)
   end
   helper_method :location_path
 

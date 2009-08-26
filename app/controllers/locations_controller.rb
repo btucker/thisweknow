@@ -48,7 +48,10 @@ class LocationsController < ApplicationController
   protected
 
   def find_location
-    @location = Location.new("#{params[:city]}, #{params[:state]}") if params[:city] and params[:state]
+    if params[:city] and params[:state]
+      params[:city].gsub!('_',' ')
+      @location = Location.new("#{params[:city]}, #{params[:state]}") 
+    end
   end
 
   def set_body_classes
