@@ -17,9 +17,9 @@ class City < ActiveRecord::Base
   def stats(town=nil)
     unless @stats
       town ||= town_uri
-      columns = %w(populations households land_area water_area)
+      columns = %w(population households land_area water_area)
       if columns.all?{|c| self[c]}
-        res = columns.map {|c| {:label => c.humanize.titleize, :value => self[c]} } 
+        res = columns.map {|c| {:label => c.humanize.titleize, :value => self[c].to_s} } 
       else
         res = Sparql.execute("SELECT ?label ?value FROM <census> FROM <ui> WHERE {
                               ?town rdf:type <tag:govshare.info,2005:rdf/usgovt/Town>;
@@ -29,24 +29,32 @@ class City < ActiveRecord::Base
                            }", :ruby)
       end
 
-      res.each do |stat|
-        stat[:label] = stat[:label].sub(/.*[#\/]([^#\/]+)$/, '\1').underscore.titleize
-        # update population if we don't already have it (used for nearby)
-        column = stat[:label].downcase.gsub(' ','_').to_sym
-        stat[:value].sub!(/\s*(\w+)\^(\d+)$/) do
-          if $1 == 'm'
-            unit = 'mi'
-          else
-            unit = $1
+      # some places have cities & towns incorporated by the same name. let's assume the
+      # city is going to be larger, and favor all larger values in these odd situations.
+      # eg. Madison, WI
+      all_stats = []
+      res.group_by{|a| a[:label]}.each do |label,stats|
+        stats.map! do |stat|
+          stat[:label] = stat[:label].sub(/.*[#\/]([^#\/]+)$/, '\1').underscore.titleize
+          # update population if we don't already have it (used for nearby)
+          stat[:column] = stat[:label].downcase.gsub(' ','_').to_sym
+          stat[:value].sub!(/\s*(\w+)\^(\d+)$/) do
+            if $1 == 'm'
+              unit = 'mi'
+            else
+              unit = $1
+            end
+            stat[:label] << " <small>(#{unit}<sup>#{$2}</sup>)</small>" 
+            ''
           end
-          stat[:label] << " <small>(#{unit}<sup>#{$2}</sup>)</small>" 
-          ''
+          stat[:value] = (stat[:value].to_f / (METERS_IN_MILE ** 2) * 10).round / 10.0 if stat[:label] =~ /\(mi<sup>/
+          stat
         end
-        stat[:value] = (stat[:value].to_f / (METERS_IN_MILE ** 2) * 10).round / 10.0 if stat[:label] =~ /\(mi<sup>/
+        stat = stats.max{|a,b| a[:value] <=> b[:value]}
 
-        if self.respond_to?(column) and !self.send(column)
-          self.update_attribute(column, stat[:value])
-          self.geocode if column == :population
+        if self.respond_to?(stat[:column]) and !self.send(stat[:column])
+          self.update_attribute(stat[:column], stat[:value])
+          self.geocode if stat[:column] == :population
         end
         
         stat[:order] =
@@ -62,8 +70,9 @@ class City < ActiveRecord::Base
               else
                 4
             end
-        end
-      @stats = res.select {|stat| stat[:label] != 'Title'}.sort_by {|s| s[:order]}
+        all_stats << stat
+      end
+      @stats = all_stats.select {|stat| stat[:label] != 'Title'}.sort_by {|s| s[:order]}
     end
     @stats
   end
