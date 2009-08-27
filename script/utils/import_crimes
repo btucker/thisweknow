@@ -1,0 +1,105 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../../config/environment'
+
+state_abbr = {
+  'AL' => 'Alabama',
+  'AK' => 'Alaska',
+  'AS' => 'America Samoa',
+  'AZ' => 'Arizona',
+  'AR' => 'Arkansas',
+  'CA' => 'California',
+  'CO' => 'Colorado',
+  'CT' => 'Connecticut',
+  'DE' => 'Delaware',
+  'DC' => 'District of Columbia',
+  'FM' => 'Micronesia1',
+  'FL' => 'Florida',
+  'GA' => 'Georgia',
+  'GU' => 'Guam',
+  'HI' => 'Hawaii',
+  'ID' => 'Idaho',
+  'IL' => 'Illinois',
+  'IN' => 'Indiana',
+  'IA' => 'Iowa',
+  'KS' => 'Kansas',
+  'KY' => 'Kentucky',
+  'LA' => 'Louisiana',
+  'ME' => 'Maine',
+  'MH' => 'Islands1',
+  'MD' => 'Maryland',
+  'MA' => 'Massachusetts',
+  'MI' => 'Michigan',
+  'MN' => 'Minnesota',
+  'MS' => 'Mississippi',
+  'MO' => 'Missouri',
+  'MT' => 'Montana',
+  'NE' => 'Nebraska',
+  'NV' => 'Nevada',
+  'NH' => 'New Hampshire',
+  'NJ' => 'New Jersey',
+  'NM' => 'New Mexico',
+  'NY' => 'New York',
+  'NC' => 'North Carolina',
+  'ND' => 'North Dakota',
+  'OH' => 'Ohio',
+  'OK' => 'Oklahoma',
+  'OR' => 'Oregon',
+  'PW' => 'Palau',
+  'PA' => 'Pennsylvania',
+  'PR' => 'Puerto Rico',
+  'RI' => 'Rhode Island',
+  'SC' => 'South Carolina',
+  'SD' => 'South Dakota',
+  'TN' => 'Tennessee',
+  'TX' => 'Texas',
+  'UT' => 'Utah',
+  'VT' => 'Vermont',
+  'VI' => 'Virgin Island',
+  'VA' => 'Virginia',
+  'WA' => 'Washington',
+  'WV' => 'West Virginia',
+  'WI' => 'Wisconsin',
+  'WY' => 'Wyoming'
+}
+
+require 'fastercsv'
+
+state_name = nil
+state = nil
+FasterCSV.foreach("crime_data.csv") do |row|
+  if !row[0].blank?
+    state_name = row[0].titleize
+    state_abbr.each do |key,val| 
+      if val == state_name
+        state = key
+      end
+    end
+  end
+
+  city = City.find_by_name_and_admin1_code(row[1], state)
+  if city
+    crime = Crime.find_by_city_id(city.id)
+  else
+    crime = Crime.find_by_city_name_and_state(row[1], state)
+  end
+
+  (crime || Crime.create).update_attributes(
+    :state => state,
+    :city_name => row[1],
+    :population => row[2],
+    :violent_crime => (row[3].gsub(/[^\d]+/,'') if row[3]),
+    :murder => (row[4].gsub(/[^\d]+/,'') if row[4]),
+    :forcible_rape => (row[5].gsub(/[^\d]+/,'') if row[5]),
+    :robbery => (row[6].gsub(/[^\d]+/,'') if row[6]),
+    :aggravated_assault => (row[7].gsub(/[^\d]+/,'') if row[7]),
+    :property_crime => (row[8].gsub(/[^\d]+/,'') if row[8]),
+    :burglary => (row[9].gsub(/[^\d]+/,'') if row[9]),
+    :larceny_theft => (row[10].gsub(/[^\d]+/,'') if row[10]),
+    :motor_vehicle_theft => (row[11].gsub(/[^\d]+/,'') if row[11]),
+    :arson => (row[12].gsub(/[^\d]+/,'') if row[12]),
+    :city => city
+  )
+
+  puts "#{row[1]}, #{state}"
+
+end
