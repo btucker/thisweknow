@@ -50,7 +50,7 @@ class City < ActiveRecord::Base
           stat[:value] = (stat[:value].to_f / (METERS_IN_MILE ** 2) * 10).round / 10.0 if stat[:label] =~ /\(mi<sup>/
           stat
         end
-        stat = stats.max{|a,b| a[:value] <=> b[:value]}
+        stat = stats.max{|a,b| a[:value].to_f <=> b[:value].to_f}
 
         if self.respond_to?(stat[:column]) and !self.send(stat[:column])
           self.update_attribute(stat[:column], stat[:value])
