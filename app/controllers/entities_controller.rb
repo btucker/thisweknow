@@ -4,77 +4,6 @@ class EntitiesController < ApplicationController
     'rdfs' => "http://www.w3.org/2000/01/rdf-schema#"
   }
 
-  def attributes_for(uri)
-    attributes = {}
-    if uri.is_a? Nokogiri::XML::NodeSet
-      nodeset = uri.search(".//rdf:type", NAMESPACES)
-      entity = uri
-    else
-      nodeset = @xml.search("//rdf:Description[@rdf:about='#{uri}']/rdf:type", NAMESPACES)
-    end
-    nodeset.map{|e| e.get_attribute('resource')}.compact.each do |type|
-      if @annotations[type] and @annotations[type][:attribute]
-        @annotations[type][:attribute].each do |at|
-          at.match(/(.*[#\/])([^#\/]+)$/)
-          attributes[$2] = (entity || @xml.search("//rdf:Description[@rdf:about='#{uri}']", 
-                                                  NAMESPACES)).search(".//nsx:#{$2}", 
-                                                  NAMESPACES.merge('nsx' => $1)).map(&:content)
-        end
-      end
-    end
-    attributes
-  end
-
-  def belongs_to_for(uri, seen=[])
-    if seen.include? uri
-      return {}
-    else
-      seen << uri
-    end
-    belongs_tos = {}
-    Timeout::timeout(10) do 
-      @xml.search("//rdf:Description[@rdf:about='#{uri}']/rdf:type", NAMESPACES).map{|e| e.get_attribute('resource')}.compact.each do |type|
-        if @annotations[type] and @annotations[type][:belongs_to]
-          @annotations[type][:belongs_to].each do |at|
-            at.match(/(.*[#\/])([^#\/]+)$/)
-            entities = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}", NAMESPACES.merge('nsx' => $1))
-            belongs_tos[$2] = entities.map{|e| 
-              if u = e.get_attribute('resource')
-                belongs_to_for(u,seen).merge(:uri => u) 
-              elsif sub_entity = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}/rdf:Description", NAMESPACES.merge('nsx' => $1))
-                attributes_for(sub_entity) 
-              end
-            }
-          end
-        end
-      end
-    end
-    belongs_tos.merge(attributes_for(uri))
-  rescue Timeout::Error  
-    attributes_for(uri)
-  end
-
-  def flatten(hash, top=true)
-    if hash.is_a? Hash
-      hash.each do |k,v|
-        if v.is_a? Array
-          if v and v.size == 1 and v.first.is_a? Hash
-            hash.delete(k)
-            hash.merge!(flatten(v.first))
-          elsif v and v.size > 1 and v.first.is_a? Hash  
-            # collection of things
-            flatten(v)
-          elsif v.blank?
-            hash.delete(k)
-          end
-        end
-      end
-    elsif hash.is_a? Array
-      hash.map!{|e| flatten(e) }
-    end
-    hash
-  end
-
   def show
     @uri = params[:uri] #= "http://www.data.gov/data/Company_7332d5d28a6626f50242a12bf79de077"
     @uri.sub!(/\.rdf$/,'')
@@ -114,4 +43,79 @@ class EntitiesController < ApplicationController
       }
     end
   end
+
+  private
+  def attributes_for(uri)
+    attributes = {}
+    if uri.is_a? Nokogiri::XML::NodeSet
+      nodeset = uri.search("./rdf:type", NAMESPACES)
+      entity = uri
+    else
+      nodeset = @xml.search("//rdf:Description[@rdf:about='#{uri}']/rdf:type", NAMESPACES)
+    end
+    nodeset.map{|e| e.get_attribute('resource')}.compact.each do |type|
+      if @annotations[type] and @annotations[type][:attribute]
+        @annotations[type][:attribute].each do |at|
+          at.match(/(.*[#\/])([^#\/]+)$/)
+          logger.debug "ENTITY: #{entity.inspect}"
+          attributes[$2] = (entity || @xml.search("//rdf:Description[@rdf:about='#{uri}']", 
+                                                  NAMESPACES)).search("./nsx:#{$2}", 
+                                                  NAMESPACES.merge('nsx' => $1)).map(&:content)
+        end
+      end
+    end
+    attributes
+  end
+
+  def belongs_to_for(uri, seen=[])
+    if seen.include? uri
+      return {}
+    else
+      seen << uri
+    end
+    belongs_tos = {}
+    Timeout::timeout(10) do 
+      @xml.search("//rdf:Description[@rdf:about='#{uri}']/rdf:type", NAMESPACES).map{|e| e.get_attribute('resource')}.compact.each do |type|
+        if @annotations[type] and @annotations[type][:belongs_to]
+          @annotations[type][:belongs_to].each do |at|
+            at.match(/(.*[#\/])([^#\/]+)$/)
+            entities = @xml.search("//rdf:Description[@rdf:about='#{uri}']/nsx:#{$2}", NAMESPACES.merge('nsx' => $1))
+            belongs_tos[$2] = entities.map{|e| 
+              if u = e.get_attribute('resource')
+                belongs_to_for(u,seen).merge(:uri => u) 
+              elsif sub_entity = e.search("./rdf:Description", NAMESPACES)
+                attributes_for(sub_entity)
+              end
+            }
+          end
+        end
+      end
+    end
+    belongs_tos.merge(attributes_for(uri))
+  rescue Timeout::Error  
+    attributes_for(uri)
+  end
+
+  def flatten(hash, top=true)
+    if hash.is_a? Hash
+      hash.each do |k,v|
+        if v.is_a? Array
+          if v and v.size == 1 and v.first.is_a? Hash
+            hash.delete(k)
+            hash.merge!(flatten(v.first))
+          elsif v and v.size > 1 and v.first.is_a? Hash  
+            # collection of things
+            flatten(v)
+          elsif v.blank?
+            hash.delete(k)
+          end
+        end
+      end
+    elsif hash.is_a? Array
+      hash.map!{|e| flatten(e) }
+    end
+    hash
+  end
+
+
 end

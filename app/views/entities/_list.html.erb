@@ -1,16 +1,19 @@
 <% i = 0; started = false %>
 <% list.select{|k,v| v}.sort{|a,b| a[1].size <=> b[1].size}.each do |k,v| %>
+  <% v.reject!{|elm| elm =~ /^\s*$/} if v.respond_to?(:reject!) %>
   <% if v and !k.is_a? Symbol and v.any? and (v.size > 1 or !v.first.blank?) %>
     <% if (i += 1) == 1 %>
       <% started = true %>
       <ul>
     <% end %>
     <li>
-      <% unless k == 'label' %>
+      <% if k != 'label' %>
         <b><%= k.underscore.humanize %>:</b>  
       <% end %>
-      <% if v.size == 1 and v.first.is_a? String %>
-        <%= link_to_if list[:uri], v.first, :action => 'show', :uri => list[:uri] %>
+      <% if v.any? and v.first.is_a? String %>
+        <% v.each_with_index do |elm, i2| %>
+          <%= link_to_if list[:uri], elm, :action => 'show', :uri => list[:uri] %><%= ',' unless i2 == v.size-1 %>
+        <% end %>
       <% elsif v.size == 1 %>  
         <%= render :partial => 'list', :object => v.first %>
       <% else %>

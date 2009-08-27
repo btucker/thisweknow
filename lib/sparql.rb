@@ -54,21 +54,28 @@ class Sparql
 
   def self.describe_prefix
     %Q{
-      rulebase (
-        select ?s ?p ?o ?r where 
-        {?s ?p ?o. filter(?s=?r)} as <description>
-            
-        # special rule to look for all marked predicates for the
-        # class of the entity (?r) and recursively describe all
-        # included references.
-        
-        select ?s ?p ?o ?r where {
-                         ?r rdf:type ?class.
-                         ?class ui:belongsTo ?ref.
-                         ?r ?ref ?included.
-                         <description>(?s, ?p, ?o, ?included).
-        }as <description>
-      )
+     rulebase (
+       # special rule to look for all marked predicates for the
+       # class of the entity (?r) and recursively describe all
+       # included references.
+       SELECT ?s ?p ?o ?r ?d WHERE {
+                        ?r rdf:type ?class.
+                        ?class ui:belongsTo ?ref.
+                        ?r ?ref ?included.
+                               descriptionDepth(?s, ?p, ?o, ?included, ?d -
+1).
+                               Filter(?d > 0).
+               } as <descriptionDepth>
+
+         # make sure we get labels of any entities we refer to (if they exist)
+         SELECT ?s rdfs:label ?o ?r ?d where {?r ?x ?s. ?s rdfs:label ?o} as <descriptionDepth>
+
+         # we want all immediate statements
+         SELECT ?s ?p ?o ?r ?d where {?s ?p ?o. filter(?r=?s)} as <descriptionDepth>
+
+         # tie the descriptionDepth rule to the description rule that describe uses
+         SELECT ?s ?p ?o ?r where {descriptionDepth(?s, ?p, ?o, ?r, 2)} as <description>
+     )
     }
   end
 end
