@@ -40,7 +40,8 @@ class Location
       @state = @location.region
       @lat = @location.coordinates.first
       @lon = @location.coordinates.second
-      @city_obj = City.find(:first,
+      return nil unless @location.country == 'US' and @location.locality and @lat and @lon
+      @city_obj = (City.find(:first,
                             :include => :zipcodes,
                             :conditions => ['name LIKE ? AND admin1_code = ?', 
                                             @location.locality + '%', 
@@ -48,9 +49,12 @@ class Location
                   City.create(:name => @location.locality, :asciiname => @location.locality, 
                               :admin1_code => @location.region, :latitude => @location.latitude,
                               :longitude => @location.longitude,
-                              :feature_class => 'P', :feature_code => 'PPL', :country_code => 'US')
+                              :feature_class => 'P', :feature_code => 'PPL', :country_code => 'US'))
     end
-    if @city_obj and area = @city_obj.stats(find_town).select{|s| s[:label] =~ /^Land Area/}.first
+
+    find_town if @city_obj and @city_obj.town_uri.blank?
+
+    if @city_obj and @city_obj.town_uri and (area = @city_obj.stats.select{|s| s[:label] =~ /^Land Area/}.first)
       @radius = Math.sqrt(area[:value].to_f).round
     else
       @radius = 24 
@@ -61,6 +65,10 @@ class Location
     if @city_obj
       @city_obj.population
     end
+  end
+
+  def state_name
+    STATE_ABBR[self.state]
   end
 
   def cities_nearby
@@ -186,35 +194,39 @@ class Location
     if @city_obj and @city_obj.town_uri
       return @city_obj.town_uri
     else
-      query_start = %Q|
-        select ?town ?lat ?lon from <census> where {
-          ?town rdf:type <tag:govshare.info,2005:rdf/usgovt/Town>;
-          geo:lat ?lat;
-          geo:long ?lon;
-          ?p ?o .
-          FILTER(?lat > #{self.lat_min(radius).to_f}) . 
-          FILTER(?lat < #{self.lat_max(radius).to_f}) . 
-          FILTER(?lon > #{self.lon_min(radius).to_f}) . 
-          FILTER(?lon < #{self.lon_max(radius).to_f}) . 
-      |
-      res = Sparql.execute(query_start + "FILTER(contains(?o, '\"#{self.city}\"'))}", :ruby).map do |t|
-        t[:distance] = self.distance(t[:lon].to_f, t[:lat].to_f)
-        t
-      end.min {|a,b| a[:distance] <=> b[:distance]}
+      query = %Q{
+        set <sub> = (
+          SELECT ?town ?type ?lat ?lon ?p1 ?p2 ?p3 FROM <census> WHERE {
+              ?town dc:title ?name;
+              rdf:type ?type;
+              geo:lat ?lat;
+              geo:long ?lon;
+              dcterms:isPartOf [
+                dc:title ?p1;
+                  dcterms:isPartOf [
+                     dc:title ?p2;
+                     dcterms:isPartOf [
+                        dc:title ?p3
+                     ]
+                   ]
+                ]
+              FILTER(contains(?name, '"#{self.city}"')) 
+            }
+          )
+
+          SELECT * WHERE {
+            <sub>(?town, ?type, ?lat, ?lon, ?p1, ?p2, ?p3).
+            FILTER(?p1="#{self.state_name}" || ?p2="#{self.state_name}" || ?p3="#{self.state_name}") .
+            FILTER(?lat > #{self.lat_min(radius).to_f}) . 
+            FILTER(?lat < #{self.lat_max(radius).to_f}) . 
+            FILTER(?lon > #{self.lon_min(radius).to_f}) . 
+            FILTER(?lon < #{self.lon_max(radius).to_f}) 
+          } 
+      }
+      res = Sparql.execute(query, :ruby).min {|a,b| a[:type] <=> b[:type]}
 
       if res
-        @city_obj.update_attribute(:town_uri, res[:town]) if @city_obj
-        return res[:town]
-      end
-
-      # fallback to not using name if we can't find it that way
-      res = Sparql.execute(query_start + "}", :ruby).map do |t|
-        t[:distance] = self.distance(t[:lon].to_f, t[:lat].to_f)
-        t
-      end.min {|a,b| a[:distance] <=> b[:distance]}
-
-      if res
-        @city_obj.update_attribute(:town_uri, res[:town]) if @city_obj
+        @city_obj.update_attribute(:town_uri, res[:town]) if @city_obj and @city_obj.town_uri.blank?
         return res[:town]
       end
     end
@@ -239,5 +251,66 @@ class Location
   def miles_to_lon(miles, lat) #Converts miles to degrees of longitude
   	return miles/(69.17*Math.cos(0.01745*lat))
   end
+
+  STATE_ABBR = {
+    'AL' => 'Alabama',
+    'AK' => 'Alaska',
+    'AS' => 'America Samoa',
+    'AZ' => 'Arizona',
+    'AR' => 'Arkansas',
+    'CA' => 'California',
+    'CO' => 'Colorado',
+    'CT' => 'Connecticut',
+    'DE' => 'Delaware',
+    'DC' => 'District of Columbia',
+    'FM' => 'Micronesia1',
+    'FL' => 'Florida',
+    'GA' => 'Georgia',
+    'GU' => 'Guam',
+    'HI' => 'Hawaii',
+    'ID' => 'Idaho',
+    'IL' => 'Illinois',
+    'IN' => 'Indiana',
+    'IA' => 'Iowa',
+    'KS' => 'Kansas',
+    'KY' => 'Kentucky',
+    'LA' => 'Louisiana',
+    'ME' => 'Maine',
+    'MH' => 'Islands1',
+    'MD' => 'Maryland',
+    'MA' => 'Massachusetts',
+    'MI' => 'Michigan',
+    'MN' => 'Minnesota',
+    'MS' => 'Mississippi',
+    'MO' => 'Missouri',
+    'MT' => 'Montana',
+    'NE' => 'Nebraska',
+    'NV' => 'Nevada',
+    'NH' => 'New Hampshire',
+    'NJ' => 'New Jersey',
+    'NM' => 'New Mexico',
+    'NY' => 'New York',
+    'NC' => 'North Carolina',
+    'ND' => 'North Dakota',
+    'OH' => 'Ohio',
+    'OK' => 'Oklahoma',
+    'OR' => 'Oregon',
+    'PW' => 'Palau',
+    'PA' => 'Pennsylvania',
+    'PR' => 'Puerto Rico',
+    'RI' => 'Rhode Island',
+    'SC' => 'South Carolina',
+    'SD' => 'South Dakota',
+    'TN' => 'Tennessee',
+    'TX' => 'Texas',
+    'UT' => 'Utah',
+    'VT' => 'Vermont',
+    'VI' => 'Virgin Island',
+    'VA' => 'Virginia',
+    'WA' => 'Washington',
+    'WV' => 'West Virginia',
+    'WI' => 'Wisconsin',
+    'WY' => 'Wyoming'
+  }
 
 end

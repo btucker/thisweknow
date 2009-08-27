@@ -16,7 +16,7 @@ class City < ActiveRecord::Base
 
   def stats(town=nil)
     unless @stats
-      town ||= location.find_town    
+      town ||= town_uri
       columns = %w(populations households land_area water_area)
       if columns.all?{|c| self[c]}
         res = columns.map {|c| {:label => c.humanize.titleize, :value => self[c]} } 
