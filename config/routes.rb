@@ -2,6 +2,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :factoids
   map.resources :facilities
 
+  map.connect '/list/:id',
+        :controller => 'list',
+        :action => 'show'
+
   map.connect '/l/search',
         :controller => 'locations',
         :action => 'search'
