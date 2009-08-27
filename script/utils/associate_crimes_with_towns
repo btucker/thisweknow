@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 require File.dirname(__FILE__) + '/../../config/environment'
 
-Crime.all(:include => :city).each do |crime|
+Crime.all(:conditions => 'town_uri is null').each do |crime|
+  crime.city_name = crime.city_name.sub(/\d+$/,'')
+  crime.save
   if crime.city
     town_uri = (crime.city.town_uri || crime.city.location.find_town)
   else

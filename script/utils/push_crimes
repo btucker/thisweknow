@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../../config/environment'
+require 'uuid'
+
+Crime.all(:conditions => 'town_uri is not null').each do |crime|
+        crime.uuid ||= UUID.generate
+        crime.save
+        uri = "http://www.data.gov/data/CrimeStatistic_guid:#{crime.uuid}"
+	Sparql.execute("INSERT INTO <data> {
+           <#{uri}> rdf:type o:CrimeStatistic
+        }")
+
+	Sparql.execute("INSERT INTO <data> {
+           <#{uri}> o:town <#{crime.town_uri}>
+        }")
+
+	Sparql.execute("INSERT INTO <data> {
+           <#{uri}> o:city \"#{crime.city_name}\"
+        }")
+
+	Sparql.execute("INSERT INTO <data> {
+           <#{uri}> o:state \"#{crime.state}\"
+        }")
+
+	Sparql.execute("INSERT INTO <data> {
+           <#{uri}> o:violentCrime #{crime.violent_crime}
+        }")
+
+	Sparql.execute("INSERT INTO <data> {
+           <#{uri}> o:population #{crime.population.gsub(/[^\d]+/,'')}
+        }")
+
+	Sparql.execute("INSERT INTO <data> {
+           <#{uri}> o:burglary #{crime.burglary}
+        }")
+
+	Sparql.execute("INSERT INTO <data> {
+           <#{uri}> o:murder #{crime.murder}
+        }")
+
+	Sparql.execute("INSERT INTO <data> {
+           <#{uri}> o:forcibleRape #{crime.forcible_rape}
+        }")
+
+	Sparql.execute("INSERT INTO <data> {
+           <#{uri}> o:robbery #{crime.robbery}
+        }")
+
+	Sparql.execute("INSERT INTO <data> {
+           <#{uri}> o:aggravatedAssault #{crime.aggravated_assault}
+        }")
+
+	Sparql.execute("INSERT INTO <data> {
+           <#{uri}> o:propertyCrime #{crime.property_crime}
+        }")
+
+	Sparql.execute("INSERT INTO <data> {
+           <#{uri}> o:larcenyTheft #{crime.larceny_theft}
+        }")
+
+	Sparql.execute("INSERT INTO <data> {
+           <#{uri}> o:motorVehicleTheft #{crime.motor_vehicle_theft}
+        }")
+   puts crime.city
+end
+
