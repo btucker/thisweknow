@@ -303,7 +303,6 @@ div.data_table_wrap th {
 	color: #666666;
 	background-color: #E6E5E3;
 	padding: 5px 10px 8px;
-	width: 211px;
 	text-align: left;
 	border-right: 2px solid #fff;
 	background: #E6E5E3 url(../images/thead_ornament.png) 0 100% repeat-x;
@@ -316,7 +315,6 @@ div.data_table_wrap th span {
 }
 div.data_table_wrap td {
 	padding: 7px 10px;
-	width: 211px;
 	border-right: 2px solid #fff;
 }
 div.data_table_wrap tr.alt td {
@@ -503,10 +501,11 @@ body.homepg div#content div.unit ol {
 body.homepg div#content div.unit li {
 	margin-bottom: 8px;
 }
-body.homepg div#content div.unit li:first-child {
-	background: url(../images/dotrule.png) 0 100% repeat-x;
-	padding-bottom: 8px;
+body.homepg div#content div.unit li:last-child {
+	background: url(../images/dotrule.png) 0 0 repeat-x;
+	padding-top: 8px;
 	font-weight: bold;
+  list-style: none;
 }
 body.homepg div#content div.unit div.source {
 	font-size: 80%;
@@ -564,6 +563,10 @@ div#sidebar div.dev_team {
 }
 div#sidebar div.dev_team img {
 	float: left;
+}
+
+div.data_table_wrap th.rank, div.data_table_wrap td.rank {
+  width: 30px !important;
 }
 
 div#sparql_query {

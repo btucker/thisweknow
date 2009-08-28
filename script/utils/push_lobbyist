@@ -2,12 +2,13 @@
 require File.dirname(__FILE__) + '/../../config/environment'
 
 conn = Company.connection
-conn.execute("select filing_id, filing_amount from lobbyists_filing where filing_amount > 0 and filing_amount is not null").each_hash do |row|
+conn.execute("select filing_id, filing_amount from lobbyists_filing where filing_amount > 0 and filing_amount is not null and (uploaded_amount != 1 or uploaded_amount is null) order by client_uri desc").each_hash do |row|
   puts row["filing_id"]
   next unless row["filing_id"]
   Sparql.execute("INSERT INTO <lobbyists> {
                  <http://www.data.gov/data/LobbyistFiling_#{row["filing_id"]}>
                  o:filingAmount
                  #{row["filing_amount"]} }")
+  conn.execute("update lobbyists_filing set uploaded_amount = 1 where filing_id = '#{row["filing_id"]}'")
 end
 

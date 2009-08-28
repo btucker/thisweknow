@@ -3,14 +3,15 @@
 <div class="first unit_wrap">
   <div class="unit_toprule"></div>
   <div class="first unit">
-    <h3>Least <%= link_to 'Toxins', location_path(@least_toxins.first.city.location) %>:</h3>
+    <h3>Least <%= link_to 'Toxins', list_path("Least Toxins") %>:</h3>
     <div class="subwrap">
       <%= link_to image_tag('homepage/homepg_least_toxins.jpg', :alt => 'least toxins'),
-               location_path(@least_toxins.first.city.location) %>
+               list_path("Least Toxins") %>
       <ol>
         <% @least_toxins.each do |fr| %>
           <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
         <% end %>
+        <li><%= link_to 'Explore More &raquo;', list_path("Least Toxins") %></li>
       </ol>
     </div>
     <div class="source">Source: <%= @toxins_factoid.source %></div>
@@ -20,14 +21,15 @@
 <div class="unit_wrap">
   <div class="unit_toprule"></div>
   <div class="first unit">
-    <h3>Most <%= link_to "Nomadic", location_path(@most_nomadic.first.city.location) %>:</h3>
+    <h3>Most <%= link_to "Nomadic", list_path("Most Nomadic") %>:</h3>
     <div class="subwrap">
       <%= link_to image_tag('homepage/homepg_most_moving_in.jpg', :alt => 'most nomadic'),
-                    location_path(@most_nomadic.first.city.location) %>
+                    list_path("Most Nomadic") %>
       <ol>
         <% @most_nomadic.each do |fr| %>
           <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
         <% end %>
+        <li><%= link_to 'Explore More &raquo;', list_path("Most Nomadic") %></li>
       </ol>
     </div>
     <div class="source">Source: <%= @nomad_factoid.source %></div>
@@ -38,14 +40,15 @@
 <div class="unit_wrap">
   <div class="unit_toprule"></div>
   <div class="first unit">
-    <h3>Lowest <%= link_to "Unemployment", location_path(@lowest_unemployment.first.city.location) %>:</h3>
+    <h3>Lowest <%= link_to "Unemployment", list_path("Lowest Unemployment") %>:</h3>
     <div class="subwrap">
       <%= link_to image_tag('homepage/homepg_lowest_jobless.jpg', :alt => 'least crime'),
-                  location_path(@lowest_unemployment.first.city.location) %>
+                  list_path("Lowest Unemployment") %>
       <ol>
         <% @lowest_unemployment.each do |fr| %>
           <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
         <% end %>
+        <li><%= link_to 'Explore More &raquo;', list_path("Lowest Unemployment") %></li>
       </ol>
     </div>
     <div class="source">Source: <%= @unemployment_factoid.source %></div>
@@ -61,14 +64,15 @@
 <div class="first health unit_wrap">
   <div class="unit_toprule"></div>
   <div class="first unit">
-    <h3>Most <%= link_to "Toxins", location_path(@most_toxins.first.city.location) %>:</h3>
+    <h3>Most <%= link_to "Toxins", list_path("Most Toxins") %>:</h3>
     <div class="subwrap">
       <%= link_to image_tag('homepage/homepg_most_toxins.jpg', :alt => 'most toxins'),
-                    location_path(@most_toxins.first.city.location) %>
+                    list_path("Most Toxins") %>
       <ol>
         <% @most_toxins.each do |fr| %>
           <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
         <% end %>
+        <li><%= link_to 'Explore More &raquo;', list_path("Most Toxins") %></li>
       </ol>
     </div>
     <div class="source">Source: <%= @toxins_factoid.source %></div>
@@ -78,14 +82,15 @@
 <div class="health unit_wrap">
   <div class="unit_toprule"></div>
   <div class="first unit">
-    <h3>Most <%= link_to "Cancer", location_path(@most_cancer.first.city.location) %>:</h3>
+    <h3>Most <%= link_to "Cancer", list_path("Most Cancer") %>:</h3>
     <div class="subwrap">
       <%= link_to image_tag('homepage/homepg_highest_cancer.jpg', :alt => 'least crime'),
-                  location_path(@most_cancer.first.city.location) %>
+                  list_path("Most Cancer") %>
       <ol>
         <% @most_cancer.each do |fr| %>
           <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
         <% end %>
+        <li><%= link_to 'Explore More &raquo;', list_path("Most Cancer") %></li>
       </ol>
     </div>
     <div class="source">Source: <%= @cancer_factoid.source %></div>
@@ -95,14 +100,15 @@
 <div class="health unit_wrap">
   <div class="unit_toprule"></div>
   <div class="first unit">
-    <h3>Highest <%= link_to "Unemployment", location_path(@highest_unemployment.first.city.location) %>:</h3>
+    <h3>Highest <%= link_to "Unemployment", list_path("Highest Unemployment") %>:</h3>
     <div class="subwrap">
       <%= link_to image_tag('homepage/homepg_highest_jobless.jpg', :alt => 'least crime'),
-                  location_path(@highest_unemployment.first.city.location) %>
+                  list_path("Highest Unemployment") %>
       <ol>
         <% @highest_unemployment.each do |fr| %>
           <li><%= link_to fr.city.location, location_path(fr.city.location) %></li>
         <% end %>
+        <li><%= link_to 'Explore More &raquo;', list_path("Highest Unemployment") %></li>
       </ol>
     </div>
     <div class="source">Source: <%= @unemployment_factoid.source %></div>

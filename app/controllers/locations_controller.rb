@@ -7,7 +7,7 @@ class LocationsController < ApplicationController
 
   def show
     @body_classes << 'two_column'
-    @factoids = Factoid.all.select{|f| f.has_data?(@location)}
+    @factoids = Factoid.all(:conditions => ['hide IS NULL or hide = ?', false]).select{|f| f.has_data?(@location)}
   end
 
   def factoid

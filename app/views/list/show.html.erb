@@ -1,0 +1,57 @@
+<h2 id="subject" class="drill"><%=h @list_name %> <span class="pointer"></span></h2>
+
+<div class="data_table_toprule"></div>
+<div class="data_table_wrap">
+  <div class="subwrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="rank"><span><b>Rank</b></span></th>
+          <% @columns.map(&:first).each do |h| %>
+            <th><span><%= h.humanize %></span></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @results.each_with_index do |row, i| %>
+          <tr class="<%= cycle('','alt') %>">
+            <td class="rank"><b><%= i + 1 %>.</b></td>
+            <% @columns.map(&:last).each do |lamb| %>
+              <td><%= lamb.call(row) %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <% if @factoid.source %>
+    <div class="source">
+      Source: <%= @factoid.source %>
+    </div>
+  <% end %>
+</div><!-- /data_table_wrap -->
+<div class="data_table_bottomrule"></div>
+
+<% content_for :sidebar do %>
+  <div class="more_we_know">
+    <h3>More We Know:<span class="pointer"></span></h3>
+    <ul>
+      <% ListController::LISTS.each do |list| %>
+        <li><%= link_to_unless @list_name == list, list, :controller => 'list', :action => 'show', :id => list.gsub(' ', '_') %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="dotrule"></div>
+  <div class="vicinity">
+    <h4>Explore Cities</h4>
+    <ul>
+      <% City.all(:order => 'population desc', :limit => 8).each do |city| %>
+        <li><%= link_to city.to_s, :controller => 'locations', 
+                                   :action => 'search', 
+                                   :q => city.to_s %></li>
+      <% end %>
+    </ul>
+  </div><!-- /vicinity -->
+<% end %>
